@@ -97,7 +97,7 @@ private Conexion conexion;
         getContentPane().add(tbId);
         tbId.setBounds(130, 70, 220, 30);
 
-        btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Foto/Buscarosa_副本.png"))); // NOI18N
+        btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
         btnBuscar1.setText("Buscar");
         btnBuscar1.setToolTipText("");
         btnBuscar1.setBorder(null);
@@ -118,7 +118,7 @@ private Conexion conexion;
         getContentPane().add(jLabel6);
         jLabel6.setBounds(190, 0, 140, 40);
 
-        btnGuardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Foto/Guardar rosa.png"))); // NOI18N
+        btnGuardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar rosa.png"))); // NOI18N
         btnGuardar1.setText("Guardar");
         btnGuardar1.setBorder(null);
         btnGuardar1.setBorderPainted(false);
@@ -132,7 +132,7 @@ private Conexion conexion;
         getContentPane().add(btnGuardar1);
         btnGuardar1.setBounds(20, 360, 90, 40);
 
-        btnBorrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Foto/borrar rosa.png"))); // NOI18N
+        btnBorrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
         btnBorrar1.setText("Borrar");
         btnBorrar1.setBorder(null);
         btnBorrar1.setBorderPainted(false);
@@ -146,7 +146,7 @@ private Conexion conexion;
         getContentPane().add(btnBorrar1);
         btnBorrar1.setBounds(270, 340, 120, 80);
 
-        btnActualizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Foto/Actualizar rosa_副本_1.png"))); // NOI18N
+        btnActualizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar rosa_副本_1.png"))); // NOI18N
         btnActualizar1.setText("Actualizar");
         btnActualizar1.setBorder(null);
         btnActualizar1.setBorderPainted(false);
@@ -160,7 +160,7 @@ private Conexion conexion;
         getContentPane().add(btnActualizar1);
         btnActualizar1.setBounds(150, 350, 110, 60);
 
-        btnLimpiar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Foto/Limpiarrosa_副本.png"))); // NOI18N
+        btnLimpiar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiarrosa_副本.png"))); // NOI18N
         btnLimpiar1.setText("Limpiar");
         btnLimpiar1.setBorder(null);
         btnLimpiar1.setBorderPainted(false);
@@ -174,7 +174,7 @@ private Conexion conexion;
         getContentPane().add(btnLimpiar1);
         btnLimpiar1.setBounds(400, 350, 100, 60);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Foto/mas pequeño副本.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 500, 440);

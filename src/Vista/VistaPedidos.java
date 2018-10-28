@@ -150,21 +150,40 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jScrollPane3 = new javax.swing.JScrollPane();
         tMesero = new javax.swing.JTable();
         jLabel25 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 204, 204));
-        setMaximumSize(new java.awt.Dimension(1076, 673));
-        setMinimumSize(new java.awt.Dimension(1076, 673));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setMaximumSize(new java.awt.Dimension(1300, 651));
+        setMinimumSize(new java.awt.Dimension(1300, 651));
+        setPreferredSize(new java.awt.Dimension(1300, 651));
+        getContentPane().setLayout(null);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("-INFORME DE CLIENTE-");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 190, 30));
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(430, 0, 190, 30);
 
         jLabel7.setText("Dni");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 40, 50));
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(360, 30, 40, 50);
 
         tbDni.setBorder(null);
-        getContentPane().add(tbDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 140, 30));
+        getContentPane().add(tbDni);
+        tbDni.setBounds(420, 40, 140, 30);
 
         jbBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
         jbBuscar.setText("Buscar");
@@ -177,32 +196,42 @@ public class VistaPedidos extends javax.swing.JInternalFrame
                 jbBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, 90, 50));
+        getContentPane().add(jbBuscar);
+        jbBuscar.setBounds(590, 40, 90, 50);
 
         jLabel9.setText("Cliente");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 50, 40));
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(360, 80, 50, 40);
 
         tbNombre.setBorder(null);
-        getContentPane().add(tbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 140, 30));
+        getContentPane().add(tbNombre);
+        tbNombre.setBounds(420, 80, 140, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("-FECHA/HORA-");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 130, 40));
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(450, 120, 130, 40);
 
         jLabel13.setText("Hora");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 60, 50));
-        getContentPane().add(tbHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 130, 30));
+        getContentPane().add(jLabel13);
+        jLabel13.setBounds(370, 150, 60, 50);
+        getContentPane().add(tbHora);
+        tbHora.setBounds(430, 160, 130, 30);
 
         jLabel8.setText("Fecha");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 70, 50));
-        getContentPane().add(tbFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 130, 30));
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(370, 190, 70, 50);
+        getContentPane().add(tbFecha);
+        tbFecha.setBounds(430, 200, 130, 30);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("-INFORME DE PRODUCTO-");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 0, 190, 40));
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(810, 0, 190, 40);
 
         jLabel18.setText("Categoria");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, 60, 50));
+        getContentPane().add(jLabel18);
+        jLabel18.setBounds(720, 40, 60, 50);
 
         cbCategorias.setBackground(new java.awt.Color(255, 204, 255));
         cbCategorias.addActionListener(new java.awt.event.ActionListener() {
@@ -210,11 +239,12 @@ public class VistaPedidos extends javax.swing.JInternalFrame
                 cbCategoriasActionPerformed(evt);
             }
         });
-        getContentPane().add(cbCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 50, 150, 30));
+        getContentPane().add(cbCategorias);
+        cbCategorias.setBounds(790, 50, 150, 30);
 
-        lblIdMesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Aceptar_副本.png"))); // NOI18N
         lblIdMesa.setText("Mesa");
-        getContentPane().add(lblIdMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 50, 80, 30));
+        getContentPane().add(lblIdMesa);
+        lblIdMesa.setBounds(970, 50, 80, 30);
 
         tProducto.setBackground(new java.awt.Color(255, 204, 255));
         tProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -232,32 +262,47 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         tProducto.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(tProducto);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 90, 360, 90));
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(720, 90, 360, 90);
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("-DETALLE-");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 220, 80, 30));
+        getContentPane().add(jLabel15);
+        jLabel15.setBounds(860, 220, 80, 30);
 
         Cantidad.setText("Cantidad");
-        getContentPane().add(Cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 260, 60, 30));
+        getContentPane().add(Cantidad);
+        Cantidad.setBounds(730, 260, 60, 30);
 
         sCantidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
-        getContentPane().add(sCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 260, 80, 30));
+        getContentPane().add(sCantidad);
+        sCantidad.setBounds(800, 260, 80, 30);
 
-        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Aceptar_副本.png"))); // NOI18N
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ACEPTARROSA_副本.png"))); // NOI18N
         btnAgregar.setText("Agregar");
+        btnAgregar.setBorder(null);
+        btnAgregar.setBorderPainted(false);
+        btnAgregar.setContentAreaFilled(false);
+        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 260, 80, 30));
+        getContentPane().add(btnAgregar);
+        btnAgregar.setBounds(900, 240, 100, 70);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Aceptar_副本.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/RECHAZARROSA_副本.png"))); // NOI18N
         jButton2.setText("Quitar");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 260, 90, 30));
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(jButton2);
+        jButton2.setBounds(1020, 250, 100, 50);
 
-        tDetalle.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        tDetalle.setBackground(new java.awt.Color(255, 204, 255));
+        tDetalle.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 204, 255))); // NOI18N
         tDetalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -269,53 +314,72 @@ public class VistaPedidos extends javax.swing.JInternalFrame
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tDetalle.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane5.setViewportView(tDetalle);
 
-        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 300, 390, 90));
+        getContentPane().add(jScrollPane5);
+        jScrollPane5.setBounds(720, 300, 390, 90);
 
         jLabel16.setText("Total");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 400, 60, 40));
-        getContentPane().add(tbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 400, 140, 30));
+        getContentPane().add(jLabel16);
+        jLabel16.setBounds(900, 400, 60, 40);
+        getContentPane().add(tbTotal);
+        tbTotal.setBounds(940, 400, 140, 30);
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel21.setText("--NÚMERO DE MESAS--");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 210, 40));
+        getContentPane().add(jLabel21);
+        jLabel21.setBounds(260, 390, 210, 40);
 
-        pnlMesas.setBackground(new java.awt.Color(255, 204, 255));
+        pnlMesas.setBackground(new java.awt.Color(255, 255, 255));
         pnlMesas.setLayout(new java.awt.GridLayout(1, 0));
-        getContentPane().add(pnlMesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 650, 90));
+        getContentPane().add(pnlMesas);
+        pnlMesas.setBounds(10, 430, 650, 90);
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel23.setText("--MENÚ--");
-        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 450, 90, 40));
+        getContentPane().add(jLabel23);
+        jLabel23.setBounds(860, 450, 90, 40);
 
+        chPagado.setBackground(new java.awt.Color(255, 153, 255));
         chPagado.setText("Pagado");
         chPagado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chPagadoActionPerformed(evt);
             }
         });
-        getContentPane().add(chPagado, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 510, 80, 30));
+        getContentPane().add(chPagado);
+        chPagado.setBounds(760, 510, 80, 30);
 
+        chCancelar.setBackground(new java.awt.Color(255, 153, 255));
         chCancelar.setText("Cancelar");
         chCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(chCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 550, 80, 30));
+        getContentPane().add(chCancelar);
+        chCancelar.setBounds(760, 550, 80, 30);
 
+        btnGuardar.setBackground(new java.awt.Color(255, 153, 255));
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar rosa.png"))); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.setBorder(null);
+        btnGuardar.setBorderPainted(false);
+        btnGuardar.setContentAreaFilled(false);
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 510, 110, 60));
+        getContentPane().add(btnGuardar);
+        btnGuardar.setBounds(910, 510, 110, 60);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setText("--NÚMERO DE MESAS--");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 170, 50));
+        getContentPane().add(jLabel19);
+        jLabel19.setBounds(430, 250, 170, 50);
 
         btnPedido.setText("Nuevo  Pedido");
         btnPedido.addActionListener(new java.awt.event.ActionListener() {
@@ -323,7 +387,8 @@ public class VistaPedidos extends javax.swing.JInternalFrame
                 btnPedidoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 110, 40));
+        getContentPane().add(btnPedido);
+        btnPedido.setBounds(370, 300, 110, 40);
 
         btnVerMesa.setText("Ver Mesa");
         btnVerMesa.addActionListener(new java.awt.event.ActionListener() {
@@ -331,10 +396,11 @@ public class VistaPedidos extends javax.swing.JInternalFrame
                 btnVerMesaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVerMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 110, 40));
+        getContentPane().add(btnVerMesa);
+        btnVerMesa.setBounds(550, 300, 110, 40);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 0, 153), new java.awt.Color(153, 0, 153)));
-        jPanel1.setForeground(new java.awt.Color(255, 0, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 255), java.awt.Color.pink));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setOpaque(false);
 
         tMesero.setBackground(new java.awt.Color(255, 204, 255));
@@ -356,18 +422,25 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel25.setText("-MESEROS-");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pink_1.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 86, Short.MAX_VALUE)
-                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(67, 67, 67)
+                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 33, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,11 +448,186 @@ public class VistaPedidos extends javax.swing.JInternalFrame
                 .addContainerGap()
                 .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(238, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 1, 330, 180));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(2, 1, 330, 180);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 255), java.awt.Color.pink));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pink_1.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(330, 0, 360, 120);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 255), java.awt.Color.pink));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pink_1.jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 359, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(330, 120, 360, 130);
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 255), java.awt.Color.pink));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pink_1.jpg"))); // NOI18N
+        jLabel6.setText("jLabel6");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 426, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 1, Short.MAX_VALUE)))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 211, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        getContentPane().add(jPanel4);
+        jPanel4.setBounds(690, 0, 430, 200);
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 255), java.awt.Color.pink));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pink_1.jpg"))); // NOI18N
+        jLabel4.setText("jLabel4");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 370, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 360, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(jPanel5);
+        jPanel5.setBounds(330, 250, 360, 150);
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 255), java.awt.Color.pink));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pink_1.jpg"))); // NOI18N
+        jLabel11.setText("jLabel11");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel6);
+        jPanel6.setBounds(690, 200, 430, 240);
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 255), java.awt.Color.pink));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pink.jpg"))); // NOI18N
+        jLabel14.setText("jLabel14");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel7);
+        jPanel7.setBounds(-10, 400, 700, 180);
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 255), java.awt.Color.pink));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pink_1.jpg"))); // NOI18N
+        jLabel17.setText("jLabel17");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 426, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 180, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 180, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel8);
+        jPanel8.setBounds(690, 440, 430, 180);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -726,21 +974,36 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private javax.swing.JCheckBox chCancelar;
     private javax.swing.JCheckBox chPagado;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;

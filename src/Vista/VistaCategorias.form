@@ -130,7 +130,7 @@
     <Component class="javax.swing.JButton" name="btnBuscar1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/Foto/Buscarosa_&#x526f;&#x672c;.png"/>
+          <Image iconType="3" name="/Imagenes/Buscarosa_&#x526f;&#x672c;.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Buscar"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -169,7 +169,7 @@
     <Component class="javax.swing.JButton" name="btnGuardar1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/Foto/Guardar rosa.png"/>
+          <Image iconType="3" name="/Imagenes/Guardar rosa.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Guardar"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -193,7 +193,7 @@
     <Component class="javax.swing.JButton" name="btnBorrar1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/Foto/borrar rosa.png"/>
+          <Image iconType="3" name="/Imagenes/Buscarosa_&#x526f;&#x672c;.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Borrar"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -217,7 +217,7 @@
     <Component class="javax.swing.JButton" name="btnActualizar1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/Foto/Actualizar rosa_&#x526f;&#x672c;_1.png"/>
+          <Image iconType="3" name="/Imagenes/Actualizar rosa_&#x526f;&#x672c;_1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Actualizar"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -241,7 +241,7 @@
     <Component class="javax.swing.JButton" name="btnLimpiar1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/Foto/Limpiarrosa_&#x526f;&#x672c;.png"/>
+          <Image iconType="3" name="/Imagenes/Limpiarrosa_&#x526f;&#x672c;.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Limpiar"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -265,7 +265,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/Foto/mas peque&#xf1;o&#x526f;&#x672c;.jpg"/>
+          <Image iconType="3" name="/Imagenes/mas peque&#xf1;o&#x526f;&#x672c;.jpg"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
