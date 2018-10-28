@@ -14,6 +14,7 @@ private Conexion conexion;
     public VistaCategorias()
     {
         initComponents();
+     
         try 
         {
             conexion = new Conexion("jdbc:mysql://localhost/resto", "root", "");

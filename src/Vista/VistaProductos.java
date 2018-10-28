@@ -8,9 +8,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Modelo.Conexion;
 import Modelo.Producto;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class VistaProductos extends javax.swing.JInternalFrame {
 private ProductoData productoData;
@@ -20,6 +23,12 @@ private ArrayList<Categoria> listaCategorias;
 
     public VistaProductos() {
         initComponents();
+        
+        validarSoloNumeros(tbCodigo);
+        validarSoloNumeros(tbCantidad);
+        validarSoloLetras(tbNombre);
+
+        
          try 
         {
             conexion = new Conexion("jdbc:mysql://localhost/resto", "root", "");
@@ -118,7 +127,7 @@ private ArrayList<Categoria> listaCategorias;
 
         cbCategoria.setBackground(new java.awt.Color(255, 204, 255));
         cbCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-        getContentPane().add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 150, 30));
+        getContentPane().add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 250, 30));
 
         jLabel6.setText("Codigo");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 60, 40));
@@ -344,4 +353,48 @@ private ArrayList<Categoria> listaCategorias;
     private javax.swing.JTextField tbNombre;
     private javax.swing.JTextField tbPrecio;
     // End of variables declaration//GEN-END:variables
+
+public void validarSoloLetras(JTextField campo)
+{
+    campo.addKeyListener(new KeyAdapter(){
+       public void keyTyped(KeyEvent e)
+       { 
+           char c= e.getKeyChar();
+           if(Character.isDigit(c))
+           {
+               e.consume();
+           }
+       }
+    });
+
+}
+public void validarSoloNumeros(JTextField campo)
+{
+    campo.addKeyListener(new KeyAdapter(){
+       public void keyTyped(KeyEvent e)
+       { 
+           char c= e.getKeyChar();
+           if(!Character.isDigit(c))
+           {
+               e.consume();
+           }
+       }
+    });
+
+}
+public void limitarCaracteres(JTextField campo,int cantidad)
+{
+    campo.addKeyListener(new KeyAdapter(){
+       public void keyTyped(KeyEvent e)
+       { 
+           char c= e.getKeyChar();
+           int tamaño=campo.getText().length();
+           if(tamaño>=cantidad)
+           {
+               e.consume();
+           }
+       }
+    });
+
+}
 }

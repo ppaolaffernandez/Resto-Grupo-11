@@ -4,8 +4,11 @@ package Vista;
 import Modelo.MeseroData;
 import Modelo.Conexion;
 import Modelo.Mesero;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 
 public class VistaMeseros extends javax.swing.JInternalFrame {
 private MeseroData meseroData;
@@ -13,6 +16,14 @@ private Conexion conexion;
     
     public VistaMeseros() {
         initComponents();
+//        setLocationRelativeTo(null); centra el from
+        validarSoloNumeros(tbDni);
+        validarSoloLetras(tbNombre);
+        limitarCaracteres(tbDni,8);
+        
+        
+        
+        
          try 
         {
             conexion = new Conexion("jdbc:mysql://localhost/resto", "root", "");
@@ -266,4 +277,52 @@ private Conexion conexion;
     private javax.swing.JTextField tbId;
     private javax.swing.JTextField tbNombre;
     // End of variables declaration//GEN-END:variables
+public void validarSoloLetras(JTextField campo)
+{
+    campo.addKeyListener(new KeyAdapter(){
+       public void keyTyped(KeyEvent e)
+       { 
+           char c= e.getKeyChar();
+           if(Character.isDigit(c))
+           {
+               e.consume();
+           }
+       }
+    });
+
+}
+public void validarSoloNumeros(JTextField campo)
+{
+    campo.addKeyListener(new KeyAdapter(){
+       public void keyTyped(KeyEvent e)
+       { 
+           char c= e.getKeyChar();
+           if(!Character.isDigit(c))
+           {
+               e.consume();
+           }
+       }
+    });
+
+}
+public void limitarCaracteres(JTextField campo,int cantidad)
+{
+    campo.addKeyListener(new KeyAdapter(){
+       public void keyTyped(KeyEvent e)
+       { 
+           char c= e.getKeyChar();
+           int tamaño=campo.getText().length();
+           if(tamaño>=cantidad)
+           {
+               e.consume();
+           }
+       }
+    });
+    
+    
+}   
+    
+    
+
+
 }

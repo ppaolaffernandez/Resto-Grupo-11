@@ -4,16 +4,29 @@ package Vista;
 import Modelo.Cliente;
 import Modelo.ClienteData;
 import Modelo.Conexion;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 
 
-public class VistaClientes extends javax.swing.JInternalFrame {
+public class VistaClientes extends javax.swing.JInternalFrame
+{
 private ClienteData clienteData;
 private Conexion conexion;
   
-    public VistaClientes() {
+    public VistaClientes() 
+    {
         initComponents();
+//      setLocationRelativeTo(null); // poner form al medio
+        
+       
+        validarSoloNumeros(tbDni);
+        limitarCaracteres(tbDni,8);
+        validarSoloLetras(tbNombre);
+        
+        
         try 
         {
             conexion = new Conexion("jdbc:mysql://localhost/resto", "root", "");
@@ -281,4 +294,51 @@ private Conexion conexion;
     private javax.swing.JTextField tbId;
     private javax.swing.JTextField tbNombre;
     // End of variables declaration//GEN-END:variables
+public void validarSoloLetras(JTextField campo)
+{
+    campo.addKeyListener(new KeyAdapter(){
+       public void keyTyped(KeyEvent e)
+       { 
+           char c= e.getKeyChar();
+           if(Character.isDigit(c))
+           {
+               e.consume();
+           }
+       }
+    });
+
+}
+public void validarSoloNumeros(JTextField campo)
+{
+    campo.addKeyListener(new KeyAdapter(){
+       public void keyTyped(KeyEvent e)
+       { 
+           char c= e.getKeyChar();
+           if(!Character.isDigit(c))
+           {
+               e.consume();
+           }
+       }
+    });
+
+}
+public void limitarCaracteres(JTextField campo,int cantidad)
+{
+    campo.addKeyListener(new KeyAdapter(){
+       public void keyTyped(KeyEvent e)
+       { 
+           char c= e.getKeyChar();
+           int tamaño=campo.getText().length();
+           if(tamaño>=cantidad)
+           {
+               e.consume();
+           }
+       }
+    });
+
+}
+
+
+
+
 }
