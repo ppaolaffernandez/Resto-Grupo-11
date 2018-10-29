@@ -88,15 +88,48 @@ public class CategoriaData
               
         return categorias;
     }
-    
+     public List<Categoria> obtenerCategoriasPorNombre(String nombre)
+    {
+        List<Categoria> categorias = new ArrayList<Categoria>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM categoria WHERE nombre =?;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, nombre);
+            ResultSet resultSet = statement.executeQuery();
+            Categoria categoria;
+            
+            while(resultSet.next())
+            {
+                categoria = new Categoria();
+                
+                categoria.setIdCategoria(resultSet.getInt("idCategoria"));
+                categoria.setNombre(resultSet.getString("nombre"));
+                categoria.setDescripcion(resultSet.getString("descripcion"));
+                categoria.setActivo(resultSet.getBoolean("activo"));
+
+                categorias.add(categoria);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los categoria: " + ex.getMessage());
+        }
+              
+        return categorias;
+    }
     public void borrarCategoria(int id)
     {
         
         try
         {
+            String sql =  "UPDATE categoria SET activo = false WHERE idCategoria = ?;";//Actualizamos el activo,si borra el activo queda en false y si no borra el true 0=false, 1=true
             
-            String sql = "DELETE FROM categoria WHERE idCategoria =?;";
-
+//            String sql = "DELETE FROM categoria WHERE idCategoria =?;";
+            
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
            
@@ -120,7 +153,7 @@ public class CategoriaData
     
         try {
             
-            String sql = "UPDATE categoria SET nombre = ?, descripcion = ? , estado =? WHERE idCategoria = ?;";
+            String sql = "UPDATE categoria SET nombre = ?, descripcion = ? , activo =? WHERE idCategoria = ?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                

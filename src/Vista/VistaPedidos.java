@@ -155,9 +155,10 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jLabel11 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1300, 651));
@@ -457,11 +458,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         getContentPane().add(jLabel6);
         jLabel6.setBounds(690, 210, 430, 240);
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
-        jLabel11.setText("jLabel11");
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(690, 460, 440, 160);
-
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pink.jpg"))); // NOI18N
         jLabel14.setText("jLabel14");
         getContentPane().add(jLabel14);
@@ -470,7 +466,16 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel17.setBackground(new java.awt.Color(255, 204, 255));
         jLabel17.setText("jLabel17");
         getContentPane().add(jLabel17);
-        jLabel17.setBounds(0, 0, 1130, 620);
+        jLabel17.setBounds(70, 70, 1130, 620);
+
+        jRadioButton1.setText("jRadioButton1");
+        getContentPane().add(jRadioButton1);
+        jRadioButton1.setBounds(830, 550, 120, 30);
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
+        jLabel11.setText("jLabel11");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(690, 460, 440, 160);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -840,6 +845,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
