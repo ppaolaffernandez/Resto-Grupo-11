@@ -123,8 +123,7 @@ public class CategoriaData
     }
     public void borrarCategoria(int id)
     {
-        
-        try
+         try
         {
             String sql =  "UPDATE categoria SET activo = false WHERE idCategoria = ?;";//Actualizamos el activo,si borra el activo queda en false y si no borra el true 0=false, 1=true
             
@@ -132,8 +131,6 @@ public class CategoriaData
             
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
-           
-            
             statement.executeUpdate();
             
             
@@ -203,7 +200,7 @@ public class CategoriaData
         }   
         return categoria;
     } 
-    //....Nuevo......
+    //....Nuevo..........
     
      public List<Categoria> obtenerCategoriasDeProductos()
     {
@@ -235,7 +232,7 @@ public class CategoriaData
               
         return categorias;
     }
-     //nuevo
+     //-------nuevo
       public Categoria buscarCategoriaNombre(String nombre)
       {
         Categoria categoria=null;
