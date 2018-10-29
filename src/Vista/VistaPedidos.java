@@ -143,9 +143,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         chPagado = new javax.swing.JCheckBox();
         chCancelar = new javax.swing.JCheckBox();
         btnGuardar = new javax.swing.JButton();
-        jLabel19 = new javax.swing.JLabel();
-        btnPedido = new javax.swing.JButton();
-        btnVerMesa = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tMesero = new javax.swing.JTable();
@@ -159,6 +156,9 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel6 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        btnPedido = new javax.swing.JButton();
+        btnVerMesa = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -331,7 +331,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         getContentPane().add(jLabel21);
         jLabel21.setBounds(260, 390, 210, 40);
 
-        pnlMesas.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMesas.setBackground(new java.awt.Color(255, 204, 255));
         pnlMesas.setLayout(new java.awt.GridLayout(1, 0));
         getContentPane().add(pnlMesas);
         pnlMesas.setBounds(10, 430, 650, 90);
@@ -376,29 +376,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         getContentPane().add(btnGuardar);
         btnGuardar.setBounds(910, 510, 110, 60);
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel19.setText("--NÚMERO DE MESAS--");
-        getContentPane().add(jLabel19);
-        jLabel19.setBounds(430, 250, 170, 50);
-
-        btnPedido.setText("Nuevo  Pedido");
-        btnPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPedidoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnPedido);
-        btnPedido.setBounds(370, 300, 110, 40);
-
-        btnVerMesa.setText("Ver Mesa");
-        btnVerMesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerMesaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnVerMesa);
-        btnVerMesa.setBounds(550, 300, 110, 40);
-
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 255), java.awt.Color.pink));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setOpaque(false);
@@ -417,6 +394,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             }
         ));
         tMesero.setGridColor(new java.awt.Color(255, 255, 255));
+        tMesero.setSelectionBackground(new java.awt.Color(51, 0, 51));
         jScrollPane3.setViewportView(tMesero);
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -430,32 +408,30 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 33, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(68, 68, 68)
                 .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(180, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(2, 1, 330, 180);
+        jPanel1.setBounds(2, 1, 330, 400);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 255), java.awt.Color.pink));
 
@@ -535,11 +511,48 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pink_1.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
 
+        btnPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/aGREGARICONOROSA_副本.png"))); // NOI18N
+        btnPedido.setText("Nuevo  Pedido");
+        btnPedido.setBorder(null);
+        btnPedido.setBorderPainted(false);
+        btnPedido.setContentAreaFilled(false);
+        btnPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPedidoActionPerformed(evt);
+            }
+        });
+
+        btnVerMesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ICONO VER_副本.png"))); // NOI18N
+        btnVerMesa.setText("Ver Mesa");
+        btnVerMesa.setBorder(null);
+        btnVerMesa.setBorderPainted(false);
+        btnVerMesa.setContentAreaFilled(false);
+        btnVerMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerMesaActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setText("--NÚMERO DE MESAS--");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 370, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(btnVerMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(52, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 360, Short.MAX_VALUE)
@@ -547,7 +560,13 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVerMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -602,7 +621,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         );
 
         getContentPane().add(jPanel7);
-        jPanel7.setBounds(-10, 400, 700, 180);
+        jPanel7.setBounds(-10, 400, 700, 220);
 
         jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 255), java.awt.Color.pink));
 
