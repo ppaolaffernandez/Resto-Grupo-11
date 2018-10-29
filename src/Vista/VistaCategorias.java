@@ -34,7 +34,9 @@ private DefaultTableModel modeloCategorias;
             conexion = new Conexion("jdbc:mysql://localhost/resto", "root", "");
             
             categoriaData = new CategoriaData(conexion);  
+            modeloCategorias=new DefaultTableModel();
             armaCabeceraTablaCategoria();
+           
             cargaDatosTablaCategoria();
             tbId.setVisible(false);//ocultamos la caja blanca(textfield)ID.
         }

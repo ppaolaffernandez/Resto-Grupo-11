@@ -4,21 +4,24 @@ package Modelo;
 
 public class Mesa 
 {
-    private int idMesa=-1;                                   
+    private int idMesa=-1;
+    private String nombre;
     private int cantidad;
     private String estado;
     private boolean activo;
 
-    public Mesa(int idMesa, int cantidad, String estado,boolean activo)
+    public Mesa(int idMesa, String nombre, int cantidad, String estado,boolean activo)
     {
         this.idMesa = idMesa;
+        this.nombre = nombre;
         this.cantidad = cantidad;
         this.estado = estado;
         this.activo=activo;
     }
-     public Mesa(int cantidad,String estado,boolean activo)
+     public Mesa(String nombre, int cantidad,String estado,boolean activo)
     {
         this.idMesa =-1;
+        this.nombre = nombre;
         this.cantidad = cantidad;
         this.estado=estado;
         this.activo=activo;
@@ -63,5 +66,14 @@ public class Mesa
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     
 }
