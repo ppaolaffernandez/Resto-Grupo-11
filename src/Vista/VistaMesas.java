@@ -212,18 +212,19 @@ private Conexion conexion;
             String estado="Libre";
             Mesa mesa=new Mesa(id,cantidad,estado,activo);
             mesaData.actualizarMesa(mesa);
+            
         }
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        {
+        
             tbId.setText("");
             jsCantidad.getValue();
             chActivo.setSelected(false);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-        }
+       
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBorrar;

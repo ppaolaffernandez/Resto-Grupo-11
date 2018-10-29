@@ -230,7 +230,8 @@ private Conexion conexion;
        if (tbId.getText().isEmpty())
        {
             System.out.println("Error");
-        }else
+       }
+       else
        {
            
             int id=Integer.parseInt(tbId.getText());
@@ -250,9 +251,9 @@ private Conexion conexion;
     }//GEN-LAST:event_btnLimpiar1ActionPerformed
      public void limpiar()
     {
-         tbNombre.setText("");
-            tbDescripcion.setText("");
-            chActivo.setSelected(false);
+        tbNombre.setText("");
+        tbDescripcion.setText("");
+        chActivo.setSelected(false);
     }
     
 

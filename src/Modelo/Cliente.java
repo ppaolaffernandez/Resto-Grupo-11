@@ -18,7 +18,10 @@ public class Cliente
     public Cliente(int dni,String nombre,boolean activo)//
     {
         this.idCliente = -1;
+        this.dni=dni;
         this.nombre = nombre;
+        this.activo=activo;
+        
     }
     public Cliente()
     {

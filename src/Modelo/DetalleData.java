@@ -175,13 +175,7 @@ public class DetalleData
             
 
         try {
-            String sql = "SELECT * "
-                       + "FROM detalle d, pedido p, mesa m "
-                       + "WHERE d.idPedido = p.idPedido and "
-                             + "p.idMesa = m.idMesa and "
-                             + "d.idPedido = ? and "
-                             + "p.idMesa = ? and "
-                             + "pagado = 0;";//si 1, no 0
+            String sql = "SELECT * "+ "FROM detalle d, pedido p, mesa m "+ "WHERE d.idPedido = p.idPedido and " + "p.idMesa = m.idMesa and " + "d.idPedido = ? and "+ "p.idMesa = ? and "+ "pagado = 0;";//si 1, no 0
             
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1,idPedido);
@@ -221,9 +215,7 @@ public class DetalleData
             
 
         try {
-            String sql = "SELECT * "
-                       + "FROM detalle "
-                       + "WHERE idPedido = ? and activo = 1;";//si 1, no 0
+            String sql = "SELECT * "+ "FROM detalle "+ "WHERE idPedido = ? and activo = 1;";//si 1, no 0
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1,idPedido);
 //            statement.setInt(2,idPedido);

@@ -25,7 +25,7 @@ public class ClienteData
         }
     }
     
-    
+//    el id en guardar incrementea automaticamente
     public void guardarCliente(Cliente cliente)
     {
         try
@@ -75,8 +75,9 @@ public class ClienteData
                 cliente = new Cliente();
                 
                 cliente.setIdCliente(resultSet.getInt("idCliente"));
-                cliente.setNombre(resultSet.getString("nombre"));
                 cliente.setDni(resultSet.getInt("dni"));
+                cliente.setNombre(resultSet.getString("nombre"));
+                
                 cliente.setActivo(resultSet.getBoolean("activo"));
 
                 clientes.add(cliente);
@@ -254,4 +255,83 @@ public class ClienteData
 //        }   
 //        return cliente;
 //}
+    
+//    _____________________________________NUEVO_________________________________________________
+//    
+    
+     public List<Cliente> obtenerClientesDeReservas()
+    {
+        List<Cliente> clientes = new ArrayList<Cliente>();
+            
+        try {
+            String sql = "SELECT * FROM cliente;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            Cliente cliente;
+            
+            while(resultSet.next()){
+                cliente= new Cliente();
+                
+                cliente.setIdCliente(resultSet.getInt("idCliente"));
+                cliente.setDni(resultSet.getInt("dni"));
+                cliente.setNombre(resultSet.getString("nombre"));
+                
+                cliente.setActivo(resultSet.getBoolean("activo"));
+
+                clientes.add(cliente);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los cliente: " + ex.getMessage());
+        }
+              
+        return clientes;
+    }
+     
+     
+     
+     public Cliente buscarClienteNombre(String nombre)
+      {
+        Cliente cliente=null;
+         try
+         {
+            
+            String sql = "SELECT * FROM cliente WHERE nombre =?;";
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, nombre);
+                  
+            ResultSet resultSet=statement.executeQuery();
+            
+            while(resultSet.next())
+            {
+                cliente = new Cliente();
+                cliente.setIdCliente(resultSet.getInt("idCliente"));
+                cliente.setDni(resultSet.getInt("dni"));
+                cliente.setNombre(resultSet.getString("nombre"));              
+                cliente.setActivo(resultSet.getBoolean("activo"));
+    
+            }      
+            statement.close();
+        } 
+         catch (SQLException ex)
+         {
+            System.out.println("Error al insertar un cliente: " + ex.getMessage());
+        }   
+        return cliente;
+    } 
+     //nuevo
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

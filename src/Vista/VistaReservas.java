@@ -1,44 +1,88 @@
 
 package Vista;
 
+import Modelo.Cliente;
+import Modelo.ClienteData;
 import Modelo.Conexion;
+import Modelo.Reserva;
 import Modelo.ReservaData;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-
-
-
-
-public class VistaReservas extends javax.swing.JInternalFrame
+   
+ public class VistaReservas extends javax.swing.JInternalFrame
 {
   private Conexion conexion;   
   private ReservaData reservaData;
+  private ClienteData clienteData;
+  private ArrayList<Reserva> listaReservas;
+  private ArrayList<Cliente> listaClientes;
   private DefaultTableModel modeloReserva;
-    
+  
     public VistaReservas() 
     {
         initComponents();
    
         try 
-        {  
-            
+        {    
             modeloReserva=new DefaultTableModel();
             conexion = new Conexion("jdbc:mysql://localhost/resto", "root", "");
-            reservaData = new ReservaData(conexion);
             
-            ;
+            reservaData = new ReservaData(conexion); 
+            clienteData = new ClienteData(conexion);
+            
+            cargaDatosTablaReservas();
+            armaCabeceraTablaReserva();
+           
+            listaClientes =(ArrayList)clienteData.obtenerClientesDeReservas();
         }
         catch (ClassNotFoundException ex)
         {
             Logger.getLogger(VistaClientes.class.getName()).log(Level.SEVERE, null, ex);
         }  
     }
-
-
-   
-
+//_______________________________Reserva Tabla___________________________________
+        
+        public void armaCabeceraTablaReserva()
+        {  
+            //Titulos de Columnas
+            ArrayList<Object> columnas=new ArrayList<Object>();
+            columnas.add("ID");
+            columnas.add("Cliente");
+            columnas.add("MESA");
+            columnas.add("HORA");
+            columnas.add("FECHA");
+        
+            for(Object vp:columnas)
+            {   
+                modeloReserva.addColumn(vp);
+            }
+            tReserva.setModel(modeloReserva);
+        }
+        public void cargaDatosTablaReservas()
+        {
+            borraFilasTablaReserva();
+            String seleccionado=cbClientes.getSelectedItem().toString();
+            Cliente cliente=clienteData.buscarClienteNombre(seleccionado);
+            
+            listaReservas =(ArrayList)reservaData.obtenerReservasXCliente(cliente.getIdCliente());
+            
+            for(Reserva r:listaReservas)//Llenar filas
+            {     
+                modeloReserva.addRow(new Object[]{r.getIdReserva(),r.getCliente().getNombre(),r.getMesa().getIdMesa(),r.getHora(),r.getFecha()});         
+            }
+        }
+        
+       public void borraFilasTablaReserva()
+       {
+            int a = modeloReserva.getRowCount()-1;
+            System.out.println("Tabla "+a);
+            for(int i=a;i>=0;i--)
+            {
+                modeloReserva.removeRow(i );
+            }
+      } 
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -53,10 +97,10 @@ public class VistaReservas extends javax.swing.JInternalFrame
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        cbClientes = new javax.swing.JComboBox<>();
+        lblReserva = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jRadioButton4 = new javax.swing.JRadioButton();
@@ -72,7 +116,7 @@ public class VistaReservas extends javax.swing.JInternalFrame
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tReserva = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
@@ -119,8 +163,6 @@ public class VistaReservas extends javax.swing.JInternalFrame
         jLabel5.setText("Cliente");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(180, 120, 40, 14);
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(240, 110, 90, 30);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ICONO VER_副本.png"))); // NOI18N
         jButton2.setText("Ver todas");
@@ -129,20 +171,28 @@ public class VistaReservas extends javax.swing.JInternalFrame
         jButton2.setContentAreaFilled(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(jButton2);
-        jButton2.setBounds(350, 100, 110, 45);
+        jButton2.setBounds(350, 100, 110, 15);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("--RESERVA--");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(150, 0, 100, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jLabel1.setMaximumSize(new java.awt.Dimension(778, 639));
-        jLabel1.setMinimumSize(new java.awt.Dimension(778, 639));
-        jLabel1.setPreferredSize(new java.awt.Dimension(778, 639));
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 470, 170);
+        cbClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbClientesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbClientes);
+        cbClientes.setBounds(240, 110, 100, 20);
+
+        lblReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
+        lblReserva.setText("jLabel1");
+        lblReserva.setMaximumSize(new java.awt.Dimension(778, 639));
+        lblReserva.setMinimumSize(new java.awt.Dimension(778, 639));
+        lblReserva.setPreferredSize(new java.awt.Dimension(778, 639));
+        getContentPane().add(lblReserva);
+        lblReserva.setBounds(0, 0, 470, 170);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("--BUSCAR CLIENTE--");
@@ -233,9 +283,9 @@ public class VistaReservas extends javax.swing.JInternalFrame
         getContentPane().add(jLabel13);
         jLabel13.setBounds(490, 190, 190, 40);
 
-        jTable2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jTable2.setForeground(new java.awt.Color(0, 153, 153));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tReserva.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        tReserva.setForeground(new java.awt.Color(0, 153, 153));
+        tReserva.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -246,10 +296,10 @@ public class VistaReservas extends javax.swing.JInternalFrame
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable2.setGridColor(new java.awt.Color(255, 204, 255));
-        jTable2.setSelectionBackground(new java.awt.Color(255, 204, 255));
-        jTable2.setSelectionForeground(new java.awt.Color(255, 204, 255));
-        jScrollPane2.setViewportView(jTable2);
+        tReserva.setGridColor(new java.awt.Color(255, 204, 255));
+        tReserva.setSelectionBackground(new java.awt.Color(255, 204, 255));
+        tReserva.setSelectionForeground(new java.awt.Color(255, 204, 255));
+        jScrollPane2.setViewportView(tReserva);
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(350, 240, 480, 200);
@@ -274,7 +324,7 @@ public class VistaReservas extends javax.swing.JInternalFrame
         jButton8.setContentAreaFilled(false);
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(jButton8);
-        jButton8.setBounds(600, 480, 109, 60);
+        jButton8.setBounds(600, 480, 59, 60);
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiarrosa_副本.png"))); // NOI18N
         jButton9.setText("Limpiar");
@@ -319,8 +369,14 @@ public class VistaReservas extends javax.swing.JInternalFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void cbClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClientesActionPerformed
+                borraFilasTablaReserva();
+                cargaDatosTablaReservas();
+    }//GEN-LAST:event_cbClientesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbClientes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -332,7 +388,6 @@ public class VistaReservas extends javax.swing.JInternalFrame
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -353,11 +408,11 @@ public class VistaReservas extends javax.swing.JInternalFrame
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel lblReserva;
+    private javax.swing.JTable tReserva;
     // End of variables declaration//GEN-END:variables
 
    

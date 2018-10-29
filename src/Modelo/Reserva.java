@@ -1,6 +1,6 @@
 package Modelo;
 
-import java.time.LocalDate;
+
 import java.util.Date;
 
 public class Reserva
@@ -8,23 +8,25 @@ public class Reserva
     private int idReserva=-1;
     private Cliente cliente;
     private Mesa mesa;
-    private int hora;
+    private String hora;
     private Date fecha;   
     private boolean activo;
 
-    public Reserva(int idReserva,Cliente cliente,Mesa mesa, int hora, Date fecha,boolean activo)
+    public Reserva(int idReserva,Cliente cliente,Mesa mesa, String hora, Date fecha,boolean activo)
     {
+        this.idReserva=idReserva;
         this.cliente = cliente;
         this.mesa=mesa;
         this.hora = hora;
         this.fecha = fecha;
         this.activo=activo;
     }
-    public Reserva( Cliente cliente,Mesa mesa, Date fecha, boolean activo) 
+    public Reserva( Cliente cliente,Mesa mesa,String hora, Date fecha, boolean activo) 
     {
-        this.idReserva = idReserva;
+        this.idReserva = -1;
         this.cliente = cliente;
         this.mesa=mesa;
+        this.hora=hora;
         this.fecha = fecha;
         this.activo = activo;
     }
@@ -65,11 +67,11 @@ public class Reserva
         this.fecha = fecha;
     }
 
-    public int getHora() {
+    public String getHora() {
         return hora;
     }
 
-    public void setHora(int hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 

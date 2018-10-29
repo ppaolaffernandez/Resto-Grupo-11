@@ -1,8 +1,6 @@
 
 package Modelo;
 
-import java.time.LocalDate;
-
 
 public class Producto
 {
@@ -35,7 +33,7 @@ public class Producto
     }
     public Producto()
     {
-       
+       this.idProducto= -1;
     }
 
     public int getIdProducto() {

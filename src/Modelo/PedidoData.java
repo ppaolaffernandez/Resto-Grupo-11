@@ -214,7 +214,8 @@ public class PedidoData
  
             ResultSet resultSet=statement.executeQuery();
             
-            while(resultSet.next()){
+            while(resultSet.next())
+            {
                 pedido = new Pedido();
                 pedido.setIdPedido(resultSet.getInt("idPedido"));
                 

@@ -8,6 +8,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 
@@ -21,11 +22,9 @@ private Conexion conexion;
         initComponents();
 //      setLocationRelativeTo(null); // poner form al medio
         
-       
         validarSoloNumeros(tbDni);
-        limitarCaracteres(tbDni,8);
         validarSoloLetras(tbNombre);
-        
+        limitarCaracteres(tbDni,8);
         
         try 
         {
@@ -214,7 +213,8 @@ private Conexion conexion;
         int id=Integer.parseInt(tbId.getText());
 
         Cliente cliente=clienteData.buscarCliente(id);
-        if(cliente!=null){
+        if(cliente!=null)
+        {
             tbId.setText(cliente.getIdCliente()+"");
             tbDni.setText(cliente.getDni()+"");
             tbNombre.setText(cliente.getNombre());
@@ -240,20 +240,25 @@ private Conexion conexion;
         clienteData.guardarCliente(cliente);
 
         tbId.setText(cliente.getIdCliente()+"");
+       JOptionPane.showMessageDialog(null, "Guardado");
+        limpiar();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
         int id=Integer.parseInt(tbId.getText());
         clienteData.borrarCliente(id);
+        JOptionPane.showMessageDialog(null, "Borrado");
+        limpiar();
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
-        if (tbId.getText().isEmpty()){
-
-            System.out.println("ssss");
-        }else{
+        if (tbId.getText().isEmpty())
+        {
+            System.out.println("Error");
+        }
+        else
+        {
             int id=Integer.parseInt(tbId.getText());
             int dni=Integer.parseInt(tbDni.getText());
 
@@ -262,19 +267,24 @@ private Conexion conexion;
 
             Cliente cliente=new Cliente(id,dni,nombre,activo);
             clienteData.actualizarCliente(cliente);
+            JOptionPane.showMessageDialog(null, "Actualizado");
+            limpiar();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        {
-
-            tbId.setText("");
-            tbNombre.setText("");
-            tbDni.setText("");
-            chActivo.setSelected(false);
+        tbId.setText("");
+        tbNombre.setText("");
+        tbDni.setText("");
+        chActivo.setSelected(false);
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
+    public void limpiar()
+    {
+        tbId.setText("");
+        tbNombre.setText("");
+        tbDni.setText("");
+        chActivo.setSelected(false);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
@@ -310,7 +320,8 @@ public void validarSoloLetras(JTextField campo)
 }
 public void validarSoloNumeros(JTextField campo)
 {
-    campo.addKeyListener(new KeyAdapter(){
+    campo.addKeyListener(new KeyAdapter()
+    {
        public void keyTyped(KeyEvent e)
        { 
            char c= e.getKeyChar();

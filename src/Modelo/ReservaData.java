@@ -33,15 +33,15 @@ public class ReservaData
         try
         {
             
-            String sql = "INSERT INTO reserva (idReserva, idCliente, idMesa, hora, fecha, activo) VALUES ( ? , ? , ? , ? , ? , ? );";
+            String sql = "INSERT INTO reserva (idCliente, idMesa, hora, fecha, activo) VALUES ( ? , ? , ? , ? , ? );";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, reserva.getIdReserva());
-            statement.setInt(2, reserva.getCliente().getIdCliente());
-            statement.setInt(3, reserva.getMesa().getIdMesa());
-            statement.setInt(4, reserva.getHora());
-            statement.setDate(5, (Date) reserva.getFecha());
-            statement.setBoolean(6, reserva.getActivo());
+            
+            statement.setInt(1, reserva.getCliente().getIdCliente());
+            statement.setInt(2, reserva.getMesa().getIdMesa());
+            statement.setString(3, reserva.getHora());
+            statement.setDate(4, (Date) reserva.getFecha());
+            statement.setBoolean(5, reserva.getActivo());
             
             
             statement.executeUpdate();
@@ -90,7 +90,7 @@ public class ReservaData
                 Mesa m=buscarMesa(resultSet.getInt("idMesa"));
                 reserva.setMesa(m);
                 
-                reserva.setHora(resultSet.getInt("hora"));                
+                reserva.setHora(resultSet.getString("hora"));                
                 reserva.setFecha(resultSet.getDate("fecha"));
                 reserva.setActivo(resultSet.getBoolean("activo"));
              
@@ -108,8 +108,8 @@ public class ReservaData
     }
     public void borrarReserva(int id)
     {
-    try
-    { 
+        try
+        { 
             String sql = "DELETE FROM reserva WHERE idReserva =?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -131,13 +131,13 @@ public class ReservaData
       try
         {
             
-            String sql = "UPDATE reserva SET idCliente = ?, idMesa = ? , hora = ? , fecha = ? , activo =? WHERE id = ?;";
+            String sql = "UPDATE reserva SET idCliente = ?, idMesa = ? , hora = ? , fecha = ? , activo =? WHERE idReserva = ?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
             statement.setInt(1, reserva.getCliente().getIdCliente());
             statement.setInt(2, reserva.getMesa().getIdMesa());
-            statement.setInt(3, reserva.getHora());
+            statement.setString(3, reserva.getHora());
             statement.setDate(4, (Date) reserva.getFecha());
             statement.setBoolean(5, reserva.getActivo());
             statement.setInt(6, reserva.getIdReserva());
@@ -153,10 +153,12 @@ public class ReservaData
         }
     
     }
-    public Reserva buscarReserva(int id){
+    public Reserva buscarReserva(int id)
+    {
     Reserva reserva=null;
-    try 
-    {         
+    
+        try 
+        {         
             String sql = "SELECT * FROM reserva WHERE idReserva =?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -175,26 +177,67 @@ public class ReservaData
                 Mesa m=buscarMesa(resultSet.getInt("idMesa"));
                 reserva.setMesa(m);
                 
-                reserva.setHora(resultSet.getInt("hora"));                
+                reserva.setHora(resultSet.getString("hora"));                
                 reserva.setFecha(resultSet.getDate("fecha"));
                 reserva.setActivo(resultSet.getBoolean("activo"));
       
             }      
             statement.close();
 
-        } catch (SQLException ex){
+        }
+        catch (SQLException ex)
+        {
             System.out.println("Error al insertar un reserva: " + ex.getMessage());
         } 
         return reserva;
     } 
-    public Cliente buscarCliente(int id){   
+    public Cliente buscarCliente(int id)
+    {   
         ClienteData cd=new ClienteData(conexion);     
         return cd.buscarCliente(id);     
     }
-    public Mesa buscarMesa(int id){          
+    public Mesa buscarMesa(int id)
+    {          
         MesaData md=new MesaData(conexion);        
         return md.buscarMesa(id);       
-    }         
+    } 
+//    ____________________________________NUEVO_____________________________________
+    public List<Reserva> obtenerReservasXCliente(int id)
+    {
+        List<Reserva> reservas = new ArrayList<Reserva>();
+        try 
+        {
+            String sql = "SELECT * FROM reserva WHERE idCLiente = ? and activo=1;";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+            
+            ResultSet resultSet = statement.executeQuery();
+            Reserva reserva;
+            
+            while(resultSet.next())
+            {
+                reserva = new Reserva();
+                
+                reserva.setIdReserva(resultSet.getInt("idReserva"));
+                
+                Cliente c=buscarCliente(resultSet.getInt("idCliente"));
+                reserva.setCliente(c);
+                
+                Mesa m=buscarMesa(resultSet.getInt("idMesa"));
+                reserva.setMesa(m);
+                
+                reserva.setHora(resultSet.getString("hora"));                
+                reserva.setFecha(resultSet.getDate("fecha"));
+                reserva.setActivo(resultSet.getBoolean("activo"));
+               
+                reservas.add(reserva);
+            }      
+            statement.close();
+        }catch (SQLException ex) {
+            System.out.println("Error al obtener los reservas: " + ex.getMessage());
+        }    
+        return reservas;
+    }
   }
 
 

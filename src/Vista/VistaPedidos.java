@@ -155,10 +155,10 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnPedido = new javax.swing.JButton();
         btnVerMesa = new javax.swing.JButton();
-        jLabel19 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -508,6 +508,9 @@ public class VistaPedidos extends javax.swing.JInternalFrame
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 255), java.awt.Color.pink));
 
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setText("--NÚMERO DE MESAS--");
+
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pink_1.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
 
@@ -534,9 +537,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
                 btnVerMesaActionPerformed(evt);
             }
         });
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel19.setText("--NÚMERO DE MESAS--");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -729,6 +729,49 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             JOptionPane.showMessageDialog(null, "Error" + JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
+//..............................................................................JCheckBox..,.......................................................
+    private void chPagadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chPagadoActionPerformed
+       //pagado es pendiente
+//q es isSelected si el JCheckBox chpagado esta seleccionado
+        chPagado.setSelected(true);
+    }//GEN-LAST:event_chPagadoActionPerformed
+
+    private void chCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chCancelarActionPerformed
+        chCancelar.setSelected(true);
+        
+    }//GEN-LAST:event_chCancelarActionPerformed
+
+    private void btnVerMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMesaActionPerformed
+        // TODO add your handling code here:
+
+        try{
+            Pedido pedido = pedidoData.buscarPedidoMesa(idMesa);
+            if(pedido == null)
+            {
+                JOptionPane.showMessageDialog(null, "Seleccionar Mesa" );
+            }
+            else if("Libre".equals(pedido.getMesa().getEstado()))
+            {
+                JOptionPane.showMessageDialog(null, "Seleccione una mesa ocupada" );
+            }
+            else if("Reservado".equals(pedido.getMesa().getEstado()))
+            {
+                JOptionPane.showMessageDialog(null, "Seleccione una mesa ocupada" );
+            }
+            else if(idMesa==0)
+            {
+                JOptionPane.showMessageDialog(null, "Seleccione una mesa" );
+            }
+            else
+            {
+                cargaDatosTablaDetalle(pedido.getIdPedido());
+            }
+
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error al agregar en base de datos" );
+        }
+    }//GEN-LAST:event_btnVerMesaActionPerformed
 
     private void btnPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoActionPerformed
         //        clikeo el mesero
@@ -782,49 +825,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             JOptionPane.showMessageDialog(null, "Error al agregar en base de datos" );
         }
     }//GEN-LAST:event_btnPedidoActionPerformed
-
-    private void btnVerMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMesaActionPerformed
-        // TODO add your handling code here:
-        
-        try{
-            Pedido pedido = pedidoData.buscarPedidoMesa(idMesa);
-            if(pedido == null)
-            {
-                JOptionPane.showMessageDialog(null, "Seleccionar Mesa" );
-            }
-            else if("Libre".equals(pedido.getMesa().getEstado()))
-            {
-                JOptionPane.showMessageDialog(null, "Seleccione una mesa ocupada" );
-            }
-            else if("Reservado".equals(pedido.getMesa().getEstado()))
-            {
-                JOptionPane.showMessageDialog(null, "Seleccione una mesa ocupada" );
-            }
-            else if(idMesa==0)
-            {
-                JOptionPane.showMessageDialog(null, "Seleccione una mesa" );
-            }
-            else
-            {
-                cargaDatosTablaDetalle(pedido.getIdPedido());
-            }
-
-        }catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null, "Error al agregar en base de datos" );
-        }
-    }//GEN-LAST:event_btnVerMesaActionPerformed
-//..............................................................................JCheckBox..,.......................................................
-    private void chPagadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chPagadoActionPerformed
-       //pagado es pendiente
-//q es isSelected si el JCheckBox chpagado esta seleccionado
-        chPagado.setSelected(true);
-    }//GEN-LAST:event_chPagadoActionPerformed
-
-    private void chCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chCancelarActionPerformed
-        chCancelar.setSelected(true);
-        
-    }//GEN-LAST:event_chCancelarActionPerformed
 
     int NuevoPedido=0;    
     int idMesa=0;

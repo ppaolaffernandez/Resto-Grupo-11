@@ -4,7 +4,7 @@ package Modelo;
 
 public class Mesa 
 {
-    private int idMesa=-1;     //private Reserva reserva;//mal                               
+    private int idMesa=-1;                                   
     private int cantidad;
     private String estado;
     private boolean activo;

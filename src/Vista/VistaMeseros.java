@@ -226,19 +226,24 @@ private Conexion conexion;
         meseroData.guardarMesero(mesero);
 
         tbId.setText(mesero.getIdMesero()+"");
+         limpiar();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
         int id=Integer.parseInt(tbId.getText());
         meseroData.borrarMesero(id);
+         limpiar();
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-        if (tbId.getText().isEmpty()){
+        if (tbId.getText().isEmpty())
+        {
             System.out.println("Error");
-        }else{
+        }
+        else
+        {
             int id=Integer.parseInt(tbId.getText());
             String nombre=tbNombre.getText();
             int dni=Integer.parseInt(tbDni.getText());
@@ -246,20 +251,26 @@ private Conexion conexion;
 
             Mesero mesero=new Mesero(id,nombre,dni,activo);
             meseroData.actualizarMesero(mesero);
+             limpiar();
         }
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        {
+        
 
             tbId.setText("");
             tbNombre.setText("");
             tbDni.setText("");
             chActivo.setSelected(false);
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    }
+  public void limpiar()
+    {
+        tbNombre.setText("");
+        tbDni.setText("");
+        chActivo.setSelected(false);
+    } 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBorrar;

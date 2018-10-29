@@ -12,6 +12,7 @@ public class Detalle
 
     public Detalle(int idDetalle,Producto producto, Pedido pedido, int cantidad, double total,boolean activo) 
     {
+        this.idDetalle=idDetalle;
         this.producto = producto;
         this.pedido = pedido;
         this.cantidad = cantidad;
@@ -20,7 +21,7 @@ public class Detalle
     }
     public Detalle(Producto producto, Pedido pedido, int cantidad, double total,boolean activo)
     {
-        this.idDetalle=idDetalle;
+        this.idDetalle=-1;
         this.producto = producto;
         this.pedido = pedido;
         this.cantidad = cantidad;

@@ -7,7 +7,7 @@ import java.util.Date;
 public class Pedido//nombre de la clase
 {
     //atributos
-    private int idPedido;
+    private int idPedido=-1;
     private Mesero mesero;
     private Mesa mesa;
     private Date fecha;
@@ -17,7 +17,8 @@ public class Pedido//nombre de la clase
     private boolean entregado;
     
 //constructores
-    public Pedido(int idPedido,Mesero mesero,Mesa mesa, Date fecha, String  hora, boolean activo,boolean pendiente,boolean entregado) {
+    public Pedido(int idPedido,Mesero mesero,Mesa mesa, Date fecha, String  hora, boolean activo,boolean pendiente,boolean entregado)
+    {
         this.idPedido = idPedido;
         this.mesero = mesero;
         this.mesa = mesa;
@@ -26,7 +27,8 @@ public class Pedido//nombre de la clase
         this.activo = activo;
         this.pendiente=pendiente;
         this.entregado=entregado;
-    }public Pedido(Mesero mesero,Mesa mesa, Date fecha, String  hora, boolean activo,boolean pendiente,boolean entregado){
+    }
+    public Pedido(Mesero mesero,Mesa mesa, Date fecha, String  hora, boolean activo,boolean pendiente,boolean entregado){
         this.idPedido = -1;
         this.mesero = mesero;
         this.mesa = mesa;
@@ -36,7 +38,9 @@ public class Pedido//nombre de la clase
         this.pendiente=pendiente;
         this.entregado=entregado;
         
-    }public Pedido(){      
+    }
+    public Pedido()
+    {      
         this.idPedido = -1;
     }
 
