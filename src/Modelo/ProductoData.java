@@ -2,7 +2,6 @@
 package Modelo;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -259,6 +258,46 @@ public class ProductoData
         }catch (SQLException ex) {
             System.out.println("Error al obtener los productos: " + ex.getMessage());
         }    
+        return productos;
+    }
+//   Nuevo de las 3  
+     public List<Producto> obtenerProductosPorNombre(String nombre)
+    {
+        List<Producto> productos = new ArrayList<Producto>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM producto WHERE nombre =?;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, nombre);
+            ResultSet resultSet = statement.executeQuery();
+            Producto producto;
+            
+            while(resultSet.next())
+            {
+                producto = new Producto();
+                
+                producto.setIdProducto(resultSet.getInt("idProducto"));
+                
+                Categoria c=buscarCategoria(resultSet.getInt("idCategoria"));
+                producto.setCategoria(c);
+                
+                producto.setCodigo(resultSet.getInt("codigo"));
+                producto.setNombre(resultSet.getString("nombre"));
+                producto.setCantidad(resultSet.getInt("cantidad"));
+                producto.setPrecio(resultSet.getDouble("precio"));
+                producto.setActivo(resultSet.getBoolean("activo"));
+
+                productos.add(producto);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los categoria: " + ex.getMessage());
+        }
+              
         return productos;
     }
 }

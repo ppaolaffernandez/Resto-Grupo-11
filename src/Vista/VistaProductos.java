@@ -14,12 +14,18 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
-public class VistaProductos extends javax.swing.JInternalFrame {
-private ProductoData productoData;
-private CategoriaData categoriaData;
-private Conexion conexion;
-private ArrayList<Categoria> listaCategorias;  
+public class VistaProductos extends javax.swing.JInternalFrame
+{
+    private DefaultTableModel modeloProductos;    
+    private ProductoData productoData;
+    private CategoriaData categoriaData;
+    
+    private Conexion conexion;
+    
+    private ArrayList<Categoria> listaCategorias;
+    private ArrayList<Producto> listaProductos;
 
     public VistaProductos() {
         initComponents();
@@ -31,12 +37,19 @@ private ArrayList<Categoria> listaCategorias;
         
          try 
         {
+            modeloProductos=new DefaultTableModel();
             conexion = new Conexion("jdbc:mysql://localhost/resto", "root", "");
             productoData = new ProductoData(conexion); 
             
              categoriaData = new CategoriaData(conexion);
              listaCategorias =(ArrayList)categoriaData.obtenerCategoriasDeProductos();
+             
              cargarCategoriaComboBox();
+             
+             armaCabeceraTablaProducto();
+             cargaDatosTablaProducto();
+             
+             tbId.setVisible(false);
         }
         catch (ClassNotFoundException ex)
         {
@@ -52,9 +65,7 @@ private ArrayList<Categoria> listaCategorias;
         jTextField3 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        tbBuscar = new javax.swing.JTextField();
-        jbBuscar = new javax.swing.JButton();
+        tbId = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cbCategoria = new javax.swing.JComboBox<>();
@@ -72,6 +83,11 @@ private ArrayList<Categoria> listaCategorias;
         btnBorrar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        tbBuscar = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tProducto = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
 
         jTextField3.setText("jTextField3");
@@ -90,79 +106,65 @@ private ArrayList<Categoria> listaCategorias;
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 160, 80));
 
-        jLabel1.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
-        jLabel1.setText("Buscar");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 70, 50));
-
-        tbBuscar.setBackground(new java.awt.Color(255, 204, 204));
-        tbBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-        tbBuscar.addActionListener(new java.awt.event.ActionListener() {
+        tbId.setBackground(new java.awt.Color(255, 204, 204));
+        tbId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
+        tbId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbBuscarActionPerformed(evt);
+                tbIdActionPerformed(evt);
             }
         });
-        getContentPane().add(tbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 300, 30));
-
-        jbBuscar.setBackground(new java.awt.Color(255, 153, 153));
-        jbBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
-        jbBuscar.setText("Buscar");
-        jbBuscar.setBorder(null);
-        jbBuscar.setBorderPainted(false);
-        jbBuscar.setContentAreaFilled(false);
-        jbBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbBuscar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBuscarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 100, 50));
+        getContentPane().add(tbId, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 30, 30));
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jLabel4.setText("INFORME DEL PRODUCTO");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 200, 50));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 200, 50));
 
         jLabel5.setText("Categoria");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 70, 40));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 70, 40));
 
         cbCategoria.setBackground(new java.awt.Color(255, 204, 255));
         cbCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-        getContentPane().add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 250, 30));
+        getContentPane().add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 250, 30));
 
         jLabel6.setText("Codigo");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 60, 40));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 60, 40));
 
         tbCodigo.setBackground(new java.awt.Color(255, 204, 204));
         tbCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-        getContentPane().add(tbCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 250, 30));
+        getContentPane().add(tbCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 250, 30));
 
         jLabel9.setText("Nombre");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 60, 40));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 60, 40));
 
         tbNombre.setBackground(new java.awt.Color(255, 204, 204));
         tbNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-        getContentPane().add(tbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 250, 30));
+        getContentPane().add(tbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 250, 30));
 
         jLabel10.setText("Cantidad");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, 70, 50));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 70, 50));
 
         tbCantidad.setBackground(new java.awt.Color(255, 204, 204));
         tbCantidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-        getContentPane().add(tbCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, 250, 30));
+        getContentPane().add(tbCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 250, 30));
 
         jLabel11.setText("Precio");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 70, 50));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 70, 50));
 
         tbPrecio.setBackground(new java.awt.Color(255, 204, 204));
         tbPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-        getContentPane().add(tbPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 250, 30));
+        getContentPane().add(tbPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 250, 30));
 
         Activo.setText("Activo");
-        getContentPane().add(Activo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, 60, 40));
+        getContentPane().add(Activo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, 60, 40));
 
         chActivo.setBackground(new java.awt.Color(255, 204, 204));
         chActivo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-        getContentPane().add(chActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 40, 30));
+        chActivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chActivoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(chActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 40, 30));
 
         btnGuardar.setBackground(new java.awt.Color(255, 153, 153));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar rosa.png"))); // NOI18N
@@ -176,7 +178,7 @@ private ArrayList<Categoria> listaCategorias;
                 btnGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 100, 50));
+        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 100, 50));
 
         btnBorrar.setBackground(new java.awt.Color(255, 153, 153));
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
@@ -190,7 +192,7 @@ private ArrayList<Categoria> listaCategorias;
                 btnBorrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 540, 120, 50));
+        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 120, 50));
 
         btnActualizar.setBackground(new java.awt.Color(255, 153, 153));
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar rosa_副本_1.png"))); // NOI18N
@@ -204,7 +206,7 @@ private ArrayList<Categoria> listaCategorias;
                 btnActualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 540, 120, 50));
+        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 120, 50));
 
         btnLimpiar.setBackground(new java.awt.Color(255, 153, 153));
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiarrosa_副本.png"))); // NOI18N
@@ -221,75 +223,130 @@ private ArrayList<Categoria> listaCategorias;
                 btnLimpiarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 540, 100, 50));
+        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, 100, 50));
+
+        jLabel2.setText("Nombre");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, -1, 20));
+
+        tbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbBuscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 490, 190, 40));
+
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.setToolTipText("");
+        btnBuscar.setBorder(null);
+        btnBuscar.setBorderPainted(false);
+        btnBuscar.setContentAreaFilled(false);
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscar.setName("btBuscar"); // NOI18N
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, -1, 50));
+
+        tProducto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tProductoMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tProducto);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 560, -1, 130));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pinkmas claro_副本.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102)));
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 700));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 760));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbBuscarActionPerformed
+    private void tbIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tbBuscarActionPerformed
-
-    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        int id=Integer.parseInt(tbBuscar.getText());
-
-        Producto producto=productoData.buscarProducto(id);
-
-        if(producto!=null){
-
-            cbCategoria.setSelectedItem(producto.getCategoria().getNombre());
-            tbCodigo.setText(producto.getCodigo()+"");
-            tbNombre.setText(producto.getNombre());
-            tbCantidad.setText(producto.getCantidad()+"");
-            tbPrecio.setText(producto.getPrecio()+"");
-            chActivo.setSelected(producto.getActivo());
-        }
-    }//GEN-LAST:event_jbBuscarActionPerformed
+    }//GEN-LAST:event_tbIdActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-        String seleccionado=cbCategoria.getSelectedItem().toString();
-        Categoria categoria=categoriaData.buscarCategoriaNombre(seleccionado);
+        if(tbCodigo.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese el codigo de la producto : ");
+        }
+        else if(tbNombre.getText().isEmpty())
+        {
+             JOptionPane.showMessageDialog(null, "Ingrese el nombre de la producto : ");
+        }
+        else if(tbCantidad.getText().isEmpty())
+        {
+             JOptionPane.showMessageDialog(null, "Ingrese el cantidad de la producto : ");
+        }
+        else if(tbPrecio.getText().isEmpty())
+        {
+             JOptionPane.showMessageDialog(null, "Ingrese el precio de la producto : ");
+        }
+        else
+        {
+            String seleccionado=cbCategoria.getSelectedItem().toString();
+            Categoria categoria=categoriaData.buscarCategoriaNombre(seleccionado);
+            int codigo=Integer.parseInt(tbCodigo.getText());
+            String nombre=tbNombre.getText();
+            int cantidad=Integer.parseInt(tbCantidad.getText());
+            double precio=Double.parseDouble(tbPrecio.getText());
+            boolean activo=chActivo.isSelected();
 
-        int codigo=Integer.parseInt(tbCodigo.getText());
-        String nombre=tbNombre.getText();
-        int cantidad=Integer.parseInt(tbCantidad.getText());
-        double precio=Double.parseDouble(tbPrecio.getText());
-        boolean activo=chActivo.isSelected();
-
-        Producto producto=new Producto(categoria,codigo,nombre,cantidad,precio,activo);
-        productoData.guardarProducto(producto);
-        limpiar();
-
+            Producto producto=new Producto(categoria,codigo,nombre,cantidad,precio,activo);
+            productoData.guardarProducto(producto);
+            tbId.setText(producto.getIdProducto()+"");
+            
+            limpiar();
+            borraFilasTablaProducto();
+            cargaDatosTablaProducto();
+        }
         //        tbId.setText(producto.getIdProducto()+"");
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
-        int id=Integer.parseInt(tbBuscar.getText());
-        productoData.borrarProducto(id);
-        limpiar();
+         if(tbNombre.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la Producto : ");
+        }
+        else
+        {
+            int id=Integer.parseInt(tbId.getText());
+            productoData.borrarProducto(id);
+            limpiar();
+            borraFilasTablaProducto();
+            cargaDatosTablaProducto();
+        }
+
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
-        if (tbBuscar.getText().isEmpty()){
-            System.out.println("Error");
-        }else{
+         if (tbNombre.getText().isEmpty())//si la caja esta vacia va a salir un mensaje que falta el nombre
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la Producto : ");
+        }
+        else{
 
-            int id=Integer.parseInt(tbBuscar.getText());
-            System.out.println("Error");
-
+            int id=Integer.parseInt(tbId.getText());
             String seleccionado=cbCategoria.getSelectedItem().toString();
             Categoria categoria=categoriaData.buscarCategoriaNombre(seleccionado);
-
-            //             System.out.println(categoria.getIdCategoria());
-            //             System.out.println(categoria.getNombre());
             int codigo=Integer.parseInt(tbCodigo.getText());
             String nombre=tbNombre.getText();
             int cantidad=Integer.parseInt(tbCantidad.getText());
@@ -298,26 +355,151 @@ private ArrayList<Categoria> listaCategorias;
 
             Producto producto=new Producto(id,categoria,codigo,nombre,cantidad,precio,activo);
             productoData.actualizarProducto(producto);
+
             limpiar();
+            borraFilasTablaProducto();//limpia la tabla
+            cargaDatosTablaProducto();//carga  la tabla categoria
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-
-        //            tbId.setText("");
-        //cbProductoCategoria.setText("");
-       
         limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void tbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbBuscarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
+        if(tbBuscar.getText().isEmpty())//SI NO HAY DATOS NO AGREGA
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria : ");
+        }
+        else //SI HAY ALGO BUSCA
+        {
+            borraFilasTablaProducto();
+            cargaDatosTablaProducto(tbBuscar.getText());
+        }
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tProductoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tProductoMousePressed
+        int filaseleccionada = tProducto.getSelectedRow();
+        try
+        {
+            tbId.setText(tProducto.getValueAt(filaseleccionada, 0).toString());
+            cbCategoria.addItem(tProducto.getValueAt(filaseleccionada, 1).toString()); // addItem?
+            tbCodigo.setText(tProducto.getValueAt(filaseleccionada, 2).toString());
+            tbNombre.setText(tProducto.getValueAt(filaseleccionada, 3).toString());
+            tbCantidad.setText(tProducto.getValueAt(filaseleccionada, 4).toString());
+            tbPrecio.setText(tProducto.getValueAt(filaseleccionada, 5).toString());
+            chActivo.setSelected(Boolean.parseBoolean(tProducto.getValueAt(filaseleccionada, 6).toString()) );
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila : ");
+        }
+
+    }//GEN-LAST:event_tProductoMousePressed
+
+    private void chActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chActivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chActivoActionPerformed
  public void cargarCategoriaComboBox(){
     
      for(Categoria item:listaCategorias)
      {
             cbCategoria.addItem(item.getNombre());
-    }
+     }
  }
-     public void limpiar()
+    
+//     _______________________________________________Tabla Producto______________________________________
+
+    public void cargaDatosTablaProducto(String Dato)
+        {   
+            borraFilasTablaProducto();
+            listaProductos=(ArrayList)productoData.obtenerProductosPorNombre(Dato);         
+            //Llenar filas
+            for(Producto d:listaProductos)
+            {
+               modeloProductos.addRow(new Object[]{d.getIdProducto(),d.getCategoria().getNombre(),d.getCodigo(),d.getNombre(),d.getCantidad(),d.getPrecio(),d.getActivo()});                 
+            }       
+        }
+ 
+     public void cargaDatosTablaProducto()
+        {   
+            borraFilasTablaProducto();
+            listaProductos=(ArrayList)productoData.obtenerProductos();         
+            //Llenar filas
+            for(Producto d:listaProductos)
+            {
+                modeloProductos.addRow(new Object[]{d.getIdProducto(),d.getCategoria().getNombre(),d.getCodigo(),d.getNombre(),d.getCantidad(),d.getPrecio(),d.getActivo()});
+                 
+            }
+             
+        }
+
+        public void borraFilasTablaProducto()
+        {
+            int a = modeloProductos.getRowCount()-1;
+            System.out.println("Tabla "+a);
+            for(int i=a;i>=0;i--)
+            {
+                modeloProductos.removeRow(i);
+            }
+        }
+        public void armaCabeceraTablaProducto()
+        {  
+            //Titulos de Columnas
+            ArrayList<Object> columnas=new ArrayList<Object>();
+            columnas.add("ID:");
+            columnas.add("CATEGORIa.");
+            columnas.add("CODIGO");
+            columnas.add("NOMBRE");
+            columnas.add("CANTIDAD");
+            columnas.add("PRECIO");
+            columnas.add("ACTIVO");
+
+            for(Object vp:columnas)
+            {   
+                modeloProductos.addColumn(vp);
+            }
+            tProducto.setModel(modeloProductos);
+        }
+     
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Activo;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JComboBox<String> cbCategoria;
+    private javax.swing.JCheckBox chActivo;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable tProducto;
+    private javax.swing.JTextField tbBuscar;
+    private javax.swing.JTextField tbCantidad;
+    private javax.swing.JTextField tbCodigo;
+    private javax.swing.JTextField tbId;
+    private javax.swing.JTextField tbNombre;
+    private javax.swing.JTextField tbPrecio;
+    // End of variables declaration//GEN-END:variables
+ public void limpiar()
     {
         tbCodigo.setText("");
         tbNombre.setText("");
@@ -325,35 +507,6 @@ private ArrayList<Categoria> listaCategorias;
         tbPrecio.setText("");
         chActivo.setSelected(false);
     }
-    
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Activo;
-    private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnBorrar;
-    private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnLimpiar;
-    private javax.swing.JComboBox<String> cbCategoria;
-    private javax.swing.JCheckBox chActivo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JButton jbBuscar;
-    private javax.swing.JTextField tbBuscar;
-    private javax.swing.JTextField tbCantidad;
-    private javax.swing.JTextField tbCodigo;
-    private javax.swing.JTextField tbNombre;
-    private javax.swing.JTextField tbPrecio;
-    // End of variables declaration//GEN-END:variables
-
 public void validarSoloLetras(JTextField campo)
 {
     campo.addKeyListener(new KeyAdapter(){
