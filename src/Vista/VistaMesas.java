@@ -17,8 +17,11 @@ private MesaData mesaData;
 private Conexion conexion;
 private ArrayList<Mesa> listaMesas;
 private DefaultTableModel modeloMesas;
-    public VistaMesas() {
+
+    public VistaMesas()
+    {
         initComponents();
+        
         try 
         {
             conexion = new Conexion("jdbc:mysql://localhost/resto", "root", "");
@@ -234,7 +237,7 @@ private DefaultTableModel modeloMesas;
         }
         else
         {
-        
+            
             String nombre=tbNombre.getText();
             int cantidad=Integer.parseInt(jsCantidad.getValue().toString());
             String estado="Libre";

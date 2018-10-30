@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -58,6 +59,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     
     public VistaPedidos()
     {
+        String Menu="";
         initComponents();
         
         validarSoloNumeros(tbDni);
@@ -106,11 +108,13 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             Logger.getLogger(VistaClientes.class.getName()).log(Level.SEVERE, null, ex);
         }  
     }
-
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btrpConjunto = new javax.swing.ButtonGroup();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         tbDni = new javax.swing.JTextField();
@@ -140,8 +144,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel21 = new javax.swing.JLabel();
         pnlMesas = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
-        chPagado = new javax.swing.JCheckBox();
-        chCancelar = new javax.swing.JCheckBox();
         btnGuardar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tMesero = new javax.swing.JTable();
@@ -156,8 +158,10 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        chPagado = new javax.swing.JCheckBox();
+        chCancelar = new javax.swing.JCheckBox();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -333,27 +337,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel23.setText("--MENÚ--");
         getContentPane().add(jLabel23);
-        jLabel23.setBounds(860, 470, 90, 40);
-
-        chPagado.setBackground(new java.awt.Color(255, 204, 255));
-        chPagado.setText("Pagado");
-        chPagado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chPagadoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(chPagado);
-        chPagado.setBounds(760, 530, 80, 30);
-
-        chCancelar.setBackground(new java.awt.Color(255, 204, 255));
-        chCancelar.setText("Cancelar");
-        chCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chCancelarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(chCancelar);
-        chCancelar.setBounds(760, 580, 80, 30);
+        jLabel23.setBounds(820, 460, 90, 40);
 
         btnGuardar.setBackground(new java.awt.Color(255, 153, 255));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar rosa.png"))); // NOI18N
@@ -368,7 +352,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             }
         });
         getContentPane().add(btnGuardar);
-        btnGuardar.setBounds(970, 530, 110, 60);
+        btnGuardar.setBounds(960, 510, 110, 60);
 
         tMesero.setBackground(new java.awt.Color(255, 204, 255));
         tMesero.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -463,19 +447,42 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         getContentPane().add(jLabel14);
         jLabel14.setBounds(0, 400, 680, 220);
 
-        jLabel17.setBackground(new java.awt.Color(255, 204, 255));
-        jLabel17.setText("jLabel17");
-        getContentPane().add(jLabel17);
-        jLabel17.setBounds(70, 70, 1130, 620);
+        chPagado.setBackground(new java.awt.Color(255, 204, 255));
+        chPagado.setText("Pagado");
+        chPagado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chPagadoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(chPagado);
+        chPagado.setBounds(880, 520, 61, 23);
 
-        jRadioButton1.setText("jRadioButton1");
-        getContentPane().add(jRadioButton1);
-        jRadioButton1.setBounds(830, 550, 120, 30);
+        chCancelar.setBackground(new java.awt.Color(255, 204, 255));
+        chCancelar.setText("Cancelar");
+        chCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chCancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(chCancelar);
+        chCancelar.setBounds(880, 540, 67, 23);
+
+        btrpConjunto.add(jRadioButton2);
+        jRadioButton2.setSelected(true);
+        jRadioButton2.setText("Pagado");
+        jRadioButton2.setToolTipText("esta es la opcion pagado Pagado");
+        getContentPane().add(jRadioButton2);
+        jRadioButton2.setBounds(780, 520, 61, 23);
+
+        btrpConjunto.add(jRadioButton3);
+        jRadioButton3.setText("Cancelar");
+        getContentPane().add(jRadioButton3);
+        jRadioButton3.setBounds(780, 540, 67, 23);
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         jLabel11.setText("jLabel11");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(690, 460, 440, 160);
+        jLabel11.setBounds(690, 460, 430, 160);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -812,12 +819,15 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             cbCategorias.addItem(item.getNombre());
         }
     }
+        
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cantidad;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnPedido;
     private javax.swing.JButton btnVerMesa;
+    private javax.swing.ButtonGroup btrpConjunto;
     private javax.swing.JComboBox<String> cbCategorias;
     private javax.swing.JCheckBox chCancelar;
     private javax.swing.JCheckBox chPagado;
@@ -830,7 +840,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -845,7 +854,8 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;

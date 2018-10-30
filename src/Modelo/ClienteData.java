@@ -12,11 +12,15 @@ import javax.swing.JOptionPane;
 public class ClienteData 
 {
     private Connection connection = null;
+    private Conexion conexion;
 
     public ClienteData(Conexion conexion)
     {
         try 
         {
+                        
+            this.conexion=conexion;
+
             connection = conexion.getConexion();
         } 
         catch (SQLException ex)
@@ -91,24 +95,25 @@ public class ClienteData
         return clientes;
     }
 
-    public void borrarCliente(int id)
+    public void borrarCliente(int id) //cLAUDIA LLO HIZO LO COPIE DE MESA DATA
     {
-        try{
+    try 
+        {
             
-            String sql = "DELETE FROM cliente WHERE idCliente =?;";
+//            String sql = "DELETE FROM mesa WHERE idMesa =?;";
+             String sql =  "UPDATE cliente SET activo = false WHERE idCliente = ?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
-  
-            statement.executeUpdate();                       
+
+            statement.executeUpdate();
+    
             statement.close();
     
-        }
-        catch (SQLException ex) 
-        {
+        } catch (SQLException ex) {
             System.out.println("Error al insertar un cliente: " + ex.getMessage());
-        }       
-    }
+        }
+        }
     
     public void actualizarCliente(Cliente cliente)
     {
@@ -322,6 +327,38 @@ public class ClienteData
         }   
         return cliente;
     } 
+     
+     public List<Cliente> obtenerClientesPorNombre(String nombre)//LO HICE CLAUDIA
+    {
+        List<Cliente> clientes = new ArrayList<Cliente>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM cliente WHERE nombre = ?;";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, nombre);
+            ResultSet resultSet = statement.executeQuery();
+            Cliente cliente;
+            
+            while(resultSet.next())
+            {
+                cliente = new Cliente();
+                
+                cliente.setIdCliente(resultSet.getInt("idCliente"));
+                cliente.setDni(resultSet.getInt("dni"));
+                cliente.setNombre(resultSet.getString("nombre"));              
+                cliente.setActivo(resultSet.getBoolean("activo"));
+                clientes.add(cliente);
+            }      
+            statement.close();
+        }
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los mesas: " + ex.getMessage());
+        } 
+        return clientes;
+    }
+
      //nuevo
     
     
