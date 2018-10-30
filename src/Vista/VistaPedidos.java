@@ -158,10 +158,9 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        chPagado = new javax.swing.JCheckBox();
-        chCancelar = new javax.swing.JCheckBox();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        rbPagado = new javax.swing.JRadioButton();
+        rbCancelado = new javax.swing.JRadioButton();
+        rbAtendido = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -180,6 +179,11 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel7.setBounds(340, 30, 40, 50);
 
         tbDni.setBorder(null);
+        tbDni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbDniActionPerformed(evt);
+            }
+        });
         getContentPane().add(tbDni);
         tbDni.setBounds(400, 40, 140, 30);
 
@@ -447,37 +451,27 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         getContentPane().add(jLabel14);
         jLabel14.setBounds(0, 400, 680, 220);
 
-        chPagado.setBackground(new java.awt.Color(255, 204, 255));
-        chPagado.setText("Pagado");
-        chPagado.addActionListener(new java.awt.event.ActionListener() {
+        btrpConjunto.add(rbPagado);
+        rbPagado.setText("Pagado");
+        rbPagado.setToolTipText("esta es la opcion pagado Pagado");
+        getContentPane().add(rbPagado);
+        rbPagado.setBounds(780, 530, 90, 23);
+
+        btrpConjunto.add(rbCancelado);
+        rbCancelado.setText("Cancelar");
+        getContentPane().add(rbCancelado);
+        rbCancelado.setBounds(780, 560, 90, 23);
+
+        btrpConjunto.add(rbAtendido);
+        rbAtendido.setSelected(true);
+        rbAtendido.setText("Atendido");
+        rbAtendido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chPagadoActionPerformed(evt);
+                rbAtendidoActionPerformed(evt);
             }
         });
-        getContentPane().add(chPagado);
-        chPagado.setBounds(880, 520, 61, 23);
-
-        chCancelar.setBackground(new java.awt.Color(255, 204, 255));
-        chCancelar.setText("Cancelar");
-        chCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chCancelarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(chCancelar);
-        chCancelar.setBounds(880, 540, 67, 23);
-
-        btrpConjunto.add(jRadioButton2);
-        jRadioButton2.setSelected(true);
-        jRadioButton2.setText("Pagado");
-        jRadioButton2.setToolTipText("esta es la opcion pagado Pagado");
-        getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(780, 520, 61, 23);
-
-        btrpConjunto.add(jRadioButton3);
-        jRadioButton3.setText("Cancelar");
-        getContentPane().add(jRadioButton3);
-        jRadioButton3.setBounds(780, 540, 67, 23);
+        getContentPane().add(rbAtendido);
+        rbAtendido.setBounds(780, 500, 90, 23);
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         jLabel11.setText("jLabel11");
@@ -546,36 +540,39 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        
-        if(chPagado.isSelected()==true)
+        //peniente=esta pagado ono
+        //si lo entrego o lo cancelo el cliente
+        if(rbAtendido.isSelected()==true)
+        {
+            
+            VistaPedidos vp=new VistaPedidos();
+            vp.setVisible(true);
+            
+        }
+        if(rbPagado.isSelected()==true)
         {
             JOptionPane.showMessageDialog(null, "Pagado" + JOptionPane.INFORMATION_MESSAGE);
+            Pedido pedido=pedidoData.buscarPedidoMesa(idMesa);
+            pedido.setPendiente(true);
+            pedidoData.actualizarPedido(pedido);
+            
+            Mesa mesa = mesaData.buscarMesa(pedido.getMesa().getIdMesa());
+            mesa.setEstado("Libre");
+            mesaData.actualizarMesa(mesa);
         }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Error" + JOptionPane.ERROR_MESSAGE);
-        }
-
-        if(chCancelar.isSelected()==true)
+        if(rbCancelado.isSelected()==true)
         {
             JOptionPane.showMessageDialog(null, "Cancelar" + JOptionPane.INFORMATION_MESSAGE);
+            Pedido pedido=pedidoData.buscarPedidoMesa(idMesa);
+            pedido.setEntregado(true);
+            pedidoData.actualizarPedido(pedido);
+            
+            Mesa mesa = mesaData.buscarMesa(pedido.getMesa().getIdMesa());
+            mesa.setEstado("Libre");
+            mesaData.actualizarMesa(mesa);
         }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Error" + JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnGuardarActionPerformed
-//..............................................................................JCheckBox..,.......................................................
-    private void chPagadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chPagadoActionPerformed
-       //pagado es pendiente
-//q es isSelected si el JCheckBox chpagado esta seleccionado
-        chPagado.setSelected(true);
-    }//GEN-LAST:event_chPagadoActionPerformed
-
-    private void chCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chCancelarActionPerformed
-        chCancelar.setSelected(true);
         
-    }//GEN-LAST:event_chCancelarActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnVerMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMesaActionPerformed
         // TODO add your handling code here:
@@ -608,7 +605,8 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             JOptionPane.showMessageDialog(null, "Error al agregar en base de datos" );
         }
     }//GEN-LAST:event_btnVerMesaActionPerformed
-
+    
+    int NuevoPedido=0;
     private void btnPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidoActionPerformed
         //        clikeo el mesero
 
@@ -662,14 +660,22 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         }
     }//GEN-LAST:event_btnPedidoActionPerformed
 
-    int NuevoPedido=0;    
+    private void tbDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbDniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbDniActionPerformed
+
+    private void rbAtendidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAtendidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbAtendidoActionPerformed
+
+        
     int idMesa=0;
     public void CargarMesas()
     {       
         listaMesas=(ArrayList)mesaData.obtenerMesas();
          for (Mesa item : listaMesas)
          {
-            JButton boton = new JButton(item.getIdMesa()+"");
+            JButton boton = new JButton(item.getNombre());
             boton.setName(item.getIdMesa()+"");
             
             pnlMesas.add(boton);
@@ -829,8 +835,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private javax.swing.JButton btnVerMesa;
     private javax.swing.ButtonGroup btrpConjunto;
     private javax.swing.JComboBox<String> cbCategorias;
-    private javax.swing.JCheckBox chCancelar;
-    private javax.swing.JCheckBox chPagado;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -854,14 +858,15 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JLabel lblIdMesa;
     private javax.swing.JPanel pnlMesas;
+    private javax.swing.JRadioButton rbAtendido;
+    private javax.swing.JRadioButton rbCancelado;
+    private javax.swing.JRadioButton rbPagado;
     private javax.swing.JSpinner sCantidad;
     private javax.swing.JTable tDetalle;
     private javax.swing.JTable tMesero;

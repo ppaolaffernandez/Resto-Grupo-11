@@ -140,7 +140,7 @@ public class MesaData
             statement.close();
     
         } catch (SQLException ex) {
-            System.out.println("Error al insertar una mesa: " + ex.getMessage());
+            System.out.println("Error al borrar una mesa: " + ex.getMessage());
         }
         }
     
@@ -186,6 +186,7 @@ public class MesaData
             {
                 mesa = new Mesa();
                 mesa.setIdMesa(resultSet.getInt("idMesa"));
+                mesa.setNombre(resultSet.getString("nombre"));
                 mesa.setCantidad(resultSet.getInt("cantidad"));
                 mesa.setEstado(resultSet.getString("estado"));
                 mesa.setActivo(resultSet.getBoolean("activo"));
@@ -197,7 +198,7 @@ public class MesaData
         }
     catch (SQLException ex)
     {
-            System.out.println("Error al insertar una mesa: " + ex.getMessage());
+            System.out.println("Error al buscar una mesa: " + ex.getMessage());
         }
         
         return mesa;

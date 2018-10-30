@@ -118,7 +118,7 @@ public class PedidoData
         }
         catch (SQLException ex) 
         {
-            System.out.println("Error al insertar un pedido: " + ex.getMessage());
+            System.out.println("Error al eliminar un pedido: " + ex.getMessage());
         } 
     }
     
@@ -127,17 +127,19 @@ public class PedidoData
         try
         {
             
-            String sql = "UPDATE pedido SET idMesa = ?, idMesero = ?, fecha = ?, hora = ?, activo =?, pendiente =?, entregado =? WHERE idPedido = ?;";
+            String sql = "UPDATE pedido SET  idMesero = ?, idMesa = ?, fecha = ?, hora = ?, activo =?, pendiente =?, entregado =? WHERE idPedido = ?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
-            statement.setInt(1, pedido.getMesa().getIdMesa());
-            statement.setInt(2, pedido.getMesero().getIdMesero());
+            
+            statement.setInt(1, pedido.getMesero().getIdMesero());
+            statement.setInt(2, pedido.getMesa().getIdMesa());
             statement.setDate(3, (Date) pedido.getFecha());
             statement.setString(4, pedido.getHora());        
             statement.setBoolean(5, pedido.getActivo());
             statement.setBoolean(6, pedido.getPendiente());
             statement.setBoolean(7, pedido.getEntregado());
+            statement.setInt(8, pedido.getIdPedido());
             statement.executeUpdate();
             
           
@@ -146,7 +148,7 @@ public class PedidoData
         }
         catch (SQLException ex)
         {
-            System.out.println("Error al insertar un pedido: " + ex.getMessage());
+            System.out.println("Error al actualizar un pedido: " + ex.getMessage());
         }
     
     }
@@ -185,7 +187,7 @@ public class PedidoData
         }   
         catch (SQLException ex)
         {
-            System.out.println("Error al insertar un pedido: " + ex.getMessage());
+            System.out.println("Error al buscar un pedido: " + ex.getMessage());
         } 
         return pedido;
     }
@@ -237,7 +239,7 @@ public class PedidoData
         }   
         catch (SQLException ex)
         {
-            System.out.println("Error al insertar un pedido: " + ex.getMessage());
+            System.out.println("Error al buscar un pedido por mesa: " + ex.getMessage());
         } 
         return pedido;
     }
