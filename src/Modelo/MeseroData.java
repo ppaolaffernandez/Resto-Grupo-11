@@ -163,7 +163,104 @@ public class MeseroData
         }   
         return mesero;
     } 
-    
+//    _______________________________________________________________________NUEVO_________________________________________________________
      
+    
+     public List<Mesero> obtenerCategoriasDeMeseros()
+    {
+        List<Mesero> meseros = new ArrayList<Mesero>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM mesero;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            Mesero mesero;
+            
+            while(resultSet.next()){
+                mesero = new Mesero();
+                
+                mesero.setIdMesero(resultSet.getInt("idMesero"));
+                mesero.setNombre(resultSet.getString("nombre"));
+                mesero.setDni(resultSet.getInt("dni"));                
+                mesero.setActivo(resultSet.getBoolean("activo"));
+
+                meseros.add(mesero);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los mesero: " + ex.getMessage());
+        }
+              
+        return meseros;
+    }
+     //-------nuevo
+      public Mesero buscarMeseroNombre(String nombre)
+      {
+        Mesero mesero=null;
+         try
+         {
+            
+            String sql = "SELECT * FROM mesero WHERE nombre =?;";
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, nombre);
+                  
+            ResultSet resultSet=statement.executeQuery();
+            
+            while(resultSet.next())
+            {
+                mesero = new Mesero();
+                
+                mesero.setIdMesero(resultSet.getInt("idMesero"));
+                mesero.setNombre(resultSet.getString("nombre"));
+                mesero.setDni(resultSet.getInt("dni"));                
+                mesero.setActivo(resultSet.getBoolean("activo"));
+            }      
+            statement.close();
+        } 
+         catch (SQLException ex)
+         {
+            System.out.println("Error al insertar un mesero: " + ex.getMessage());
+        }   
+        return mesero;
+    }
+      
+      
+     public List<Mesero> obtenerMeserosPorNombre(String nombre)
+    {
+        List<Mesero> meseros = new ArrayList<Mesero>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM mesero WHERE nombre =?;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, nombre);
+            ResultSet resultSet = statement.executeQuery();
+            Mesero mesero;
+            
+            while(resultSet.next())
+            {
+                mesero = new Mesero();
+                
+                mesero.setIdMesero(resultSet.getInt("idMesero"));
+                mesero.setNombre(resultSet.getString("nombre"));
+                mesero.setDni(resultSet.getInt("dni"));                
+                mesero.setActivo(resultSet.getBoolean("activo"));
+
+                meseros.add(mesero);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los mesero: " + ex.getMessage());
+        }
+              
+        return meseros;
+    }  
 }
 

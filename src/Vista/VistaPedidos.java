@@ -547,11 +547,12 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             
             VistaPedidos vp=new VistaPedidos();
             vp.setVisible(true);
-            
+            ActualizarPedido();
+            JOptionPane.showMessageDialog(null, "Pedido Guardado");
         }
         if(rbPagado.isSelected()==true)
         {
-            JOptionPane.showMessageDialog(null, "Pagado" + JOptionPane.INFORMATION_MESSAGE);
+           
             Pedido pedido=pedidoData.buscarPedidoMesa(idMesa);
             pedido.setPendiente(true);
             pedidoData.actualizarPedido(pedido);
@@ -559,10 +560,12 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             Mesa mesa = mesaData.buscarMesa(pedido.getMesa().getIdMesa());
             mesa.setEstado("Libre");
             mesaData.actualizarMesa(mesa);
+            ActualizarPedido();
+            JOptionPane.showMessageDialog(null, "Pedido Pagado");
         }
         if(rbCancelado.isSelected()==true)
         {
-            JOptionPane.showMessageDialog(null, "Cancelar" + JOptionPane.INFORMATION_MESSAGE);
+            
             Pedido pedido=pedidoData.buscarPedidoMesa(idMesa);
             pedido.setEntregado(true);
             pedidoData.actualizarPedido(pedido);
@@ -570,6 +573,8 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             Mesa mesa = mesaData.buscarMesa(pedido.getMesa().getIdMesa());
             mesa.setEstado("Libre");
             mesaData.actualizarMesa(mesa);
+            ActualizarPedido();
+            JOptionPane.showMessageDialog(null, "Pedido Cancelado");
         }
         
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -825,7 +830,16 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             cbCategorias.addItem(item.getNombre());
         }
     }
+    public void ActualizarPedido()//Puse actualizar para q recarge otras vez el pedido
+    {
         
+        Principal.escritorio.removeAll();
+        Principal.escritorio.repaint();
+        VistaPedidos vp=new VistaPedidos();
+        vp.setVisible(true);
+        Principal.escritorio.add(vp);
+        Principal.escritorio.moveToFront(vp);
+    }    
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cantidad;

@@ -6,15 +6,22 @@ import Modelo.Conexion;
 import Modelo.Mesero;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 public class VistaMeseros extends javax.swing.JInternalFrame {
 private MeseroData meseroData;
 private Conexion conexion;
-    
-    public VistaMeseros() {
+private ArrayList<Mesero> listaMeseros;
+
+private DefaultTableModel modeloMeseros;
+
+    public VistaMeseros() 
+    {
         initComponents();
 //        setLocationRelativeTo(null); centra el from
         validarSoloNumeros(tbDni);
@@ -26,8 +33,13 @@ private Conexion conexion;
         
          try 
         {
+            modeloMeseros=new DefaultTableModel();
             conexion = new Conexion("jdbc:mysql://localhost/resto", "root", "");
-            meseroData = new MeseroData(conexion);        
+            meseroData = new MeseroData(conexion);  
+            
+            armaCabeceraTablaMesero();
+            cargaDatosTablaMesero();
+            tbId.setVisible(false);
         }
         catch (ClassNotFoundException ex)
         {
@@ -40,19 +52,22 @@ private Conexion conexion;
     private void initComponents() {
 
         jLabel6 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         tbId = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         tbDni = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         tbNombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         chActivo = new javax.swing.JCheckBox();
-        btnGuardar = new javax.swing.JButton();
-        btnBorrar = new javax.swing.JButton();
-        btnActualizar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        tbBuscar = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tMesero = new javax.swing.JTable();
+        btnGuardar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(556, 487));
@@ -67,10 +82,6 @@ private Conexion conexion;
         getContentPane().add(jLabel6);
         jLabel6.setBounds(190, 0, 110, 70);
 
-        jLabel2.setText("ID");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(70, 110, 60, 30);
-
         tbId.setAutoscrolls(false);
         tbId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +89,64 @@ private Conexion conexion;
             }
         });
         getContentPane().add(tbId);
-        tbId.setBounds(150, 110, 150, 30);
+        tbId.setBounds(490, 10, 30, 30);
+
+        jLabel3.setText("DNI");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(70, 100, 50, 30);
+
+        tbDni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbDniActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tbDni);
+        tbDni.setBounds(150, 90, 150, 30);
+
+        jLabel4.setText("NOMBRE");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(70, 130, 60, 30);
+
+        tbNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbNombreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tbNombre);
+        tbNombre.setBounds(150, 140, 150, 30);
+
+        jLabel5.setText("ACTIVO");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(70, 180, 42, 14);
+
+        chActivo.setBackground(new java.awt.Color(255, 204, 204));
+        getContentPane().add(chActivo);
+        chActivo.setBounds(160, 170, 30, 40);
+
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiarrosa_副本.png"))); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setBorder(null);
+        btnLimpiar.setBorderPainted(false);
+        btnLimpiar.setContentAreaFilled(false);
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLimpiar);
+        btnLimpiar.setBounds(410, 240, 100, 50);
+
+        jLabel7.setText("Nombre");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(40, 340, 60, 30);
+
+        tbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbBuscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tbBuscar);
+        tbBuscar.setBounds(120, 340, 220, 30);
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
         btnBuscar.setText("Buscar");
@@ -94,39 +162,28 @@ private Conexion conexion;
             }
         });
         getContentPane().add(btnBuscar);
-        btnBuscar.setBounds(360, 110, 120, 40);
+        btnBuscar.setBounds(360, 330, 100, 60);
 
-        jLabel3.setText("DNI");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(70, 154, 50, 30);
-
-        tbDni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbDniActionPerformed(evt);
+        tMesero.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tMesero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tMeseroMousePressed(evt);
             }
         });
-        getContentPane().add(tbDni);
-        tbDni.setBounds(150, 160, 150, 30);
+        jScrollPane1.setViewportView(tMesero);
 
-        jLabel4.setText("NOMBRE");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(70, 204, 60, 30);
-
-        tbNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbNombreActionPerformed(evt);
-            }
-        });
-        getContentPane().add(tbNombre);
-        tbNombre.setBounds(150, 210, 150, 30);
-
-        jLabel5.setText("ACTIVO");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(70, 280, 42, 14);
-
-        chActivo.setBackground(new java.awt.Color(255, 204, 204));
-        getContentPane().add(chActivo);
-        chActivo.setBounds(160, 280, 30, 40);
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(10, 390, 480, 110);
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar rosa.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -140,7 +197,21 @@ private Conexion conexion;
             }
         });
         getContentPane().add(btnGuardar);
-        btnGuardar.setBounds(30, 343, 100, 50);
+        btnGuardar.setBounds(30, 250, 90, 40);
+
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar rosa_副本_1.png"))); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setBorder(null);
+        btnActualizar.setBorderPainted(false);
+        btnActualizar.setContentAreaFilled(false);
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnActualizar);
+        btnActualizar.setBounds(140, 240, 110, 60);
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar rosa_1.png"))); // NOI18N
         btnBorrar.setText("Borrar");
@@ -154,38 +225,12 @@ private Conexion conexion;
             }
         });
         getContentPane().add(btnBorrar);
-        btnBorrar.setBounds(160, 340, 100, 50);
-
-        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar rosa_副本_1.png"))); // NOI18N
-        btnActualizar.setText("Actualizar");
-        btnActualizar.setBorder(null);
-        btnActualizar.setBorderPainted(false);
-        btnActualizar.setContentAreaFilled(false);
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnActualizar);
-        btnActualizar.setBounds(290, 343, 110, 50);
-
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiarrosa_副本.png"))); // NOI18N
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.setBorder(null);
-        btnLimpiar.setBorderPainted(false);
-        btnLimpiar.setContentAreaFilled(false);
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnLimpiar);
-        btnLimpiar.setBounds(420, 340, 100, 50);
+        btnBorrar.setBounds(270, 240, 120, 60);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pinkmas claro_副本.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(-190, -20, 730, 550);
+        jLabel1.setBounds(0, 0, 540, 520);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -193,19 +238,6 @@ private Conexion conexion;
     private void tbIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tbIdActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
-        int id=Integer.parseInt(tbId.getText());
-
-        Mesero mesero=meseroData.buscarMesero(id);
-        if(mesero!=null){
-            tbId.setText(mesero.getIdMesero()+"");
-            tbNombre.setText(mesero.getNombre());
-            tbDni.setText(mesero.getDni()+"");
-            chActivo.setSelected(mesero.getActivo());
-        }
-    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void tbDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbDniActionPerformed
         // TODO add your handling code here:
@@ -215,47 +247,6 @@ private Conexion conexion;
         // TODO add your handling code here:
     }//GEN-LAST:event_tbNombreActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        //creo una variable local y le asigno el dato q puso el usuario a los tb y instancio con las
-        //variables local al new
-        String nombre=tbNombre.getText();
-        int dni=Integer.parseInt(tbDni.getText());
-        boolean activo=chActivo.isSelected();
-
-        Mesero mesero=new Mesero(nombre,dni,activo);
-        meseroData.guardarMesero(mesero);
-
-        tbId.setText(mesero.getIdMesero()+"");
-         limpiar();
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
-        int id=Integer.parseInt(tbId.getText());
-        meseroData.borrarMesero(id);
-         limpiar();
-    }//GEN-LAST:event_btnBorrarActionPerformed
-
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
-        if (tbId.getText().isEmpty())
-        {
-            System.out.println("Error");
-        }
-        else
-        {
-            int id=Integer.parseInt(tbId.getText());
-            String nombre=tbNombre.getText();
-            int dni=Integer.parseInt(tbDni.getText());
-            boolean activo=chActivo.isSelected();
-
-            Mesero mesero=new Mesero(id,nombre,dni,activo);
-            meseroData.actualizarMesero(mesero);
-             limpiar();
-        }
-
-    }//GEN-LAST:event_btnActualizarActionPerformed
-
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         
 
@@ -264,12 +255,155 @@ private Conexion conexion;
             tbDni.setText("");
             chActivo.setSelected(false);
     }//GEN-LAST:event_btnLimpiarActionPerformed
-  public void limpiar()
-    {
-        tbNombre.setText("");
-        tbDni.setText("");
-        chActivo.setSelected(false);
-    } 
+
+    private void tbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbBuscarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
+        if(tbBuscar.getText().isEmpty())//SI NO HAY DATOS NO AGREGA
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria : ");
+        }
+        else //SI HAY ALGO BUSCA
+        {
+            borraFilasTablaMesero();
+            cargaDatosTablaMesero(tbBuscar.getText());
+
+        }
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tMeseroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tMeseroMousePressed
+        int filaseleccionada = tMesero.getSelectedRow();
+        try
+        {
+            tbId.setText(tMesero.getValueAt(filaseleccionada, 0).toString());
+            tbNombre.setText(tMesero.getValueAt(filaseleccionada, 1).toString());
+            tbDni.setText(tMesero.getValueAt(filaseleccionada, 2).toString());
+            chActivo.setSelected(Boolean.parseBoolean(tMesero.getValueAt(filaseleccionada, 3).toString()) );
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila : ");
+        }
+
+    }//GEN-LAST:event_tMeseroMousePressed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        if(tbNombre.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre del mesero : ");
+        }
+        else if(tbNombre.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese el dni del mesero : ");
+        }
+        else
+        {
+            String nombre=tbNombre.getText();
+            int dni=Integer.parseInt(tbDni.getText());
+            boolean activo=chActivo.isSelected();
+
+            Mesero mesero=new Mesero(nombre,dni,activo);
+            meseroData.guardarMesero(mesero);
+
+            tbId.setText(mesero.getIdMesero()+"");
+            limpiar();
+            borraFilasTablaMesero();
+            cargaDatosTablaMesero();
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        if(tbNombre.getText().isEmpty())//si la caja esta vacia va a salir un mensaje que falta el nombre
+
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la mesero : ");
+        }
+        else//si la caja tiene nombre entra y actualiza
+        {
+
+            int id=Integer.parseInt(tbId.getText());
+            String nombre=tbNombre.getText();
+            int dni=Integer.parseInt(tbDni.getText());
+            boolean activo=chActivo.isSelected();
+
+            Mesero mesero=new Mesero(id,nombre,dni,activo);
+            meseroData.actualizarMesero(mesero);
+            limpiar();//limpia los controles las cajas y los chechbox
+            borraFilasTablaMesero();//limpia la tabla
+            cargaDatosTablaMesero();//carga  la tabla categoria
+        }
+
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        if(tbNombre.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la mesero : ");
+        }
+        else
+        {
+            int id=Integer.parseInt(tbId.getText());
+            meseroData.borrarMesero(id);
+            limpiar();
+            borraFilasTablaMesero();
+            cargaDatosTablaMesero();
+        }
+    }//GEN-LAST:event_btnBorrarActionPerformed
+//_______________________________________________________TABLA MESERO_____________________________________________________________
+    
+      public void cargaDatosTablaMesero(String Dato)
+        {   
+            borraFilasTablaMesero();
+            listaMeseros=(ArrayList)meseroData.obtenerMeserosPorNombre(Dato);         
+            //Llenar filas
+            for(Mesero m:listaMeseros)
+            {
+                modeloMeseros.addRow(new Object[]{m.getIdMesero(),m.getNombre(),m.getDni(),m.getActivo()});
+                 
+            }     
+        }
+    public void cargaDatosTablaMesero()
+        {   
+            borraFilasTablaMesero();
+            listaMeseros=(ArrayList)meseroData.obtenerMeseros();         
+            //Llenar filas
+            for(Mesero m:listaMeseros)
+            {
+                modeloMeseros.addRow(new Object[]{m.getIdMesero(),m.getNombre(),m.getDni(),m.getActivo()});
+                 
+            }
+             
+        }
+
+        public void borraFilasTablaMesero()
+        {
+            int a = modeloMeseros.getRowCount()-1;
+            System.out.println("Tabla "+a);
+            for(int i=a;i>=0;i--)
+            {
+                modeloMeseros.removeRow(i);
+            }
+        }
+        public void armaCabeceraTablaMesero()
+        {  
+            //Titulos de Columnas
+            ArrayList<Object> columnas=new ArrayList<Object>();
+            columnas.add("ID:");
+            columnas.add("NOMBRE.");
+            columnas.add("DNI");
+            columnas.add("ACTIVO");
+
+            for(Object vp:columnas)
+            {   
+                modeloMeseros.addColumn(vp);
+            }
+            tMesero.setModel(modeloMeseros);
+        }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
@@ -279,15 +413,24 @@ private Conexion conexion;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JCheckBox chActivo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tMesero;
+    private javax.swing.JTextField tbBuscar;
     private javax.swing.JTextField tbDni;
     private javax.swing.JTextField tbId;
     private javax.swing.JTextField tbNombre;
     // End of variables declaration//GEN-END:variables
+public void limpiar()
+    {
+        tbNombre.setText("");
+        tbDni.setText("");
+        chActivo.setSelected(false);
+    } 
 public void validarSoloLetras(JTextField campo)
 {
     campo.addKeyListener(new KeyAdapter(){

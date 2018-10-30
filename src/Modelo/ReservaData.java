@@ -238,6 +238,49 @@ public class ReservaData
         }    
         return reservas;
     }
+//_________________________________________________________________________________________________________________________________________________    
+//_____________________________________________________________NUEVO________________________________________________________________________________
+//__________________________________________________________________________________________________________________________________________________
+public List<Reserva> obtenerReservasPorNombre(String nombre)
+    {
+        List<Reserva> reservas = new ArrayList<Reserva>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM reserva WHERE nombre =?;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, nombre);
+            ResultSet resultSet = statement.executeQuery();
+            Reserva reserva;
+            
+            while(resultSet.next())
+            {
+                reserva = new Reserva();
+                
+                reserva.setIdReserva(resultSet.getInt("idReserva"));
+                
+                Cliente c=buscarCliente(resultSet.getInt("idCliente"));
+                reserva.setCliente(c);
+                
+                Mesa m=buscarMesa(resultSet.getInt("idMesa"));
+                reserva.setMesa(m);
+                
+                reserva.setHora(resultSet.getString("hora"));                
+                reserva.setFecha(resultSet.getDate("fecha"));
+                reserva.setActivo(resultSet.getBoolean("activo"));
+
+                reservas.add(reserva);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los categoria: " + ex.getMessage());
+        }
+              
+        return reservas;
+    }    
   }
 
 

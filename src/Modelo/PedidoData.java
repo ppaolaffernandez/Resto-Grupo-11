@@ -1,5 +1,6 @@
 package Modelo;
 
+
 import java.sql.Connection;
 import java.sql.Date;
 
@@ -62,6 +63,7 @@ public class PedidoData
             System.out.println("Error al insertar un pedido: " + ex.getMessage());
         }
     }
+    
     
     public List<Pedido> obtenerPedidos()
     {
@@ -132,6 +134,8 @@ public class PedidoData
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
             
+            
+            
             statement.setInt(1, pedido.getMesero().getIdMesero());
             statement.setInt(2, pedido.getMesa().getIdMesa());
             statement.setDate(3, (Date) pedido.getFecha());
@@ -152,6 +156,7 @@ public class PedidoData
         }
     
     }
+    
     public Pedido buscarPedido(int id)
     {
     Pedido pedido=null;
