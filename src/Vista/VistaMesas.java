@@ -233,7 +233,7 @@ private DefaultTableModel modeloMesas;
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if(tbNombre.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria : ");
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la mesa : ");
         }
         else
         {
@@ -256,7 +256,7 @@ private DefaultTableModel modeloMesas;
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         if(tbNombre.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria : ");
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la mesa : ");
         }
         else
         {
@@ -271,7 +271,7 @@ private DefaultTableModel modeloMesas;
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
       if(tbNombre.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria : ");
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la mesa : ");
         }
         else
         {
@@ -312,7 +312,7 @@ private DefaultTableModel modeloMesas;
 
         if(tbBuscar.getText().isEmpty())//SI NO HAY DATOS NO AGREGA
         {
-            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria : ");
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la mesa : ");
         }
         else //SI HAY ALGO BUSCA
         {

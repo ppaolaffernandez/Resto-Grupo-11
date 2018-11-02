@@ -262,6 +262,10 @@ private DefaultTableModel modeloClientes;
         {
             JOptionPane.showMessageDialog(null, "Ingrese el nombre del cliente : ");
         }
+             else  if(tbDni.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese el dni del cliente : ");
+        }     
         else
         {
             int dni=Integer.parseInt(tbDni.getText());
@@ -279,17 +283,27 @@ private DefaultTableModel modeloClientes;
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
+        if(tbNombre.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre del cliente : ");
+        }
+        else
+        {
         int id=Integer.parseInt(tbId.getText());
         clienteData.borrarCliente(id);
         JOptionPane.showMessageDialog(null, "Borrado");
         limpiar();
+        }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         if(tbNombre.getText().isEmpty())//AGREGE ACTUALIZAR PARA ACTUALIZAR CLIENTES
         {
             JOptionPane.showMessageDialog(null, "Ingrese el nombre del cliente : ");
+        }
+        else if(tbDni.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese el dni del cliente : ");
         }
         else
         {
@@ -335,6 +349,7 @@ private DefaultTableModel modeloClientes;
         {
             JOptionPane.showMessageDialog(null, "Ingrese el nombre del cliente : ");
         }
+        
         else //SI HAY ALGO BUSCA
         {
             borraFilasTablaCliente();

@@ -57,7 +57,7 @@ public class Mesero
         return activo;
     }
 
-    public void setActivo(boolean estado) {
+    public void setActivo(boolean activo) {
         this.activo = activo;
     }
     

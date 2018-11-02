@@ -168,6 +168,9 @@ public class Principal extends javax.swing.JFrame {
         vc.setVisible(true);
         escritorio.add(vc);
         escritorio.moveToFront(vc);
+        
+        
+        
     }//GEN-LAST:event_jmiCategoriasActionPerformed
 
     private void jmiClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiClientesActionPerformed

@@ -116,7 +116,7 @@ public class CategoriaData
         } 
         catch (SQLException ex) 
         {
-            System.out.println("Error al obtener los categoria: " + ex.getMessage());
+            System.out.println("Error al obtener las categoria: " + ex.getMessage());
         }
               
         return categorias;
@@ -139,7 +139,7 @@ public class CategoriaData
         } 
         catch (SQLException ex)
         {
-            System.out.println("Error al insertar un Categoria: " + ex.getMessage());
+            System.out.println("Error al borrar una Categoria: " + ex.getMessage());
         }
         
     
@@ -164,7 +164,7 @@ public class CategoriaData
         }
         catch (SQLException ex)
         {
-            System.out.println("Error al insertar un categoria: " + ex.getMessage());
+            System.out.println("Error al actualizar una categoria: " + ex.getMessage());
         }
     
     }
@@ -196,7 +196,7 @@ public class CategoriaData
         } 
          catch (SQLException ex)
          {
-            System.out.println("Error al buscar un categoria: " + ex.getMessage());
+            System.out.println("Error al buscar una categoria: " + ex.getMessage());
         }   
         return categoria;
     } 
@@ -227,7 +227,7 @@ public class CategoriaData
         } 
         catch (SQLException ex) 
         {
-            System.out.println("Error al obtener los categoria: " + ex.getMessage());
+            System.out.println("Error al obtener las categoria: " + ex.getMessage());
         }
               
         return categorias;
@@ -258,7 +258,7 @@ public class CategoriaData
         } 
          catch (SQLException ex)
          {
-            System.out.println("Error al insertar un categoria: " + ex.getMessage());
+            System.out.println("Error al buscar una categoria: " + ex.getMessage());
         }   
         return categoria;
     } 

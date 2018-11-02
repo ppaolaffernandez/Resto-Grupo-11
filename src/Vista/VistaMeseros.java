@@ -57,8 +57,6 @@ private DefaultTableModel modeloMeseros;
         tbDni = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         tbNombre = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        chActivo = new javax.swing.JCheckBox();
         btnLimpiar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         tbBuscar = new javax.swing.JTextField();
@@ -68,11 +66,12 @@ private DefaultTableModel modeloMeseros;
         btnGuardar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
+        cbDatos = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
-        setMaximumSize(new java.awt.Dimension(556, 487));
-        setMinimumSize(new java.awt.Dimension(556, 487));
-        setPreferredSize(new java.awt.Dimension(556, 487));
+        setMaximumSize(new java.awt.Dimension(556, 560));
+        setMinimumSize(new java.awt.Dimension(556, 560));
+        setPreferredSize(new java.awt.Dimension(556, 560));
         getContentPane().setLayout(null);
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
@@ -115,14 +114,6 @@ private DefaultTableModel modeloMeseros;
         getContentPane().add(tbNombre);
         tbNombre.setBounds(150, 140, 150, 30);
 
-        jLabel5.setText("ACTIVO");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(70, 180, 42, 14);
-
-        chActivo.setBackground(new java.awt.Color(255, 204, 204));
-        getContentPane().add(chActivo);
-        chActivo.setBounds(160, 170, 30, 40);
-
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiarrosa_副本.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.setBorder(null);
@@ -134,11 +125,11 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(btnLimpiar);
-        btnLimpiar.setBounds(410, 240, 100, 50);
+        btnLimpiar.setBounds(410, 220, 100, 50);
 
         jLabel7.setText("Nombre");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(40, 340, 60, 30);
+        jLabel7.setBounds(0, 360, 60, 30);
 
         tbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,7 +137,7 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(tbBuscar);
-        tbBuscar.setBounds(120, 340, 220, 30);
+        tbBuscar.setBounds(120, 300, 220, 30);
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
         btnBuscar.setText("Buscar");
@@ -162,17 +153,14 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(btnBuscar);
-        btnBuscar.setBounds(360, 330, 100, 60);
+        btnBuscar.setBounds(370, 290, 100, 60);
 
         tMesero.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         tMesero.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -197,7 +185,7 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(btnGuardar);
-        btnGuardar.setBounds(30, 250, 90, 40);
+        btnGuardar.setBounds(10, 220, 90, 40);
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar rosa_副本_1.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -211,7 +199,7 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(btnActualizar);
-        btnActualizar.setBounds(140, 240, 110, 60);
+        btnActualizar.setBounds(140, 210, 110, 60);
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar rosa_1.png"))); // NOI18N
         btnBorrar.setText("Borrar");
@@ -225,7 +213,16 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(btnBorrar);
-        btnBorrar.setBounds(270, 240, 120, 60);
+        btnBorrar.setBounds(270, 210, 120, 60);
+
+        cbDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dni", "Nombre", "Desactivado", " " }));
+        cbDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDatosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbDatos);
+        cbDatos.setBounds(40, 300, 56, 20);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pinkmas claro_副本.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -253,7 +250,7 @@ private DefaultTableModel modeloMeseros;
             tbId.setText("");
             tbNombre.setText("");
             tbDni.setText("");
-            chActivo.setSelected(false);
+            
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void tbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbBuscarActionPerformed
@@ -261,17 +258,27 @@ private DefaultTableModel modeloMeseros;
     }//GEN-LAST:event_tbBuscarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
+       //para seleccionar por dni
         if(tbBuscar.getText().isEmpty())//SI NO HAY DATOS NO AGREGA
         {
-            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria : ");
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre del mesero : ");
         }
         else //SI HAY ALGO BUSCA
         {
-            borraFilasTablaMesero();
-            cargaDatosTablaMesero(tbBuscar.getText());
-
+             if (cbDatos.getSelectedItem()=="Nombre") 
+             {
+                //un solo = es asigancion, y dos == es comparar.
+                borraFilasTablaMesero();
+                cargaDatosTablaMeseroxNombre(tbBuscar.getText());
+             }
+             if (cbDatos.getSelectedItem()=="Dni") 
+             {
+                //un solo = es asigancion, y dos == es comparar.
+                borraFilasTablaMesero();
+                cargaDatosTablaMeseroxDni(Integer.parseInt(tbBuscar.getText()));
+             }
         }
+        
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -282,7 +289,7 @@ private DefaultTableModel modeloMeseros;
             tbId.setText(tMesero.getValueAt(filaseleccionada, 0).toString());
             tbNombre.setText(tMesero.getValueAt(filaseleccionada, 1).toString());
             tbDni.setText(tMesero.getValueAt(filaseleccionada, 2).toString());
-            chActivo.setSelected(Boolean.parseBoolean(tMesero.getValueAt(filaseleccionada, 3).toString()) );
+            
         }
         catch(Exception e)
         {
@@ -296,7 +303,7 @@ private DefaultTableModel modeloMeseros;
         {
             JOptionPane.showMessageDialog(null, "Ingrese el nombre del mesero : ");
         }
-        else if(tbNombre.getText().isEmpty())
+        else if(tbDni.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Ingrese el dni del mesero : ");
         }
@@ -304,7 +311,7 @@ private DefaultTableModel modeloMeseros;
         {
             String nombre=tbNombre.getText();
             int dni=Integer.parseInt(tbDni.getText());
-            boolean activo=chActivo.isSelected();
+            boolean activo=true; //cuando guardo un mesero siempre tiene que estar activo .
 
             Mesero mesero=new Mesero(nombre,dni,activo);
             meseroData.guardarMesero(mesero);
@@ -320,7 +327,7 @@ private DefaultTableModel modeloMeseros;
         if(tbNombre.getText().isEmpty())//si la caja esta vacia va a salir un mensaje que falta el nombre
 
         {
-            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la mesero : ");
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre del mesero : ");
         }
         else//si la caja tiene nombre entra y actualiza
         {
@@ -328,7 +335,7 @@ private DefaultTableModel modeloMeseros;
             int id=Integer.parseInt(tbId.getText());
             String nombre=tbNombre.getText();
             int dni=Integer.parseInt(tbDni.getText());
-            boolean activo=chActivo.isSelected();
+            boolean activo=true;//cuando seleciiona un mesero lo pones activo de vuelta...........¡¡¡¡¡¡¡¡¡¡¡
 
             Mesero mesero=new Mesero(id,nombre,dni,activo);
             meseroData.actualizarMesero(mesero);
@@ -342,7 +349,7 @@ private DefaultTableModel modeloMeseros;
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         if(tbNombre.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la mesero : ");
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre del mesero : ");
         }
         else
         {
@@ -353,9 +360,47 @@ private DefaultTableModel modeloMeseros;
             cargaDatosTablaMesero();
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void cbDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDatosActionPerformed
+        if(cbDatos.getSelectedItem()=="Desactivado")
+        {
+            cargaDatosTablaMeseroxDesactivado();
+        }
+    }//GEN-LAST:event_cbDatosActionPerformed
 //_______________________________________________________TABLA MESERO_____________________________________________________________
+   
     
-      public void cargaDatosTablaMesero(String Dato)
+    /*______________________________________________________________________________________________________
+    ___________________________________  PARA LISTAR POR SUS ATRIBUTOS(DATOS)______________________________________________________________
+    __________________________________________________________________________________________
+    _________________________________________________________________________________*/
+    public void cargaDatosTablaMeseroxDni(int Dato) //ESTEEE LISTA POR NUMEROOOOOOOO
+        {   
+            borraFilasTablaMesero();
+            listaMeseros=(ArrayList)meseroData.obtenerMeserosPorDni(Dato);         
+            //Llenar filas
+            for(Mesero m:listaMeseros)
+            {
+                modeloMeseros.addRow(new Object[]{m.getIdMesero(),m.getNombre(),m.getDni(),m.getActivo()});
+                 
+            }     
+        }
+    
+    public void cargaDatosTablaMeseroxDesactivado() //ESTEEE LISTA POR NUMEROOOOOOOO
+        {   
+            borraFilasTablaMesero();
+            listaMeseros=(ArrayList)meseroData.obtenerMeserosPorDesactivado();         
+            //Llenar filas
+            for(Mesero m:listaMeseros)
+            {
+                modeloMeseros.addRow(new Object[]{m.getIdMesero(),m.getNombre(),m.getDni(),m.getActivo()});
+                 
+            }     
+        }
+    
+    
+    
+      public void cargaDatosTablaMeseroxNombre(String Dato)////ESTE LISTA POR NOMBREEEEEEEEEEEE
         {   
             borraFilasTablaMesero();
             listaMeseros=(ArrayList)meseroData.obtenerMeserosPorNombre(Dato);         
@@ -366,7 +411,7 @@ private DefaultTableModel modeloMeseros;
                  
             }     
         }
-    public void cargaDatosTablaMesero()
+    public void cargaDatosTablaMesero()  ///LISTA TODOS LOS ATRIBUTOSSSSSSSSSSSSS
         {   
             borraFilasTablaMesero();
             listaMeseros=(ArrayList)meseroData.obtenerMeseros();         
@@ -378,6 +423,7 @@ private DefaultTableModel modeloMeseros;
             }
              
         }
+    
 
         public void borraFilasTablaMesero()
         {
@@ -403,7 +449,10 @@ private DefaultTableModel modeloMeseros;
             }
             tMesero.setModel(modeloMeseros);
         }
-    
+     /*______________________________________________________________________________________________________
+    ___________________________________  PARA LISTAR POR SUS ATRIBUTOS(DATOS)______________________________________________________________
+    __________________________________________________________________________________________
+    _________________________________________________________________________________*/
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
@@ -411,11 +460,10 @@ private DefaultTableModel modeloMeseros;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JCheckBox chActivo;
+    private javax.swing.JComboBox<String> cbDatos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
@@ -429,7 +477,7 @@ public void limpiar()
     {
         tbNombre.setText("");
         tbDni.setText("");
-        chActivo.setSelected(false);
+        
     } 
 public void validarSoloLetras(JTextField campo)
 {

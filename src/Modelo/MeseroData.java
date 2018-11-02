@@ -62,7 +62,7 @@ public class MeseroData
             
         try 
         {
-            String sql = "SELECT * FROM mesero;";
+            String sql = "SELECT * FROM mesero WHERE activo = 1;";//lista solo los meseros que estan activos
             
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
@@ -87,26 +87,28 @@ public class MeseroData
         return meseros;
     }
     
-    public void borrarMesero(int id)
-    {  
-        try
-        {          
-            String sql = "DELETE FROM mesero WHERE idMesero =?;";
+    
+     public void borrarMesero(int id) 
+    {
+    try 
+        {
+            
+//            String sql = "DELETE FROM mesa WHERE idMesa =?;";
+             String sql =  "UPDATE mesero SET activo = false WHERE idMesero = ?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, id);  
-            
+            statement.setInt(1, id);
+
             statement.executeUpdate();
+    
             statement.close();
     
-        } 
-        catch (SQLException ex)
-        {
-            System.out.println("Error al insertar un Mesero: " + ex.getMessage());
+        } catch (SQLException ex) {
+            System.out.println("Error al borrar una mesero: " + ex.getMessage());
         }
-        
+        }
     
-    }
+            
     
     public void actualizarMesero(Mesero mesero)
     {
@@ -127,7 +129,7 @@ public class MeseroData
         }
         catch (SQLException ex)
         {
-            System.out.println("Error al insertar un mesero: " + ex.getMessage());
+            System.out.println("Error al actualizar un mesero: " + ex.getMessage());
         }
     
     }
@@ -159,7 +161,7 @@ public class MeseroData
         } 
         catch (SQLException ex)
         {
-            System.out.println("Error al insertar un mesero: " + ex.getMessage());
+            System.out.println("Error al buscar un mesero: " + ex.getMessage());
         }   
         return mesero;
     } 
@@ -262,5 +264,93 @@ public class MeseroData
               
         return meseros;
     }  
+     
+     
+     
+     
+     
+     
+     
+     
+      /*______________________________________________________________________________________________________
+    ___________________________________  PARA LISTAR POR SUS ATRIBUTOS(DATOS)______________________________________________________________
+    ____________________________________________Cambiar depende de que quiera puede ser dni entero o string pero lo ______________________________________________
+    __haremos entero*/
+     
+     
+     
+   public List<Mesero> obtenerMeserosPorDni(int dni)
+    {
+        List<Mesero> meseros = new ArrayList<Mesero>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM mesero WHERE dni =?;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, dni);
+            ResultSet resultSet = statement.executeQuery();
+            Mesero mesero;
+            
+            while(resultSet.next())
+            {
+                mesero = new Mesero();
+                
+                mesero.setIdMesero(resultSet.getInt("idMesero"));
+                mesero.setNombre(resultSet.getString("nombre"));
+                mesero.setDni(resultSet.getInt("dni"));                
+                mesero.setActivo(resultSet.getBoolean("activo"));
+
+                meseros.add(mesero);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los mesero: " + ex.getMessage());
+        }
+              
+        return meseros;
+    }  
+   
+   public List<Mesero> obtenerMeserosPorDesactivado()
+    {
+        List<Mesero> meseros = new ArrayList<Mesero>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM mesero WHERE activo =0;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+            ResultSet resultSet = statement.executeQuery();
+            Mesero mesero;
+            
+            while(resultSet.next())
+            {
+                mesero = new Mesero();
+                
+                mesero.setIdMesero(resultSet.getInt("idMesero"));
+                mesero.setNombre(resultSet.getString("nombre"));
+                mesero.setDni(resultSet.getInt("dni"));                
+                mesero.setActivo(resultSet.getBoolean("activo"));
+
+                meseros.add(mesero);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los mesero: " + ex.getMessage());
+        }
+              
+        return meseros;
+    }  
+   
+   
 }
+ /*______________________________________________________________________________________________________
+    ___________________________________  PARA LISTAR POR SUS ATRIBUTOS(DATOS)______________________________________________________________
+    __________________________________________________________________________________________
+    _________________________________________________________________________________*/
 

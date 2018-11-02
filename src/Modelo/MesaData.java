@@ -164,7 +164,7 @@ public class MesaData
         }
         catch (SQLException ex)
         {
-            System.out.println("Error al insertar una mesa: " + ex.getMessage());
+            System.out.println("Error al actualizar una mesa: " + ex.getMessage());
         }
     
     }

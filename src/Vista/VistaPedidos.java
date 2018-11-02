@@ -151,6 +151,8 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel19 = new javax.swing.JLabel();
         btnPedido = new javax.swing.JButton();
         btnVerMesa = new javax.swing.JButton();
+        jSpinner1 = new javax.swing.JSpinner();
+        jLabel17 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -415,6 +417,14 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         });
         getContentPane().add(btnVerMesa);
         btnVerMesa.setBounds(500, 330, 120, 40);
+
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(2, 2, 8, 2));
+        getContentPane().add(jSpinner1);
+        jSpinner1.setBounds(160, 350, 70, 30);
+
+        jLabel17.setText("Capacidad");
+        getContentPane().add(jLabel17);
+        jLabel17.setBounds(60, 340, 110, 50);
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         jLabel20.setText("jLabel20");
@@ -858,6 +868,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -875,6 +886,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JLabel lblIdMesa;
     private javax.swing.JPanel pnlMesas;
