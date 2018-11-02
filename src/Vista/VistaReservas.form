@@ -45,14 +45,14 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="380" y="90" width="60" height="20"/>
+          <AbsoluteConstraints x="380" y="50" width="60" height="20"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="tbHora">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="440" y="80" width="80" height="30"/>
+          <AbsoluteConstraints x="440" y="50" width="80" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -62,7 +62,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="570" y="80" width="60" height="20"/>
+          <AbsoluteConstraints x="530" y="50" width="60" height="20"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -106,7 +106,7 @@
     <Component class="com.toedter.calendar.JDateChooser" name="jdcFecha">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="620" y="80" width="-1" height="-1"/>
+          <AbsoluteConstraints x="580" y="50" width="120" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -116,7 +116,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="720" y="80" width="100" height="30"/>
+          <AbsoluteConstraints x="720" y="50" width="100" height="30"/>
         </Constraint>
       </Constraints>
     </Component>

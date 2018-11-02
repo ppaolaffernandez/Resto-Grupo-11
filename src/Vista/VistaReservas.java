@@ -215,13 +215,13 @@ public void cargaDatosTablaMesa(String Dato)
 
         jLabel2.setText("Hora");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(380, 90, 60, 20);
+        jLabel2.setBounds(380, 50, 60, 20);
         getContentPane().add(tbHora);
-        tbHora.setBounds(440, 80, 80, 30);
+        tbHora.setBounds(440, 50, 80, 30);
 
         jLabel4.setText("Fecha");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(570, 80, 60, 20);
+        jLabel4.setBounds(530, 50, 60, 20);
 
         btnBuscarDniCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
         btnBuscarDniCliente.setText("Buscar");
@@ -242,11 +242,11 @@ public void cargaDatosTablaMesa(String Dato)
         getContentPane().add(jLabel6);
         jLabel6.setBounds(340, 0, 140, 30);
         getContentPane().add(jdcFecha);
-        jdcFecha.setBounds(620, 80, 81, 20);
+        jdcFecha.setBounds(580, 50, 120, 30);
 
         jTextField1.setText("jTextField1");
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(720, 80, 100, 30);
+        jTextField1.setBounds(720, 50, 100, 30);
 
         lblReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         lblReserva.setText("jLabel1");
