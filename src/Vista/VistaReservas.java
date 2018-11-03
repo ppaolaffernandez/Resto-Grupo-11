@@ -13,6 +13,7 @@ import Modelo.ReservaData;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -174,12 +175,13 @@ public void cargaDatosTablaMesa(String Dato)
 
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        tbHora = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnBuscarDniCliente = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jdcFecha = new com.toedter.calendar.JDateChooser();
-        jTextField1 = new javax.swing.JTextField();
+        cbFecha = new javax.swing.JTextField();
+        btnBuscarFecha = new javax.swing.JButton();
+        hora = new javax.swing.JLabel();
         lblReserva = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         tbId = new javax.swing.JTextField();
@@ -216,8 +218,6 @@ public void cargaDatosTablaMesa(String Dato)
         jLabel2.setText("Hora");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(380, 50, 60, 20);
-        getContentPane().add(tbHora);
-        tbHora.setBounds(440, 50, 80, 30);
 
         jLabel4.setText("Fecha");
         getContentPane().add(jLabel4);
@@ -244,9 +244,27 @@ public void cargaDatosTablaMesa(String Dato)
         getContentPane().add(jdcFecha);
         jdcFecha.setBounds(580, 50, 120, 30);
 
-        jTextField1.setText("jTextField1");
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(720, 50, 100, 30);
+        cbFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbFechaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbFecha);
+        cbFecha.setBounds(720, 40, 110, 60);
+
+        btnBuscarFecha.setText("Buscar");
+        btnBuscarFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarFechaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBuscarFecha);
+        btnBuscarFecha.setBounds(660, 110, 90, 40);
+
+        hora.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        hora.setText("HORA");
+        getContentPane().add(hora);
+        hora.setBounds(440, 50, 53, 22);
 
         lblReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         lblReserva.setText("jLabel1");
@@ -473,11 +491,9 @@ public void cargaDatosTablaMesa(String Dato)
         try
         {
             tbId.setText(tReserva.getValueAt(filaseleccionada, 0).toString());
-            tbCliente.setText(tReserva.getValueAt(filaseleccionada, 1).toString());
-            tbMesa.setText(tReserva.getValueAt(filaseleccionada, 2).toString());
-            tbHora.setText(tReserva.getValueAt(filaseleccionada, 3).toString());
-           // jdcFecha.(tReserva.getValueAt(filaseleccionada, 4).toString());
-            chActivo.setSelected(Boolean.parseBoolean(tReserva.getValueAt(filaseleccionada, 5).toString()) );
+            
+                    /*tbHora.setText(tReserva.getValueAt(filaseleccionada, 3).toString());*/
+//            chActivo.setSelected(Boolean.parseBoolean(tReserva.getValueAt(filaseleccionada, 5).toString()) );
         }
         catch(Exception e)
         {
@@ -493,9 +509,7 @@ public void cargaDatosTablaMesa(String Dato)
         {
             
             tbId.setText(tMesa.getValueAt(filaseleccionada, 0).toString());
-            tbMesa.setText(tMesa.getValueAt(filaseleccionada, 1).toString());
-            tbCantidad.setText(tMesa.getValueAt(filaseleccionada, 2).toString());
-            chActivo.setSelected(Boolean.parseBoolean(tMesa.getValueAt(filaseleccionada, 4).toString()) );
+            
         
         }
         catch(Exception e)
@@ -568,18 +582,29 @@ public void cargaDatosTablaMesa(String Dato)
         }
 
     }//GEN-LAST:event_btnBuscarDniClienteActionPerformed
+
+    private void cbFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbFechaActionPerformed
+
+    private void btnBuscarFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFechaActionPerformed
+String dia = Integer.toString(jdcFecha.getCalendar().get(Calendar.DAY_OF_MONTH));
+String mes = Integer.toString(jdcFecha.getCalendar().get(Calendar.MONTH) + 1);
+String year = Integer.toString(jdcFecha.getCalendar().get(Calendar.YEAR));
+String fecha = (year + "-" + mes+ "-" + dia);
+cbFecha.setText(fecha);
+    }//GEN-LAST:event_btnBuscarFechaActionPerformed
        public void limpiar()
-    {
-        tbMesa.setText("");
-//        tbDescripcion.setText("");
-        chActivo.setSelected(false);
-    }
+       {}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscarDniCliente;
+    private javax.swing.JButton btnBuscarFecha;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JTextField cbFecha;
+    private javax.swing.JLabel hora;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton4;
@@ -599,14 +624,12 @@ public void cargaDatosTablaMesa(String Dato)
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     private com.toedter.calendar.JDateChooser jdcFecha;
     private javax.swing.JLabel lblReserva;
     private javax.swing.JTable tMesa;
     private javax.swing.JTable tReserva;
     private javax.swing.JTextField tbBuscar;
     private javax.swing.JTextField tbDni;
-    private javax.swing.JTextField tbHora;
     private javax.swing.JTextField tbId;
     private javax.swing.JTextField tbNombre;
     // End of variables declaration//GEN-END:variables
