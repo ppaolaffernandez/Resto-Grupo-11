@@ -492,14 +492,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        int dni=Integer.parseInt(tbDni.getText());
-
-        Cliente cliente=clienteData.buscarClienteXDni(dni);
-        
-        if(cliente!=null)
-        {
-            tbNombre.setText(cliente.getNombre());
-        }
+      
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void cbCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCategoriasActionPerformed

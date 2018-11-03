@@ -104,7 +104,7 @@ private DefaultTableModel modeloMeseros;
 
         jLabel4.setText("NOMBRE");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(70, 130, 60, 30);
+        jLabel4.setBounds(60, 140, 60, 30);
 
         tbNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +112,7 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(tbNombre);
-        tbNombre.setBounds(150, 140, 150, 30);
+        tbNombre.setBounds(150, 150, 150, 30);
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiarrosa_副本.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");

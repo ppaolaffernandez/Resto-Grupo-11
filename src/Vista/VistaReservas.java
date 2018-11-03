@@ -43,6 +43,9 @@ import javax.swing.table.DefaultTableModel;
             modeloMesa=new DefaultTableModel();
             conexion = new Conexion("jdbc:mysql://localhost/resto", "root", "");
             
+            
+            String horaActual = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
+            ftbHora.setText(horaActual);
             reservaData = new ReservaData(conexion); 
             clienteData = new ClienteData(conexion);
             mesaData = new MesaData(conexion);
@@ -125,7 +128,7 @@ public void cargaDatosTablaMesa(String Dato)
             //Llenar filas
             for(Mesa d:listaMesa)
             {
-                modeloMesa.addRow(new Object[]{d.getIdMesa(),d.getNombre(),d.getCantidad(),d.getEstado(),d.getActivo()});
+                modeloMesa.addRow(new Object[]{d.getIdMesa(),d.getNombre(),d.getCantidad(),d.getEstado()});
                  
             }
              
@@ -137,7 +140,7 @@ public void cargaDatosTablaMesa(String Dato)
             //Llenar filas
             for(Mesa d:listaMesa)
             {
-                modeloMesa.addRow(new Object[]{d.getIdMesa(),d.getNombre(),d.getCantidad(),d.getEstado(),d.getActivo()});
+                modeloMesa.addRow(new Object[]{d.getIdMesa(),d.getNombre(),d.getCantidad(),d.getEstado()});
                  
             }
              
@@ -160,7 +163,7 @@ public void cargaDatosTablaMesa(String Dato)
             columnas.add("NOMBRE.");
             columnas.add("CANTIDAD");
             columnas.add("ESTADO");
-            columnas.add("ACTIVO");
+            
 
             for(Object vp:columnas)
             {   
@@ -181,7 +184,7 @@ public void cargaDatosTablaMesa(String Dato)
         jdcFecha = new com.toedter.calendar.JDateChooser();
         cbFecha = new javax.swing.JTextField();
         btnBuscarFecha = new javax.swing.JButton();
-        hora = new javax.swing.JLabel();
+        ftbHora = new javax.swing.JFormattedTextField();
         lblReserva = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         tbId = new javax.swing.JTextField();
@@ -261,10 +264,13 @@ public void cargaDatosTablaMesa(String Dato)
         getContentPane().add(btnBuscarFecha);
         btnBuscarFecha.setBounds(660, 110, 90, 40);
 
-        hora.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        hora.setText("HORA");
-        getContentPane().add(hora);
-        hora.setBounds(440, 50, 53, 22);
+        try {
+            ftbHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        getContentPane().add(ftbHora);
+        ftbHora.setBounds(419, 100, 50, 40);
 
         lblReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         lblReserva.setText("jLabel1");
@@ -327,7 +333,7 @@ public void cargaDatosTablaMesa(String Dato)
         jScrollPane1.setViewportView(tMesa);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 320, 310, 100);
+        jScrollPane1.setBounds(10, 330, 310, 100);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         jLabel9.setText("jLabel9");
@@ -492,7 +498,7 @@ public void cargaDatosTablaMesa(String Dato)
         {
             tbId.setText(tReserva.getValueAt(filaseleccionada, 0).toString());
             
-                    /*tbHora.setText(tReserva.getValueAt(filaseleccionada, 3).toString());*/
+            ftbHora.setText(tReserva.getValueAt(filaseleccionada, 1).toString());
 //            chActivo.setSelected(Boolean.parseBoolean(tReserva.getValueAt(filaseleccionada, 5).toString()) );
         }
         catch(Exception e)
@@ -572,14 +578,7 @@ public void cargaDatosTablaMesa(String Dato)
 
     private void btnBuscarDniClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDniClienteActionPerformed
  
-       int dni=Integer.parseInt(tbDni.getText());
-
-        Cliente cliente=clienteData.buscarClienteXDni(dni);
-        
-        if(cliente!=null)
-        {
-            tbNombre.setText(cliente.getNombre());
-        }
+    
 
     }//GEN-LAST:event_btnBuscarDniClienteActionPerformed
 
@@ -604,7 +603,7 @@ cbFecha.setText(fecha);
     private javax.swing.JButton btnBuscarFecha;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JTextField cbFecha;
-    private javax.swing.JLabel hora;
+    private javax.swing.JFormattedTextField ftbHora;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton4;

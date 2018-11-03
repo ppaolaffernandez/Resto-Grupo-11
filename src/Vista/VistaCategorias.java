@@ -362,7 +362,7 @@ private DefaultTableModel modeloCategorias;
             //Llenar filas
             for(Categoria d:listaCategorias)
             {
-                modeloCategorias.addRow(new Object[]{d.getIdCategoria(),d.getNombre(),d.getDescripcion(),d.getActivo()});
+                modeloCategorias.addRow(new Object[]{d.getIdCategoria(),d.getNombre(),d.getDescripcion()});
                  
             }
              
@@ -374,7 +374,7 @@ private DefaultTableModel modeloCategorias;
             //Llenar filas
             for(Categoria d:listaCategorias)
             {
-                modeloCategorias.addRow(new Object[]{d.getIdCategoria(),d.getNombre(),d.getDescripcion(),d.getActivo()});
+                modeloCategorias.addRow(new Object[]{d.getIdCategoria(),d.getNombre(),d.getDescripcion()});
                  
             }
              
@@ -396,13 +396,26 @@ private DefaultTableModel modeloCategorias;
             columnas.add("ID:");
             columnas.add("NOMBRE.");
             columnas.add("DESCRIPCION");
-            columnas.add("ACTIVO");
+            
 
             for(Object vp:columnas)
             {   
                 modeloCategorias.addColumn(vp);
             }
             tCategoria.setModel(modeloCategorias);
+            
+            
+            
+            
+           
+            tCategoria.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tCategoria.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tCategoria.getColumnModel().getColumn(2).setPreferredWidth(250);
+
+
+            
+            
+            
         }
     
 

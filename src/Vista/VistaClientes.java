@@ -39,8 +39,6 @@ private DefaultTableModel modeloClientes;
 
             modeloClientes=new DefaultTableModel();
             armaCabeceraTablaCliente();//pone los titulos de la tabla
-            
-           
             cargaDatosTablaCliente();
             tbId.setVisible(false);//ocultamos la caja blanca(textfield)ID.
         }
@@ -55,7 +53,6 @@ private DefaultTableModel modeloClientes;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel7 = new javax.swing.JLabel();
         tbBuscar = new javax.swing.JTextField();
         btnBuscar1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -72,16 +69,13 @@ private DefaultTableModel modeloClientes;
         btnActualizar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         tbId = new javax.swing.JTextField();
+        cbDatos = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(543, 541));
         setMinimumSize(new java.awt.Dimension(543, 541));
         setPreferredSize(new java.awt.Dimension(543, 541));
         getContentPane().setLayout(null);
-
-        jLabel7.setText("Nombre");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(50, 330, 60, 30);
 
         tbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,10 +229,19 @@ private DefaultTableModel modeloClientes;
         getContentPane().add(tbId);
         tbId.setBounds(490, 10, 40, 30);
 
+        cbDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dni", "Nombre", "Desactivado", " " }));
+        cbDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDatosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbDatos);
+        cbDatos.setBounds(40, 330, 80, 20);
+
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pink_1.jpg"))); // NOI18N
         jLabel8.setText("jLabel8");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(2, 0, 540, 510);
+        jLabel8.setBounds(12, 0, 530, 510);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -297,39 +300,27 @@ private DefaultTableModel modeloClientes;
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        if(tbNombre.getText().isEmpty())//AGREGE ACTUALIZAR PARA ACTUALIZAR CLIENTES
+        if(tbNombre.getText().isEmpty())//si la caja esta vacia va a salir un mensaje que falta el nombre
+
         {
             JOptionPane.showMessageDialog(null, "Ingrese el nombre del cliente : ");
         }
-        else if(tbDni.getText().isEmpty())
+        else//si la caja tiene nombre entra y actualiza
         {
-            JOptionPane.showMessageDialog(null, "Ingrese el dni del cliente : ");
-        }
-        else
-        {
+
             int id=Integer.parseInt(tbId.getText());
             int dni=Integer.parseInt(tbDni.getText());
-            String nombre=tbNombre.getText();//Las cajas blancas siempre son string , si es numero convertir en integer si no, MO.
-            boolean activo=chActivo.isSelected();
- 
-            
+            String nombre=tbNombre.getText();
+            boolean activo=true;//cuando seleciiona un mesero lo pones activo de vuelta...........¡¡¡¡¡¡¡¡¡¡¡
+
             Cliente cliente=new Cliente(id,dni,nombre,activo);
             clienteData.actualizarCliente(cliente);
-            JOptionPane.showMessageDialog(null, "Cliente actualizado : ");
-            tbId.setText(cliente.getIdCliente()+"");
-            limpiar();
-            borraFilasTablaCliente();
-            cargaDatosTablaCliente();
-            
-            
-//            Mesa mesa=new Mesa(id,nombre,cantidad,estado,activo);
-//            mesaData.actualizarMesa(mesa);
-//            limpiar();
-//            borraFilasTablaMesa();
-//            cargaDatosTablaMesa();
-            
+            limpiar();//limpia los controles las cajas y los chechbox
+            borraFilasTablaCliente();//limpia la tabla
+            cargaDatosTablaCliente();//carga  la tabla categoria
         }
-        // TODO add your handling code here:
+
+       
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -344,39 +335,52 @@ private DefaultTableModel modeloClientes;
     }//GEN-LAST:event_tbBuscarActionPerformed
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-
+ //para seleccionar por dni
         if(tbBuscar.getText().isEmpty())//SI NO HAY DATOS NO AGREGA
         {
             JOptionPane.showMessageDialog(null, "Ingrese el nombre del cliente : ");
         }
-        
         else //SI HAY ALGO BUSCA
         {
-            borraFilasTablaCliente();
-            cargaDatosTablaCliente(tbBuscar.getText());
-
+             if (cbDatos.getSelectedItem()=="Nombre") 
+             {
+                //un solo = es asigancion, y dos == es comparar.
+                borraFilasTablaCliente();
+                cargaDatosTablaClientexNombre(tbBuscar.getText());
+             }
+             if (cbDatos.getSelectedItem()=="Dni") 
+             {
+                //un solo = es asigancion, y dos == es comparar.
+                borraFilasTablaCliente();
+                cargaDatosTablaClientexDni(Integer.parseInt(tbBuscar.getText()));
+             }
         }
+        
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void tClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tClienteMousePressed
-        int filaseleccionada = tCliente.getSelectedRow();
-
+            int filaseleccionada = tCliente.getSelectedRow();
         try
         {
-            
-            
-            
             tbId.setText(tCliente.getValueAt(filaseleccionada, 0).toString());
             tbDni.setText(tCliente.getValueAt(filaseleccionada, 1).toString());
-            tbNombre.setText(tCliente.getValueAt(filaseleccionada, 2).toString());
-            chActivo.setSelected(Boolean.parseBoolean(tCliente.getValueAt(filaseleccionada, 3).toString()) );
 
+            tbNombre.setText(tCliente.getValueAt(filaseleccionada, 2).toString());
+            
         }
         catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, "Seleccione una fila : ");
         }
+
     }//GEN-LAST:event_tClienteMousePressed
+
+    private void cbDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDatosActionPerformed
+         if(cbDatos.getSelectedItem()=="Desactivado")
+        {
+            cargaDatosTablaClientexDesactivado();
+        }
+    }//GEN-LAST:event_cbDatosActionPerformed
     public void limpiar()
     {
         tbId.setText("");
@@ -425,13 +429,19 @@ private DefaultTableModel modeloClientes;
             columnas.add("ID:");
             columnas.add("DNI");
             columnas.add("NOMBRE.");
-            columnas.add("ACTIVO");
-
+            
+            
             for(Object vp:columnas)
             {   
                 modeloClientes.addColumn(vp);
             }
             tCliente.setModel(modeloClientes);
+            
+            
+            tCliente.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tCliente.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tCliente.getColumnModel().getColumn(2).setPreferredWidth(350);
+            
         }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
@@ -439,12 +449,12 @@ private DefaultTableModel modeloClientes;
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JComboBox<String> cbDatos;
     private javax.swing.JCheckBox chActivo;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tCliente;
@@ -497,6 +507,88 @@ public void limitarCaracteres(JTextField campo,int cantidad)
     });
 
 }
+
+public void cargaDatosTablaClientexDni(int Dato) //ESTEEE LISTA POR NUMEROOOOOOOO
+        {   
+            borraFilasTablaCliente();
+            listaClientes=(ArrayList)clienteData.obtenerClientePorDni(Dato);         
+            //Llenar filas
+            for(Cliente m:listaClientes)
+            {
+                modeloClientes.addRow(new Object[]{m.getIdCliente(),m.getNombre(),m.getDni(),m.getActivo()});
+                 
+            }     
+        }
+    
+    public void cargaDatosTablaClientexDesactivado() //ESTEEE LISTA POR NUMEROOOOOOOO
+        {   
+            borraFilasTablaClientes();
+            listaClientes=(ArrayList)clienteData.obtenerClientePorDesactivado();         
+            //Llenar filas
+            for(Cliente m:listaClientes)
+            {
+                modeloClientes.addRow(new Object[]{m.getIdCliente(),m.getDni(),m.getNombre(),m.getActivo()});
+                 
+            }     
+        }
+    
+    
+    
+      public void cargaDatosTablaClientexNombre(String Dato)////ESTE LISTA POR NOMBREEEEEEEEEEEE
+        {   
+            borraFilasTablaCliente();
+            listaClientes=(ArrayList)clienteData.obtenerClientesPorNombre(Dato);         
+            //Llenar filas
+            for(Cliente m:listaClientes)
+            {
+                modeloClientes.addRow(new Object[]{m.getIdCliente(),m.getNombre(),m.getDni(),m.getActivo()});
+                 
+            }     
+        }
+    public void cargaDatosTablaClientes()  ///LISTA TODOS LOS ATRIBUTOSSSSSSSSSSSSS
+        {   
+            borraFilasTablaCliente();
+            listaClientes=(ArrayList)clienteData.obtenerClientes();         
+            //Llenar filas
+            for(Cliente m:listaClientes)
+            {
+                modeloClientes.addRow(new Object[]{m.getIdCliente(),m.getNombre(),m.getDni(),m.getActivo()});
+                 
+            }
+             
+        }
+    
+
+        public void borraFilasTablaClientes()
+        {
+            int a = modeloClientes.getRowCount()-1;
+            System.out.println("Tabla "+a);
+            for(int i=a;i>=0;i--)
+            {
+                modeloClientes.removeRow(i);
+            }
+        }
+        public void armaCabeceraTablaMesero()
+        {  
+            //Titulos de Columnas
+            ArrayList<Object> columnas=new ArrayList<Object>();
+            columnas.add("ID:");
+            columnas.add("NOMBRE.");
+            columnas.add("DNI");
+            columnas.add("ACTIVO");
+
+            for(Object vp:columnas)
+            {   
+                modeloClientes.addColumn(vp);
+            }
+            tCliente.setModel(modeloClientes);
+        }
+     /*______________________________________________________________________________________________________
+    ___________________________________  PARA LISTAR POR SUS ATRIBUTOS(DATOS)______________________________________________________________
+    __________________________________________________________________________________________
+    _________________________________________________________________________________*/
+
+
 
 
 

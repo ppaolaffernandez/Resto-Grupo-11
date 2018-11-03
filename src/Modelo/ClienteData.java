@@ -89,7 +89,7 @@ public class ClienteData
             statement.close();
         }
         catch (SQLException ex) {
-            System.out.println("Error al obtener los clientes: " + ex.getMessage());
+            System.out.println("Error al obtener los cliente: " + ex.getMessage());
         }
  
         return clientes;
@@ -155,6 +155,7 @@ public class ClienteData
             
             while(resultSet.next()){
                 cliente = new Cliente();
+                
                 cliente.setIdCliente(resultSet.getInt("idCliente"));
                 cliente.setDni(resultSet.getInt("dni"));
                 cliente.setNombre(resultSet.getString("nombre"));              
@@ -270,36 +271,7 @@ public class ClienteData
     }
 
      //_______________________________________BUSCAR POR DNI_____________________________________________
-     public Cliente buscarClienteXDni(int dni)
-    {
-      Cliente cliente=null;
-        try
-        {
-            
-            String sql = "SELECT * FROM cliente WHERE dni =?;";
-
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, dni);
-            
-            ResultSet resultSet=statement.executeQuery();
-            
-            while(resultSet.next()){
-                cliente = new Cliente();
-
-                cliente.setIdCliente(resultSet.getInt("idCliente"));
-                cliente.setDni(resultSet.getInt("dni"));
-                cliente.setNombre(resultSet.getString("nombre"));              
-                cliente.setActivo(resultSet.getBoolean("activo"));             
-                    
-            }      
-            statement.close();        
-        }catch (SQLException ex){
-            System.out.println("Error al buscar un cliente: " + ex.getMessage());
-            JOptionPane.showMessageDialog(null, "Error al buscar un cliente");
-        }
-        
-        return cliente;
-    }
+     
     //________________________________________BUSCAR POR NOMBRE___________________________________________
     
      public Cliente buscarClienteXNombre(String nom)
@@ -343,11 +315,86 @@ public class ClienteData
      
      
      
-     //______________________________________BUSCAR POR FECHA____________________________________________
-    
-    
-    
-    
-    
-    
+public List<Cliente> obtenerClientePorDni(int dni)
+    {
+        List<Cliente> clientes = new ArrayList<Cliente>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM cliente WHERE dni =?;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, dni);
+            ResultSet resultSet = statement.executeQuery();
+            Cliente cliente;
+            
+            while(resultSet.next())
+            {
+                cliente = new Cliente();
+                
+                cliente.setIdCliente(resultSet.getInt("idCliente"));
+                cliente.setDni(resultSet.getInt("dni"));                
+
+                cliente.setNombre(resultSet.getString("nombre"));
+                cliente.setActivo(resultSet.getBoolean("activo"));
+
+                clientes.add(cliente);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los cliente: " + ex.getMessage());
+        }
+              
+        return clientes;
+    }  
+   
+   public List<Cliente> obtenerClientePorDesactivado()
+    {
+        List<Cliente> clientes = new ArrayList<Cliente>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM cliente WHERE activo =0;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+            ResultSet resultSet = statement.executeQuery();
+            Cliente cliente;
+            
+            while(resultSet.next())
+            {
+                cliente = new Cliente();
+                
+                cliente.setIdCliente(resultSet.getInt("idCliente"));
+                cliente.setDni(resultSet.getInt("dni"));                
+
+                cliente.setNombre(resultSet.getString("nombre"));
+                cliente.setActivo(resultSet.getBoolean("activo"));
+
+                clientes.add(cliente);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los cliente: " + ex.getMessage());
+        }
+              
+        return clientes;
+    }  
+   
+   
 }
+ /*______________________________________________________________________________________________________
+    ___________________________________  PARA LISTAR POR SUS ATRIBUTOS(DATOS)______________________________________________________________
+    __________________________________________________________________________________________
+    _________________________________________________________________________________*/
+
+    
+    
+    
+    
+    
+  
