@@ -56,10 +56,8 @@ private DefaultTableModel modeloCategorias;
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbDescripcion = new javax.swing.JTextArea();
-        jLabel9 = new javax.swing.JLabel();
-        chActivo = new javax.swing.JCheckBox();
         tbId = new javax.swing.JTextField();
-        btnBuscar1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btnGuardar1 = new javax.swing.JButton();
         btnBorrar1 = new javax.swing.JButton();
@@ -67,8 +65,8 @@ private DefaultTableModel modeloCategorias;
         btnLimpiar1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tCategoria = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
         tbBuscar = new javax.swing.JTextField();
+        cbDatos = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(516, 527));
@@ -97,20 +95,7 @@ private DefaultTableModel modeloCategorias;
         jScrollPane2.setViewportView(tbDescripcion);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(140, 100, 220, 90);
-
-        jLabel9.setText("ACTIVO");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(40, 200, 80, 30);
-
-        chActivo.setBackground(new java.awt.Color(255, 204, 255));
-        chActivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chActivoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(chActivo);
-        chActivo.setBounds(140, 210, 21, 21);
+        jScrollPane2.setBounds(140, 110, 220, 90);
 
         tbId.setAutoscrolls(false);
         tbId.addActionListener(new java.awt.event.ActionListener() {
@@ -121,21 +106,21 @@ private DefaultTableModel modeloCategorias;
         getContentPane().add(tbId);
         tbId.setBounds(470, 40, 10, 20);
 
-        btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
-        btnBuscar1.setText("Buscar");
-        btnBuscar1.setToolTipText("");
-        btnBuscar1.setBorder(null);
-        btnBuscar1.setBorderPainted(false);
-        btnBuscar1.setContentAreaFilled(false);
-        btnBuscar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBuscar1.setName("btBuscar"); // NOI18N
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.setToolTipText("");
+        btnBuscar.setBorder(null);
+        btnBuscar.setBorderPainted(false);
+        btnBuscar.setContentAreaFilled(false);
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscar.setName("btBuscar"); // NOI18N
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar1);
-        btnBuscar1.setBounds(360, 330, 100, 60);
+        getContentPane().add(btnBuscar);
+        btnBuscar.setBounds(360, 330, 100, 60);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("-CATEGORÍAS-");
@@ -219,10 +204,6 @@ private DefaultTableModel modeloCategorias;
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(10, 390, 480, 100);
 
-        jLabel2.setText("Nombre");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(40, 340, 60, 30);
-
         tbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbBuscarActionPerformed(evt);
@@ -230,6 +211,15 @@ private DefaultTableModel modeloCategorias;
         });
         getContentPane().add(tbBuscar);
         tbBuscar.setBounds(120, 340, 220, 30);
+
+        cbDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Desactivado" }));
+        cbDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDatosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbDatos);
+        cbDatos.setBounds(50, 340, 56, 20);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -247,33 +237,37 @@ private DefaultTableModel modeloCategorias;
         // TODO add your handling code here:
     }//GEN-LAST:event_tbIdActionPerformed
 
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
       if(tbBuscar.getText().isEmpty())//SI NO HAY DATOS NO AGREGA
       {
-          JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria : ");
+          JOptionPane.showMessageDialog(null, "Seleccione Fila : ");
       }
-      else //SI HAY ALGO BUSCA
+      else if (cbDatos.getSelectedItem()=="Nombre") 
       {
-          borraFilasTablaCategoria();
-          cargaDatosTablaCategoria(tbBuscar.getText());
-          
-      }
-      
+         
+            //un solo = es asigancion, y dos == es comparar.
+             borraFilasTablaCategoria();
+             cargaDatosTablaCategoria(tbBuscar.getText());
+        }//SI HAY ALGO BUSCA
+    
         
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
         if(tbNombre.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria : ");
         }
+         else if(tbDescripcion.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese la descripcion de la categoria : ");
+        }
         else
         {
             String nombre=tbNombre.getText();
             String descripcion=tbDescripcion.getText();
-            boolean activo=chActivo.isSelected();
-
+            boolean activo=true;
             Categoria categoria=new Categoria(nombre,descripcion,activo);
             categoriaData.guardarCategoria(categoria);    
 
@@ -285,9 +279,14 @@ private DefaultTableModel modeloCategorias;
     }//GEN-LAST:event_btnGuardar1ActionPerformed
 
     private void btnBorrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrar1ActionPerformed
-        if(tbNombre.getText().isEmpty())
+
+          if(tbNombre.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria : ");
+        }
+         else if(tbDescripcion.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese la descripcion de la categoria : ");
         }
         else
         {
@@ -311,7 +310,7 @@ private DefaultTableModel modeloCategorias;
             int id=Integer.parseInt(tbId.getText());
             String nombre=tbNombre.getText();
             String descripcion=tbDescripcion.getText();
-            boolean activo=chActivo.isSelected();
+            boolean activo=true;
 
             Categoria categoria=new Categoria(id,nombre,descripcion,activo);
             categoriaData.actualizarCategoria(categoria);
@@ -337,7 +336,6 @@ private DefaultTableModel modeloCategorias;
            tbId.setText(tCategoria.getValueAt(filaseleccionada, 0).toString());
            tbNombre.setText(tCategoria.getValueAt(filaseleccionada, 1).toString());
            tbDescripcion.setText(tCategoria.getValueAt(filaseleccionada, 2).toString());
-           chActivo.setSelected(Boolean.parseBoolean(tCategoria.getValueAt(filaseleccionada, 3).toString()) );
        }
        catch(Exception e)
        {
@@ -346,15 +344,45 @@ private DefaultTableModel modeloCategorias;
             
     }//GEN-LAST:event_tCategoriaMousePressed
 
-    private void chActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chActivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chActivoActionPerformed
+    private void cbDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDatosActionPerformed
+        if(cbDatos.getSelectedItem()=="Desactivado")
+        {
+            cargaDatosTablaCategoriaxDesactivado();
+        }
+    }//GEN-LAST:event_cbDatosActionPerformed
      public void limpiar()
     {
         tbNombre.setText("");
         tbDescripcion.setText("");
-        chActivo.setSelected(false);
+        ;
     }
+     
+//_____________________________TABLA CATEGORIA__________________________________________________
+public void cargaDatosTablaCategoriaxDesactivado() //ESTEEE LISTA POR DESACTIVADOS
+        {   
+            borraFilasTablaCategoria();
+            listaCategorias=(ArrayList)categoriaData.obtenerCategoriasPorDesactivado();         
+            //Llenar filas
+            for(Categoria c:listaCategorias)
+            {
+                modeloCategorias.addRow(new Object[]{c.getIdCategoria(),c.getNombre(),c.getDescripcion(),c.getActivo()});
+                 
+            }     
+        }
+    
+    
+    
+      public void cargaDatosTablaMeseroxNombre(String Dato)////ESTE LISTA POR NOMBREEEEEEEEEEEE
+        {   
+            borraFilasTablaCategoria();
+            listaCategorias=(ArrayList)categoriaData.obtenerCategoriasPorNombre(Dato);         
+            //Llenar filas
+            for(Categoria c:listaCategorias)
+            {
+                modeloCategorias.addRow(new Object[]{c.getIdCategoria(),c.getNombre(),c.getDescripcion(),c.getActivo()});
+                 
+            }     
+        }     
     public void cargaDatosTablaCategoria(String Dato)
         {   
             borraFilasTablaCategoria();
@@ -362,7 +390,7 @@ private DefaultTableModel modeloCategorias;
             //Llenar filas
             for(Categoria d:listaCategorias)
             {
-                modeloCategorias.addRow(new Object[]{d.getIdCategoria(),d.getNombre(),d.getDescripcion()});
+                modeloCategorias.addRow(new Object[]{d.getIdCategoria(),d.getNombre(),d.getDescripcion(),d.getActivo()});
                  
             }
              
@@ -374,7 +402,7 @@ private DefaultTableModel modeloCategorias;
             //Llenar filas
             for(Categoria d:listaCategorias)
             {
-                modeloCategorias.addRow(new Object[]{d.getIdCategoria(),d.getNombre(),d.getDescripcion()});
+                modeloCategorias.addRow(new Object[]{d.getIdCategoria(),d.getNombre(),d.getDescripcion(),d.getActivo()});
                  
             }
              
@@ -396,7 +424,7 @@ private DefaultTableModel modeloCategorias;
             columnas.add("ID:");
             columnas.add("NOMBRE.");
             columnas.add("DESCRIPCION");
-            
+            columnas.add("ACTIVO");
 
             for(Object vp:columnas)
             {   
@@ -422,16 +450,14 @@ private DefaultTableModel modeloCategorias;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar1;
     private javax.swing.JButton btnBorrar1;
-    private javax.swing.JButton btnBuscar1;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar1;
     private javax.swing.JButton btnLimpiar1;
-    private javax.swing.JCheckBox chActivo;
+    private javax.swing.JComboBox<String> cbDatos;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tCategoria;

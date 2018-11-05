@@ -73,7 +73,8 @@ public class ProductoData
 
         try 
         {
-            String sql = "SELECT * FROM producto;";
+//            String sql = "SELECT * FROM producto;";
+            String sql = "SELECT * FROM producto WHERE activo = 1;";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             Producto producto;
@@ -104,7 +105,8 @@ public class ProductoData
     public void borrarProducto(int id){
     try{           
 //            String sql = "DELETE FROM producto WHERE idProducto =?;";
-            String sql = "UPDATE producto SET  activo =0 WHERE idProducto = ?;";
+//            String sql = "UPDATE producto SET  activo =0 WHERE idProducto = ?;";
+             String sql =  "UPDATE producto SET activo = false WHERE idProducto = ?;";
             
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
@@ -120,8 +122,8 @@ public class ProductoData
     {
         try 
         {
-             System.out.println("Error" );
-            String sql = "UPDATE producto SET idCategoria = ?, codigo = ? , nombre = ? , cantidad = ? , precio = ? ,  activo =? WHERE idProducto = ?;";
+             
+            String sql = "UPDATE producto SET idCategoria = ?, codigo = ? , nombre = ? , cantidad = ? , precio = ? , activo =? WHERE idProducto = ?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, producto.getCategoria().getIdCategoria());
@@ -147,8 +149,8 @@ public class ProductoData
     Producto producto=null;
     try
     {
-            
-            String sql = "SELECT * FROM producto WHERE idProducto =? and activo = 1;";
+            String sql = "SELECT * FROM producto WHERE idProducto =?;";
+//            String sql = "SELECT * FROM producto WHERE idProducto =? and activo = 1;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
@@ -187,44 +189,7 @@ public class ProductoData
     
     }
     
-//    public Producto buscarProductoXCategodia(int id)
-//    {
-//    Producto producto=null;
-//    try
-//    {
-//            
-//            String sql = "SELECT * FROM producto WHERE idCategoria =? and activo=1;";
-//
-//            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-//            statement.setInt(1, id);
-//           
-//            
-//            ResultSet resultSet=statement.executeQuery();
-//            
-//            while(resultSet.next())
-//            {
-//                producto = new Producto();
-//            
-//                Categoria c = buscarCategoria(resultSet.getInt("idCategoria"));
-//                producto.setCategoria(c);
-//                
-//                producto.setCodigo(resultSet.getInt("codigo"));
-//                producto.setNombre(resultSet.getString("nombre"));
-//                producto.setCantidad(resultSet.getInt("cantidad"));
-//                producto.setPrecio(resultSet.getDouble("precio"));
-//                producto.setActivo(resultSet.getBoolean("activo"));
-//            }      
-//            statement.close();
-//
-//        } 
-//        catch (SQLException ex)
-//        {
-//            System.out.println("Error al insertar un producto: " + ex.getMessage());
-//        }
-//        
-//        return producto;
-//    }
-//    
+  
      public List<Producto> obtenerProductosXCategoria(int id)
     {
         List<Producto> productos = new ArrayList<Producto>();
@@ -260,7 +225,8 @@ public class ProductoData
         }    
         return productos;
     }
-//   Nuevo de las 3  
+//__________________________________________________________Obtener___________________________________________________________________________________
+//____________________________________________________________________________________________________________________________________________________  
      public List<Producto> obtenerProductosPorNombre(String nombre)
     {
         List<Producto> productos = new ArrayList<Producto>();
@@ -295,10 +261,135 @@ public class ProductoData
         } 
         catch (SQLException ex) 
         {
-            System.out.println("Error al obtener los categoria: " + ex.getMessage());
+            System.out.println("Error al obtener los Productos: " + ex.getMessage());
         }
               
         return productos;
     }
+     
+     
+     public List<Producto> obtenerProductosPorCategoria(String categoria)
+    {
+        List<Producto> productos = new ArrayList<Producto>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM producto WHERE categoria =?;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, categoria);
+            ResultSet resultSet = statement.executeQuery();
+            Producto producto;
+            
+            while(resultSet.next())
+            {
+                producto = new Producto();
+                
+                 producto.setIdProducto(resultSet.getInt("idProducto"));
+                
+                Categoria c=buscarCategoria(resultSet.getInt("idCategoria"));
+                producto.setCategoria(c);
+                
+                producto.setCodigo(resultSet.getInt("codigo"));
+                producto.setNombre(resultSet.getString("nombre"));
+                producto.setCantidad(resultSet.getInt("cantidad"));
+                producto.setPrecio(resultSet.getDouble("precio"));
+                producto.setActivo(resultSet.getBoolean("activo"));
+
+                productos.add(producto);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los productos: " + ex.getMessage());
+        }
+              
+        return productos;
+    }  
+     
+
+     
+   public List<Producto> obtenerProductosPorCantidad(int cantidad)
+    {
+        List<Producto> productos = new ArrayList<Producto>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM producto WHERE cantidad =?;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, cantidad);
+            ResultSet resultSet = statement.executeQuery();
+            Producto producto;
+            
+            while(resultSet.next())
+            {
+                producto = new Producto();
+                
+               producto.setIdProducto(resultSet.getInt("idProducto"));
+                
+                Categoria c=buscarCategoria(resultSet.getInt("idCategoria"));
+                producto.setCategoria(c);
+                
+                producto.setCodigo(resultSet.getInt("codigo"));
+                producto.setNombre(resultSet.getString("nombre"));
+                producto.setCantidad(resultSet.getInt("cantidad"));
+                producto.setPrecio(resultSet.getDouble("precio"));
+                producto.setActivo(resultSet.getBoolean("activo"));
+
+                productos.add(producto);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los Productos: " + ex.getMessage());
+        }
+              
+        return productos;
+    }  
+   
+   public List<Producto> obtenerProductosPorDesactivado()
+    {
+        List<Producto> productos = new ArrayList<Producto>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM producto WHERE activo =0;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+            ResultSet resultSet = statement.executeQuery();
+            Producto producto;
+            
+            while(resultSet.next())
+            {
+                producto = new Producto();
+                
+               producto.setIdProducto(resultSet.getInt("idProducto"));
+                
+                Categoria c=buscarCategoria(resultSet.getInt("idCategoria"));
+                producto.setCategoria(c);
+                
+                producto.setCodigo(resultSet.getInt("codigo"));
+                producto.setNombre(resultSet.getString("nombre"));
+                producto.setCantidad(resultSet.getInt("cantidad"));
+                producto.setPrecio(resultSet.getDouble("precio"));
+                producto.setActivo(resultSet.getBoolean("activo"));
+
+                productos.add(producto);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los producto: " + ex.getMessage());
+        }
+              
+        return productos;
+    }  
+     
+     
 }
     

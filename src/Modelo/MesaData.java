@@ -69,7 +69,9 @@ public class MesaData
             
         try 
         {
-            String sql = "SELECT * FROM mesa;";
+//            String sql = "SELECT * FROM mesa;";
+            String sql = "SELECT * FROM mesa WHERE activo = 1;";
+            
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             Mesa mesa;
@@ -93,37 +95,7 @@ public class MesaData
         } 
         return mesas;
     }
-    public List<Mesa> obtenerMesasPorNombre(String nombre)
-    {
-        List<Mesa> mesas = new ArrayList<Mesa>();
-            
-        try 
-        {
-            String sql = "SELECT * FROM mesa WHERE nombre = ?;";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, nombre);
-            ResultSet resultSet = statement.executeQuery();
-            Mesa mesa;
-            
-            while(resultSet.next())
-            {
-                mesa = new Mesa();
-                
-                mesa.setIdMesa(resultSet.getInt("idMesa"));
-                mesa.setNombre(resultSet.getString("nombre"));
-                mesa.setCantidad(resultSet.getInt("cantidad"));
-                mesa.setEstado(resultSet.getString("estado"));
-                mesa.setActivo(resultSet.getBoolean("activo"));
-                mesas.add(mesa);
-            }      
-            statement.close();
-        }
-        catch (SQLException ex) 
-        {
-            System.out.println("Error al obtener los mesas: " + ex.getMessage());
-        } 
-        return mesas;
-    }
+
     public void borrarMesa(int id)
     {
     try 
@@ -203,6 +175,116 @@ public class MesaData
         
         return mesa;
     }
+//    _________________________________________BUSCAR_________________________________________________________
+    
+      //    lista nombres de mesas
+    public List<Mesa> obtenerMesasPorNombre(String nombre)
+    {
+        List<Mesa> mesas = new ArrayList<Mesa>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM mesa WHERE nombre = ?;";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, nombre);
+            ResultSet resultSet = statement.executeQuery();
+            Mesa mesa;
+            
+            while(resultSet.next())
+            {
+                mesa = new Mesa();
+                
+                mesa.setIdMesa(resultSet.getInt("idMesa"));
+                mesa.setNombre(resultSet.getString("nombre"));
+                mesa.setCantidad(resultSet.getInt("cantidad"));
+                mesa.setEstado(resultSet.getString("estado"));
+                mesa.setActivo(resultSet.getBoolean("activo"));
+                mesas.add(mesa);
+            }      
+            statement.close();
+        }
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los mesas: " + ex.getMessage());
+        } 
+        return mesas;
+    } 
+     
+
+     
+   public List<Mesa> obtenerMesasPorCantidad(int cantidad)
+    {
+        List<Mesa> mesas = new ArrayList<Mesa>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM mesa WHERE cantidad =?;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, cantidad);
+            ResultSet resultSet = statement.executeQuery();
+            Mesa mesa;
+            
+            while(resultSet.next())
+            {
+                mesa = new Mesa();
+                
+                mesa.setIdMesa(resultSet.getInt("idMesa"));
+                mesa.setNombre(resultSet.getString("nombre"));
+                mesa.setCantidad(resultSet.getInt("cantidad"));
+                mesa.setEstado(resultSet.getString("estado"));
+                mesa.setActivo(resultSet.getBoolean("activo"));
+                mesas.add(mesa);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los mesero: " + ex.getMessage());
+        }
+              
+        return mesas;
+    }  
+   
+   public List<Mesa> obtenerMesasPorDesactivado()
+    {
+        List<Mesa> mesas = new ArrayList<Mesa>();
+            
+        try 
+        {
+           String sql = "SELECT * FROM mesa WHERE activo =0;";// 0 desactivadas.....1 activadas
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+            ResultSet resultSet = statement.executeQuery();
+            Mesa mesa;
+            
+            while(resultSet.next())
+            {
+                mesa = new Mesa();
+                
+                mesa.setIdMesa(resultSet.getInt("idMesa"));
+                mesa.setNombre(resultSet.getString("nombre"));
+                mesa.setCantidad(resultSet.getInt("cantidad"));
+                mesa.setEstado(resultSet.getString("estado"));
+                mesa.setActivo(resultSet.getBoolean("activo"));
+                mesas.add(mesa);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los mesero: " + ex.getMessage());
+        }
+              
+        return mesas;
+    }       
+    
+    
+    
+    
+    
+    
     
 }
   

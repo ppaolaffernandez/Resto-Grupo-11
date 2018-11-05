@@ -62,8 +62,6 @@ private DefaultTableModel modeloClientes;
         tbDni = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         tbNombre = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        chActivo = new javax.swing.JCheckBox();
         btnGuardar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
@@ -154,14 +152,6 @@ private DefaultTableModel modeloClientes;
         });
         getContentPane().add(tbNombre);
         tbNombre.setBounds(130, 160, 260, 30);
-
-        jLabel6.setText("ACTIVO");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(30, 210, 60, 30);
-
-        chActivo.setBackground(new java.awt.Color(255, 204, 204));
-        getContentPane().add(chActivo);
-        chActivo.setBounds(130, 210, 30, 30);
 
         btnGuardar.setBackground(new java.awt.Color(255, 204, 255));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
@@ -273,7 +263,7 @@ private DefaultTableModel modeloClientes;
         {
             int dni=Integer.parseInt(tbDni.getText());
             String nombre=tbNombre.getText();
-            boolean activo=chActivo.isSelected();
+            boolean activo=true;
 
             Cliente cliente=new Cliente(dni,nombre,activo);
             clienteData.guardarCliente(cliente);
@@ -294,7 +284,7 @@ private DefaultTableModel modeloClientes;
         {
         int id=Integer.parseInt(tbId.getText());
         clienteData.borrarCliente(id);
-        JOptionPane.showMessageDialog(null, "Borrado");
+        JOptionPane.showMessageDialog(null, "Eliminado");
         limpiar();
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
@@ -315,6 +305,7 @@ private DefaultTableModel modeloClientes;
 
             Cliente cliente=new Cliente(id,dni,nombre,activo);
             clienteData.actualizarCliente(cliente);
+            JOptionPane.showMessageDialog(null, "Cliente Actualizado  ");
             limpiar();//limpia los controles las cajas y los chechbox
             borraFilasTablaCliente();//limpia la tabla
             cargaDatosTablaCliente();//carga  la tabla categoria
@@ -327,7 +318,7 @@ private DefaultTableModel modeloClientes;
         tbId.setText("");
         tbNombre.setText("");
         tbDni.setText("");
-        chActivo.setSelected(false);
+      
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void tbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbBuscarActionPerformed
@@ -386,7 +377,7 @@ private DefaultTableModel modeloClientes;
         tbId.setText("");
         tbNombre.setText("");
         tbDni.setText("");
-        chActivo.setSelected(false);
+        
     }
     public void cargaDatosTablaCliente(String Dato)
         {   
@@ -429,7 +420,7 @@ private DefaultTableModel modeloClientes;
             columnas.add("ID:");
             columnas.add("DNI");
             columnas.add("NOMBRE.");
-            
+            columnas.add("ACTIVO");
             
             for(Object vp:columnas)
             {   
@@ -450,11 +441,9 @@ private DefaultTableModel modeloClientes;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<String> cbDatos;
-    private javax.swing.JCheckBox chActivo;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tCliente;

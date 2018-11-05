@@ -32,6 +32,7 @@ import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 
 public class VistaPedidos extends javax.swing.JInternalFrame
 {
@@ -56,11 +57,22 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private ArrayList<Mesa> listaMesas;
     private ArrayList<Detalle> listaDetalles;
     private List<JButton>botones;
+   
+    DefaultTableModel model;// sacar productos de la tabla
+    int filas=0;// sacar peoductos de la tabla
     
     public VistaPedidos()
     {
         String Menu="";
         initComponents();
+        
+//        espinner preguntar a juan
+
+        SpinnerNumberModel nm=new SpinnerNumberModel();
+        nm.setMaximum(10);//valor maximo
+        nm.setMinimum(0);//valor minimo
+        nm.setStepSize(2);//incrementa de a 2
+        jspCantidad.setModel(nm);
         
         validarSoloNumeros(tbDni);
         limitarCaracteres(tbDni,8);
@@ -118,7 +130,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         tbDni = new javax.swing.JTextField();
-        jbBuscar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         tbNombre = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -136,7 +148,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         Cantidad = new javax.swing.JLabel();
         sCantidad = new javax.swing.JSpinner();
         btnAgregar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSacar = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tDetalle = new javax.swing.JTable();
         jLabel16 = new javax.swing.JLabel();
@@ -151,7 +163,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel19 = new javax.swing.JLabel();
         btnPedido = new javax.swing.JButton();
         btnVerMesa = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
+        jspCantidad = new javax.swing.JSpinner();
         jLabel17 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -189,19 +201,19 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         getContentPane().add(tbDni);
         tbDni.setBounds(400, 40, 140, 30);
 
-        jbBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
-        jbBuscar.setText("Buscar");
-        jbBuscar.setBorder(null);
-        jbBuscar.setBorderPainted(false);
-        jbBuscar.setContentAreaFilled(false);
-        jbBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.setBorder(null);
+        btnBuscar.setBorderPainted(false);
+        btnBuscar.setContentAreaFilled(false);
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBuscarActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jbBuscar);
-        jbBuscar.setBounds(570, 40, 90, 50);
+        getContentPane().add(btnBuscar);
+        btnBuscar.setBounds(570, 40, 90, 50);
 
         jLabel9.setText("Cliente");
         getContentPane().add(jLabel9);
@@ -296,14 +308,19 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         getContentPane().add(btnAgregar);
         btnAgregar.setBounds(880, 220, 110, 70);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/RECHAZARROSA_副本.png"))); // NOI18N
-        jButton2.setText("Quitar");
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(jButton2);
-        jButton2.setBounds(1000, 230, 110, 50);
+        btnSacar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/RECHAZARROSA_副本.png"))); // NOI18N
+        btnSacar.setText("Quitar");
+        btnSacar.setBorder(null);
+        btnSacar.setBorderPainted(false);
+        btnSacar.setContentAreaFilled(false);
+        btnSacar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSacar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSacarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSacar);
+        btnSacar.setBounds(1000, 230, 110, 50);
 
         tDetalle.setBackground(new java.awt.Color(255, 204, 255));
         tDetalle.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 204, 255))); // NOI18N
@@ -418,9 +435,14 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         getContentPane().add(btnVerMesa);
         btnVerMesa.setBounds(500, 330, 120, 40);
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(2, 2, 8, 2));
-        getContentPane().add(jSpinner1);
-        jSpinner1.setBounds(160, 350, 70, 30);
+        jspCantidad.setModel(new javax.swing.SpinnerNumberModel(2, 2, 8, 2));
+        jspCantidad.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jspCantidadStateChanged(evt);
+            }
+        });
+        getContentPane().add(jspCantidad);
+        jspCantidad.setBounds(160, 350, 70, 30);
 
         jLabel17.setText("Capacidad");
         getContentPane().add(jLabel17);
@@ -491,9 +513,18 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-      
-    }//GEN-LAST:event_jbBuscarActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        int dni=Integer.parseInt(tbDni.getText());
+
+        Cliente cliente=clienteData.buscarClienteXDni(dni);
+        
+        if(cliente!=null)
+        {
+            tbNombre.setText(cliente.getNombre());
+        }
+                                            
+ 
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void cbCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCategoriasActionPerformed
         borraFilasTablaProducto();
@@ -676,6 +707,23 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_rbAtendidoActionPerformed
 
+    private void btnSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacarActionPerformed
+//     sacar productos de la tabla
+        
+     model=(DefaultTableModel)this.tDetalle.getModel(); 
+     model.removeRow(this.tDetalle.getSelectedRow());  
+      filas--;  
+        
+   
+    }//GEN-LAST:event_btnSacarActionPerformed
+
+    private void jspCantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jspCantidadStateChanged
+        // preguntar a juan si el spinner es asi
+//        get trae los valores
+//         setText para mostrar el texto       
+        jspCantidad.setToolTipText("El valor es: " +jspCantidad.getValue().toString());
+    }//GEN-LAST:event_jspCantidadStateChanged
+
         
     int idMesa=0;
     public void CargarMesas()
@@ -847,12 +895,13 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cantidad;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnPedido;
+    private javax.swing.JButton btnSacar;
     private javax.swing.JButton btnVerMesa;
     private javax.swing.ButtonGroup btrpConjunto;
     private javax.swing.JComboBox<String> cbCategorias;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -879,8 +928,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JButton jbBuscar;
+    private javax.swing.JSpinner jspCantidad;
     private javax.swing.JLabel lblIdMesa;
     private javax.swing.JPanel pnlMesas;
     private javax.swing.JRadioButton rbAtendido;

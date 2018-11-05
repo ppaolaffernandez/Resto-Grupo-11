@@ -72,7 +72,8 @@ public class ReservaData
 
         try
         {
-            String sql = "SELECT * FROM reserva;";
+            String sql = "SELECT * FROM reserva WHERE activo = 1;";//lista solo los meseros que estan activos
+            
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             
@@ -110,8 +111,9 @@ public class ReservaData
     {
         try
         { 
-            String sql = "DELETE FROM reserva WHERE idReserva =?;";
-
+//            String sql = "DELETE FROM reserva WHERE idReserva =?;";
+            String sql =  "UPDATE reservo SET activo = false WHERE idReserva = ?;";
+            
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
            
@@ -238,9 +240,7 @@ public class ReservaData
         }    
         return reservas;
     }
-//_________________________________________________________________________________________________________________________________________________    
-//_____________________________________________________________NUEVO________________________________________________________________________________
-//__________________________________________________________________________________________________________________________________________________
+
 public List<Reserva> obtenerReservasPorNombre(String nombre)
     {
         List<Reserva> reservas = new ArrayList<Reserva>();
@@ -276,12 +276,119 @@ public List<Reserva> obtenerReservasPorNombre(String nombre)
         } 
         catch (SQLException ex) 
         {
-            System.out.println("Error al obtener los categoria: " + ex.getMessage());
+            System.out.println("Error al obtener los nombre: " + ex.getMessage());
         }
               
         return reservas;
-    }    
-  }
+    } 
+
+//________________________________________________________________________________________________________________________
+//______________________________________________________BURCAR POR FECHA__________________________________________________        
+//________________________________________________________________________________________________________________________  
+        
+     public List<Reserva> obtenerReservasPorFecha(Date fecha)
+    {
+        List<Reserva> reservas = new ArrayList<Reserva>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM reserva WHERE fecha =?;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setDate(1, fecha);
+            ResultSet resultSet = statement.executeQuery();
+            Reserva reserva;
+            
+            while(resultSet.next())
+            {
+                reserva = new Reserva();
+                
+                reserva.setIdReserva(resultSet.getInt("idReserva"));
+                
+                Cliente c=buscarCliente(resultSet.getInt("idCliente"));
+                reserva.setCliente(c);
+                
+                Mesa m=buscarMesa(resultSet.getInt("idMesa"));
+                reserva.setMesa(m);
+                
+                reserva.setHora(resultSet.getString("hora"));                
+                reserva.setFecha(resultSet.getDate("fecha"));
+                reserva.setActivo(resultSet.getBoolean("activo"));
+
+                reservas.add(reserva);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los mesero: " + ex.getMessage());
+        }
+              
+        return reservas;
+    }   
+//     fecha del  dia
+     public List<Reserva> obtenerReservasPorDia(Date dia)
+    {
+        List<Reserva> reservas = new ArrayList<Reserva>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM reserva WHERE fecha =?;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setDate(1, dia);
+            ResultSet resultSet = statement.executeQuery();
+            Reserva reserva;
+            
+            while(resultSet.next())
+            {
+                reserva = new Reserva();
+                
+                reserva.setIdReserva(resultSet.getInt("idReserva"));
+                
+                Cliente c=buscarCliente(resultSet.getInt("idCliente"));
+                reserva.setCliente(c);
+                
+                Mesa m=buscarMesa(resultSet.getInt("idMesa"));
+                reserva.setMesa(m);
+                
+                reserva.setHora(resultSet.getString("hora"));                
+                reserva.setFecha(resultSet.getDate("fecha"));
+                reserva.setActivo(resultSet.getBoolean("activo"));
+
+                reservas.add(reserva);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los mesero: " + ex.getMessage());
+        }
+              
+        return reservas;
+    }     
+        
+        }
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+
 
 
     

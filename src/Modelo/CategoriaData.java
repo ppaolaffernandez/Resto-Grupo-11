@@ -62,7 +62,8 @@ public class CategoriaData
             
         try 
         {
-            String sql = "SELECT * FROM categoria;";
+//            String sql = "SELECT * FROM categoria;";
+            String sql = "SELECT * FROM categoria WHERE activo = 1;";//lista solo los meseros que estan activos
             
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
@@ -126,7 +127,7 @@ public class CategoriaData
          try
         {
             String sql =  "UPDATE categoria SET activo = false WHERE idCategoria = ?;";//Actualizamos el activo,si borra el activo queda en false y si no borra el true 0=false, 1=true
-            
+           
 //            String sql = "DELETE FROM categoria WHERE idCategoria =?;";
             
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -262,5 +263,40 @@ public class CategoriaData
         }   
         return categoria;
     } 
+      
+      
+    public List<Categoria> obtenerCategoriasPorDesactivado()
+    {
+        List<Categoria> categorias = new ArrayList<Categoria>();
+            
+        try 
+        {
+            String sql = "SELECT * FROM categoria WHERE activo =0;";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+            ResultSet resultSet = statement.executeQuery();
+            Categoria categoria;
+            
+            while(resultSet.next())
+            {
+                categoria = new Categoria();
+                
+                categoria.setIdCategoria(resultSet.getInt("idCategoria"));
+                categoria.setNombre(resultSet.getString("nombre"));
+                categoria.setDescripcion(resultSet.getString("descripcion"));
+                categoria.setActivo(resultSet.getBoolean("activo"));
+
+                categorias.add(categoria);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener los mesero: " + ex.getMessage());
+        }
+              
+        return categorias;
+    }  
       
 }

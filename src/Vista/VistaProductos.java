@@ -77,17 +77,15 @@ public class VistaProductos extends javax.swing.JInternalFrame
         tbCantidad = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         tbPrecio = new javax.swing.JTextField();
-        Activo = new javax.swing.JLabel();
-        chActivo = new javax.swing.JCheckBox();
         btnGuardar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         tbBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tProducto = new javax.swing.JTable();
+        cbDatos = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
 
         jTextField3.setText("jTextField3");
@@ -113,7 +111,7 @@ public class VistaProductos extends javax.swing.JInternalFrame
                 tbIdActionPerformed(evt);
             }
         });
-        getContentPane().add(tbId, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 30, 30));
+        getContentPane().add(tbId, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 30, 30));
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jLabel4.setText("INFORME DEL PRODUCTO");
@@ -153,18 +151,6 @@ public class VistaProductos extends javax.swing.JInternalFrame
         tbPrecio.setBackground(new java.awt.Color(255, 204, 204));
         tbPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
         getContentPane().add(tbPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 250, 30));
-
-        Activo.setText("Activo");
-        getContentPane().add(Activo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, 60, 40));
-
-        chActivo.setBackground(new java.awt.Color(255, 204, 204));
-        chActivo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-        chActivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chActivoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(chActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 40, 30));
 
         btnGuardar.setBackground(new java.awt.Color(255, 153, 153));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar rosa.png"))); // NOI18N
@@ -225,9 +211,6 @@ public class VistaProductos extends javax.swing.JInternalFrame
         });
         getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, 100, 50));
 
-        jLabel2.setText("Nombre");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, -1, 20));
-
         tbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbBuscarActionPerformed(evt);
@@ -268,12 +251,20 @@ public class VistaProductos extends javax.swing.JInternalFrame
         });
         jScrollPane1.setViewportView(tProducto);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 560, -1, 130));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 560, -1, 110));
+
+        cbDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categoria", "Nombre", "Cantidad", "Desactivado", "" }));
+        cbDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDatosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 500, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pinkmas claro_副本.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102)));
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 760));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -50, 650, 760));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -308,10 +299,11 @@ public class VistaProductos extends javax.swing.JInternalFrame
             String nombre=tbNombre.getText();
             int cantidad=Integer.parseInt(tbCantidad.getText());
             double precio=Double.parseDouble(tbPrecio.getText());
-            boolean activo=chActivo.isSelected();
+            boolean activo=true;
 
             Producto producto=new Producto(categoria,codigo,nombre,cantidad,precio,activo);
             productoData.guardarProducto(producto);
+            JOptionPane.showMessageDialog(null, "Producto Guardado  ");
             tbId.setText(producto.getIdProducto()+"");
             
             limpiar();
@@ -330,6 +322,7 @@ public class VistaProductos extends javax.swing.JInternalFrame
         {
             int id=Integer.parseInt(tbId.getText());
             productoData.borrarProducto(id);
+            JOptionPane.showMessageDialog(null, "Producto Eliminado  ");
             limpiar();
             borraFilasTablaProducto();
             cargaDatosTablaProducto();
@@ -351,11 +344,11 @@ public class VistaProductos extends javax.swing.JInternalFrame
             String nombre=tbNombre.getText();
             int cantidad=Integer.parseInt(tbCantidad.getText());
             double precio=Double.parseDouble(tbPrecio.getText());
-            boolean activo=chActivo.isSelected();
+            boolean activo=true;
 
             Producto producto=new Producto(id,categoria,codigo,nombre,cantidad,precio,activo);
             productoData.actualizarProducto(producto);
-
+            JOptionPane.showMessageDialog(null, "Producto Actualizado  ");
             limpiar();
             borraFilasTablaProducto();//limpia la tabla
             cargaDatosTablaProducto();//carga  la tabla categoria
@@ -375,12 +368,26 @@ public class VistaProductos extends javax.swing.JInternalFrame
 
         if(tbBuscar.getText().isEmpty())//SI NO HAY DATOS NO AGREGA
         {
-            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria : ");
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre del Producto : ");
         }
-        else //SI HAY ALGO BUSCA
+      
+        else
         {
-            borraFilasTablaProducto();
-            cargaDatosTablaProducto(tbBuscar.getText());
+            if (cbDatos.getSelectedItem()=="Categoria") 
+            {
+                borraFilasTablaProducto();
+                cargaDatosTablaProductoporCategoria(tbBuscar.getText());
+            }
+            if (cbDatos.getSelectedItem()=="Nombre") 
+            {
+                borraFilasTablaProducto();
+                cargaDatosTablaProductoxNombre(tbBuscar.getText());
+            }
+            if (cbDatos.getSelectedItem()=="Cantidad") 
+            {
+                borraFilasTablaProducto();
+                cargaDatosTablaProductoxCantidad(Integer.parseInt(tbBuscar.getText()));
+           }
         }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -395,7 +402,7 @@ public class VistaProductos extends javax.swing.JInternalFrame
             tbNombre.setText(tProducto.getValueAt(filaseleccionada, 3).toString());
             tbCantidad.setText(tProducto.getValueAt(filaseleccionada, 4).toString());
             tbPrecio.setText(tProducto.getValueAt(filaseleccionada, 5).toString());
-            chActivo.setSelected(Boolean.parseBoolean(tProducto.getValueAt(filaseleccionada, 6).toString()) );
+//            chActivo.setSelected(Boolean.parseBoolean(tProducto.getValueAt(filaseleccionada, 6).toString()) );
         }
         catch(Exception e)
         {
@@ -404,9 +411,12 @@ public class VistaProductos extends javax.swing.JInternalFrame
 
     }//GEN-LAST:event_tProductoMousePressed
 
-    private void chActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chActivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chActivoActionPerformed
+    private void cbDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDatosActionPerformed
+        if(cbDatos.getSelectedItem()=="Desactivado")
+        {
+            cargaDatosTablaProductoxDesactivado();
+        }
+    }//GEN-LAST:event_cbDatosActionPerformed
  public void cargarCategoriaComboBox(){
     
      for(Categoria item:listaCategorias)
@@ -414,9 +424,65 @@ public class VistaProductos extends javax.swing.JInternalFrame
             cbCategoria.addItem(item.getNombre());
      }
  }
-    
-//     _______________________________________________Tabla Producto______________________________________
+//  _____________________________________________________________________________________________________________________________________________  
+//  ____________________________________________________Tabla Producto___________________________________________________________________________
+// ______________________________________________________________________________________________________________________________________________
 
+ //__________________________________________________________TABLA MESA_______________________________________________________________________________
+   
+ 
+    
+    
+      public void cargaDatosTablaProductoporCategoria(String Dato)////ESTE LISTA POR NOMBREEEEEEEEEEEE
+      {   
+            borraFilasTablaProducto();
+            listaProductos=(ArrayList)productoData.obtenerProductosPorCategoria(Dato);         
+            //Llenar filas
+            for(Producto p:listaProductos)
+            {
+               modeloProductos.addRow(new Object[]{p.getIdProducto(),p.getCategoria().getIdCategoria(),p.getCodigo(),p.getNombre(),p.getCantidad(),p.getPrecio(),p.getActivo()});                 
+
+            }     
+      }
+      public void cargaDatosTablaProductoxNombre(String Dato)////ESTE LISTA POR NOMBREEEEEEEEEEEE
+        {   
+            borraFilasTablaProducto();
+            listaProductos=(ArrayList)productoData.obtenerProductosPorNombre(Dato);         
+            //Llenar filas
+            for(Producto p:listaProductos)
+            {
+               modeloProductos.addRow(new Object[]{p.getIdProducto(),p.getCategoria().getIdCategoria(),p.getCodigo(),p.getNombre(),p.getCantidad(),p.getPrecio(),p.getActivo()});                 
+                 
+            }     
+        }
+        public void cargaDatosTablaProductoxCantidad(int Dato) //ESTEEE LISTA POR NUMEROOOOOOOO
+        {   
+            borraFilasTablaProducto();
+            listaProductos=(ArrayList)productoData.obtenerProductosPorCantidad(Dato);         
+            //Llenar filas
+            for(Producto p:listaProductos)
+            {
+               modeloProductos.addRow(new Object[]{p.getIdProducto(),p.getCategoria().getIdCategoria(),p.getCodigo(),p.getNombre(),p.getCantidad(),p.getPrecio(),p.getActivo()});                 
+                 
+            }     
+        }
+       public void cargaDatosTablaProductoxDesactivado() //ESTEEE LISTA POR DESACTIVADOS
+        {   
+            borraFilasTablaProducto();
+            listaProductos=(ArrayList)productoData.obtenerProductosPorDesactivado();         
+            //Llenar filas
+            for(Producto p:listaProductos)
+            {
+               modeloProductos.addRow(new Object[]{p.getIdProducto(),p.getCategoria().getIdCategoria(),p.getCodigo(),p.getNombre(),p.getCantidad(),p.getPrecio(),p.getActivo()});                 
+                 
+            }     
+        }
+    
+      
+      
+      
+      
+      
     public void cargaDatosTablaProducto(String Dato)
         {   
             borraFilasTablaProducto();
@@ -424,7 +490,7 @@ public class VistaProductos extends javax.swing.JInternalFrame
             //Llenar filas
             for(Producto d:listaProductos)
             {
-               modeloProductos.addRow(new Object[]{d.getIdProducto(),d.getCategoria().getNombre(),d.getCodigo(),d.getNombre(),d.getCantidad(),d.getPrecio(),d.getActivo()});                 
+               modeloProductos.addRow(new Object[]{d.getIdProducto(),d.getCategoria().getIdCategoria(),d.getCodigo(),d.getNombre(),d.getCantidad(),d.getPrecio(),d.getActivo()});                 
             }       
         }
  
@@ -435,7 +501,7 @@ public class VistaProductos extends javax.swing.JInternalFrame
             //Llenar filas
             for(Producto d:listaProductos)
             {
-                modeloProductos.addRow(new Object[]{d.getIdProducto(),d.getCategoria().getNombre(),d.getCodigo(),d.getNombre(),d.getCantidad(),d.getPrecio(),d.getActivo()});
+                modeloProductos.addRow(new Object[]{d.getIdProducto(),d.getCategoria().getIdCategoria(),d.getCodigo(),d.getNombre(),d.getCantidad(),d.getPrecio(),d.getActivo()});
                  
             }
              
@@ -455,7 +521,7 @@ public class VistaProductos extends javax.swing.JInternalFrame
             //Titulos de Columnas
             ArrayList<Object> columnas=new ArrayList<Object>();
             columnas.add("ID:");
-            columnas.add("CATEGORIa.");
+            columnas.add("CATEGORIA.");
             columnas.add("CODIGO");
             columnas.add("NOMBRE");
             columnas.add("CANTIDAD");
@@ -471,18 +537,16 @@ public class VistaProductos extends javax.swing.JInternalFrame
      
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Activo;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<String> cbCategoria;
-    private javax.swing.JCheckBox chActivo;
+    private javax.swing.JComboBox<String> cbDatos;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -505,7 +569,7 @@ public class VistaProductos extends javax.swing.JInternalFrame
         tbNombre.setText("");
         tbCantidad.setText("");
         tbPrecio.setText("");
-        chActivo.setSelected(false);
+        
     }
 public void validarSoloLetras(JTextField campo)
 {

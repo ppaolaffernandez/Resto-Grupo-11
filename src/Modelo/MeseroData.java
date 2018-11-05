@@ -90,23 +90,25 @@ public class MeseroData
     
      public void borrarMesero(int id) 
     {
-    try 
-        {
-            
-//            String sql = "DELETE FROM mesa WHERE idMesa =?;";
-             String sql =  "UPDATE mesero SET activo = false WHERE idMesero = ?;";
+        try 
+          {
 
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, id);
+    //            String sql = "DELETE FROM mesa WHERE idMesa =?;";
+                 String sql =  "UPDATE mesero SET activo = false WHERE idMesero = ?;";
 
-            statement.executeUpdate();
-    
-            statement.close();
-    
-        } catch (SQLException ex) {
-            System.out.println("Error al borrar una mesero: " + ex.getMessage());
-        }
-        }
+                PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                statement.setInt(1, id);
+
+                statement.executeUpdate();
+
+                statement.close();
+
+          } 
+          catch (SQLException ex)
+          {
+                System.out.println("Error al borrar una mesero: " + ex.getMessage());
+          }
+    }
     
             
     
@@ -141,6 +143,7 @@ public class MeseroData
          {
             
             String sql = "SELECT * FROM mesero WHERE idMesero =?;";
+            
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
@@ -230,6 +233,11 @@ public class MeseroData
         return mesero;
     }
       
+    /*______________________________________________________________________________________________________
+    ___________________________________  PARA LISTAR POR SUS ATRIBUTOS(DATOS)______________________________________________________________
+    ____________________________________________Cambiar depende de que quiera puede ser dni entero o string pero lo ______________________________________________
+    __haremos entero*/
+      
       
      public List<Mesero> obtenerMeserosPorNombre(String nombre)
     {
@@ -265,19 +273,7 @@ public class MeseroData
         return meseros;
     }  
      
-     
-     
-     
-     
-     
-     
-     
-      /*______________________________________________________________________________________________________
-    ___________________________________  PARA LISTAR POR SUS ATRIBUTOS(DATOS)______________________________________________________________
-    ____________________________________________Cambiar depende de que quiera puede ser dni entero o string pero lo ______________________________________________
-    __haremos entero*/
-     
-     
+
      
    public List<Mesero> obtenerMeserosPorDni(int dni)
     {
@@ -348,9 +344,13 @@ public class MeseroData
     }  
    
    
-}
- /*______________________________________________________________________________________________________
-    ___________________________________  PARA LISTAR POR SUS ATRIBUTOS(DATOS)______________________________________________________________
-    __________________________________________________________________________________________
-    _________________________________________________________________________________*/
 
+
+    public void registrarMesero()
+    {
+          
+
+
+    }
+
+}

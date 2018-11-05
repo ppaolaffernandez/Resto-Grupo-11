@@ -315,6 +315,7 @@ private DefaultTableModel modeloMeseros;
 
             Mesero mesero=new Mesero(nombre,dni,activo);
             meseroData.guardarMesero(mesero);
+            JOptionPane.showMessageDialog(null, "Mesero Guardado  ");
 
             tbId.setText(mesero.getIdMesero()+"");
             limpiar();
@@ -355,6 +356,7 @@ private DefaultTableModel modeloMeseros;
         {
             int id=Integer.parseInt(tbId.getText());
             meseroData.borrarMesero(id);
+            JOptionPane.showMessageDialog(null, "Mesero Eliminado  ");
             limpiar();
             borraFilasTablaMesero();
             cargaDatosTablaMesero();
@@ -367,13 +369,11 @@ private DefaultTableModel modeloMeseros;
             cargaDatosTablaMeseroxDesactivado();
         }
     }//GEN-LAST:event_cbDatosActionPerformed
+
+//___________________________________________________________________________________________________________________________
 //_______________________________________________________TABLA MESERO_____________________________________________________________
-   
-    
-    /*______________________________________________________________________________________________________
-    ___________________________________  PARA LISTAR POR SUS ATRIBUTOS(DATOS)______________________________________________________________
-    __________________________________________________________________________________________
-    _________________________________________________________________________________*/
+//___________________________________________________________________________________________________________________________   
+ 
     public void cargaDatosTablaMeseroxDni(int Dato) //ESTEEE LISTA POR NUMEROOOOOOOO
         {   
             borraFilasTablaMesero();
@@ -386,7 +386,7 @@ private DefaultTableModel modeloMeseros;
             }     
         }
     
-    public void cargaDatosTablaMeseroxDesactivado() //ESTEEE LISTA POR NUMEROOOOOOOO
+    public void cargaDatosTablaMeseroxDesactivado() //ESTEEE LISTA POR DESACTIVADOS
         {   
             borraFilasTablaMesero();
             listaMeseros=(ArrayList)meseroData.obtenerMeserosPorDesactivado();         

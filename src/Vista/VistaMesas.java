@@ -46,19 +46,17 @@ private DefaultTableModel modeloMesas;
         tbId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jsCantidad = new javax.swing.JSpinner();
-        jLabel4 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         tbNombre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         tbBuscar = new javax.swing.JTextField();
-        btnBuscar1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tMesa = new javax.swing.JTable();
-        chActivo = new javax.swing.JCheckBox();
+        cbDatos = new javax.swing.JComboBox<>();
+        btnBuscar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(634, 539));
@@ -83,17 +81,13 @@ private DefaultTableModel modeloMesas;
         getContentPane().add(tbId);
         tbId.setBounds(590, 0, 30, 30);
 
-        jLabel3.setText("Capacidad");
+        jLabel3.setText("Cantidad");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(40, 110, 120, 50);
 
         jsCantidad.setModel(new javax.swing.SpinnerNumberModel(2, 2, 10, 2));
         getContentPane().add(jsCantidad);
         jsCantidad.setBounds(180, 120, 80, 30);
-
-        jLabel4.setText("Activo");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(40, 170, 60, 40);
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar rosa.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -157,10 +151,6 @@ private DefaultTableModel modeloMesas;
         getContentPane().add(jLabel6);
         jLabel6.setBounds(40, 70, 80, 30);
 
-        jLabel7.setText("Nombre");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(80, 330, 60, 30);
-
         tbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbBuscarActionPerformed(evt);
@@ -168,22 +158,6 @@ private DefaultTableModel modeloMesas;
         });
         getContentPane().add(tbBuscar);
         tbBuscar.setBounds(160, 330, 220, 30);
-
-        btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
-        btnBuscar1.setText("Buscar");
-        btnBuscar1.setToolTipText("");
-        btnBuscar1.setBorder(null);
-        btnBuscar1.setBorderPainted(false);
-        btnBuscar1.setContentAreaFilled(false);
-        btnBuscar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBuscar1.setName("btBuscar"); // NOI18N
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBuscar1);
-        btnBuscar1.setBounds(420, 310, 100, 60);
 
         tMesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -209,14 +183,30 @@ private DefaultTableModel modeloMesas;
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(50, 380, 480, 100);
 
-        chActivo.setBackground(new java.awt.Color(255, 204, 255));
-        chActivo.addActionListener(new java.awt.event.ActionListener() {
+        cbDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Cantidad", "Desactivado", "" }));
+        cbDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chActivoActionPerformed(evt);
+                cbDatosActionPerformed(evt);
             }
         });
-        getContentPane().add(chActivo);
-        chActivo.setBounds(180, 170, 50, 40);
+        getContentPane().add(cbDatos);
+        cbDatos.setBounds(80, 340, 56, 20);
+
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.setToolTipText("");
+        btnBuscar.setBorder(null);
+        btnBuscar.setBorderPainted(false);
+        btnBuscar.setContentAreaFilled(false);
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscar.setName("btBuscar"); // NOI18N
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBuscar);
+        btnBuscar.setBounds(410, 310, 100, 60);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pinkmas claro_副本.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -241,7 +231,7 @@ private DefaultTableModel modeloMesas;
             String nombre=tbNombre.getText();
             int cantidad=Integer.parseInt(jsCantidad.getValue().toString());
             String estado="Libre";
-            boolean activo=chActivo.isSelected();
+            boolean activo=true;
 
             Mesa mesa=new Mesa(nombre,cantidad,estado,activo);
             mesaData.guardarMesa(mesa);
@@ -279,7 +269,7 @@ private DefaultTableModel modeloMesas;
             String nombre=tbNombre.getText();//Las cajas blancas siempre son string , si es numero convertir en integer si no, MO.
             int cantidad=Integer.parseInt(jsCantidad.getValue().toString());
 
-            boolean activo=chActivo.isSelected();
+            boolean activo=true;
             String estado="Libre";
             Mesa mesa=new Mesa(id,nombre,cantidad,estado,activo);
             mesaData.actualizarMesa(mesa);
@@ -297,7 +287,7 @@ private DefaultTableModel modeloMesas;
             tbId.setText("");
             tbNombre.setText("");
             jsCantidad.setValue(0);
-            chActivo.setSelected(false);
+         ;
         }
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         
@@ -308,21 +298,6 @@ private DefaultTableModel modeloMesas;
         // TODO add your handling code here:
     }//GEN-LAST:event_tbBuscarActionPerformed
 
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-
-        if(tbBuscar.getText().isEmpty())//SI NO HAY DATOS NO AGREGA
-        {
-            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la mesa : ");
-        }
-        else //SI HAY ALGO BUSCA
-        {
-            borraFilasTablaMesa();
-            cargaDatosTablaMesa(tbBuscar.getText());
-
-        }
-
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
-
     private void tMesaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tMesaMousePressed
         int filaseleccionada = tMesa.getSelectedRow();
         
@@ -332,8 +307,8 @@ private DefaultTableModel modeloMesas;
             tbId.setText(tMesa.getValueAt(filaseleccionada, 0).toString());
             tbNombre.setText(tMesa.getValueAt(filaseleccionada, 1).toString());
             jsCantidad.setValue(tMesa.getValueAt(filaseleccionada, 2));
-           
-            chActivo.setSelected(Boolean.parseBoolean(tMesa.getValueAt(filaseleccionada, 4).toString()) );
+//           
+//            chActivo.setSelected(Boolean.parseBoolean(tMesa.getValueAt(filaseleccionada, 3).toString()) );
         
         }
         catch(Exception e)
@@ -343,10 +318,78 @@ private DefaultTableModel modeloMesas;
 
     }//GEN-LAST:event_tMesaMousePressed
 
-    private void chActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chActivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chActivoActionPerformed
-public void cargaDatosTablaMesa(String Dato)
+    private void cbDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDatosActionPerformed
+        if(cbDatos.getSelectedItem()=="Desactivado")
+        {
+            cargaDatosTablaMesaxDesactivado();
+        }
+    }//GEN-LAST:event_cbDatosActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        //para seleccionar por dni
+        if(tbBuscar.getText().isEmpty())//SI NO HAY DATOS NO AGREGA
+        {
+            JOptionPane.showMessageDialog(null, "SELECCIONE FILA : ");
+        }
+        else //SI HAY ALGO BUSCA
+        {
+            if (cbDatos.getSelectedItem()=="Nombre")
+            {
+                //un solo = es asigancion, y dos == es comparar.
+                borraFilasTablaMesa();
+                cargaDatosTablaMesaxNombre(tbBuscar.getText());
+            }
+            if (cbDatos.getSelectedItem()=="Cantidad")
+            {
+                //un solo = es asigancion, y dos == es comparar.
+                borraFilasTablaMesa();
+                cargaDatosTablaMesaxCantidad(Integer.parseInt(tbBuscar.getText()));
+            }
+        }
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
+//__________________________________________________________TABLA MESA_______________________________________________________________________________
+    public void cargaDatosTablaMesaxCantidad(int Dato) //ESTEEE LISTA POR NUMEROOOOOOOO
+        {   
+            borraFilasTablaMesa();
+            listaMesas=(ArrayList)mesaData.obtenerMesasPorCantidad(Dato);         
+            //Llenar filas
+            for(Mesa m:listaMesas)
+            {
+                modeloMesas.addRow(new Object[]{m.getIdMesa(),m.getNombre(),m.getCantidad(),m.getEstado(),m.getActivo()});
+                 
+            }     
+        }
+    
+    public void cargaDatosTablaMesaxDesactivado() //ESTEEE LISTA POR DESACTIVADOS
+        {   
+            borraFilasTablaMesa();
+            listaMesas=(ArrayList)mesaData.obtenerMesasPorDesactivado();         
+            //Llenar filas
+            for(Mesa m:listaMesas)
+            {
+                modeloMesas.addRow(new Object[]{m.getIdMesa(),m.getNombre(),m.getCantidad(),m.getEstado(),m.getActivo()});
+                 
+            }     
+        }
+    
+    
+    
+      public void cargaDatosTablaMesaxNombre(String Dato)////ESTE LISTA POR NOMBREEEEEEEEEEEE
+        {   
+            borraFilasTablaMesa();
+            listaMesas=(ArrayList)mesaData.obtenerMesasPorNombre(Dato);         
+            //Llenar filas
+            for(Mesa m:listaMesas)
+            {
+                modeloMesas.addRow(new Object[]{m.getIdMesa(),m.getNombre(),m.getCantidad(),m.getEstado(),m.getActivo()});
+                 
+            }     
+        }
+    
+    
+    
+    public void cargaDatosTablaMesa(String Dato)
         {   
             borraFilasTablaMesa();
             listaMesas=(ArrayList)mesaData.obtenerMesasPorNombre(Dato);         
@@ -400,16 +443,14 @@ public void cargaDatosTablaMesa(String Dato)
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBorrar;
-    private javax.swing.JButton btnBuscar1;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JCheckBox chActivo;
+    private javax.swing.JComboBox<String> cbDatos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jsCantidad;
     private javax.swing.JTable tMesa;

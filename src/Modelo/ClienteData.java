@@ -69,7 +69,9 @@ public class ClienteData
             
         try
         {
-            String sql = "SELECT * FROM cliente;";
+//            String sql = "SELECT * FROM cliente;";
+            String sql = "SELECT * FROM cliente WHERE activo = 1;";//lista solo los meseros que estan activos
+            
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             Cliente cliente;
@@ -102,6 +104,7 @@ public class ClienteData
             
 //            String sql = "DELETE FROM mesa WHERE idMesa =?;";
              String sql =  "UPDATE cliente SET activo = false WHERE idCliente = ?;";
+             
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
@@ -302,7 +305,36 @@ public class ClienteData
         
         return cliente;
     }
-    
+     public Cliente buscarClienteXDni(int dni)
+    {
+      Cliente cliente=null;
+        try
+        {
+            
+            String sql = "SELECT * FROM cliente WHERE dni =?;";
+
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, dni);
+            
+            ResultSet resultSet=statement.executeQuery();
+            
+            while(resultSet.next()){
+                cliente = new Cliente();
+
+                cliente.setIdCliente(resultSet.getInt("idCliente"));
+                cliente.setDni(resultSet.getInt("dni"));
+                cliente.setNombre(resultSet.getString("nombre"));              
+                cliente.setActivo(resultSet.getBoolean("activo"));             
+                    
+            }      
+            statement.close();        
+        }catch (SQLException ex){
+            System.out.println("Error al insertar un cliente: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al insertar un cliente");
+        }
+        
+        return cliente;
+    }
      
      
      

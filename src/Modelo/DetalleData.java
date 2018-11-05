@@ -70,7 +70,8 @@ public class DetalleData
 
         try 
         {
-            String sql = "SELECT * FROM detalle;";
+//            String sql = "SELECT * FROM detalle;";
+            String sql = "SELECT * FROM detalle WHERE activo = 1;";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             Detalle detalle;
@@ -107,7 +108,8 @@ public class DetalleData
     Detalle detalle=null;
     try {
             
-            String sql = "SELECT * FROM detalle WHERE idDetalle =?;";
+//            String sql = "SELECT * FROM detalle WHERE idDetalle =?;";
+             String sql =  "UPDATE detalle SET activo = false WHERE idDetalle = ?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
@@ -249,6 +251,34 @@ public class DetalleData
         
         
         return detalles;
+    }
+    
+    
+////    se lo puse preguntar a trapix el actualizar va en detalle
+    public void actualizarDetalle(Detalle detalle)
+    {
+    
+        try {
+            
+            String sql = "UPDATE detalle SET idProducto = ?, idPedido = ? , cantidad = ? , total = ? , activo = ? WHERE idDetalle = ?;";
+
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+             
+            statement.setInt(1, detalle.getProducto().getIdProducto());
+            statement.setInt(2, detalle.getPedido().getIdPedido());
+            statement.setInt(3, detalle.getCantidad());
+            statement.setDouble(4, detalle.getTotal());
+            statement.setBoolean(5, detalle.getActivo());
+            statement.executeUpdate();
+            
+            statement.executeUpdate();
+            statement.close();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Error al actualizar un detalle: " + ex.getMessage());
+        }
+    
     }
     
 }
