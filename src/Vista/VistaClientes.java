@@ -81,7 +81,7 @@ private DefaultTableModel modeloClientes;
             }
         });
         getContentPane().add(tbBuscar);
-        tbBuscar.setBounds(130, 330, 220, 30);
+        tbBuscar.setBounds(150, 340, 220, 30);
 
         btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
         btnBuscar1.setText("Buscar");
@@ -97,7 +97,7 @@ private DefaultTableModel modeloClientes;
             }
         });
         getContentPane().add(btnBuscar1);
-        btnBuscar1.setBounds(390, 310, 100, 60);
+        btnBuscar1.setBounds(400, 320, 100, 60);
 
         tCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,7 +121,7 @@ private DefaultTableModel modeloClientes;
         jScrollPane1.setViewportView(tCliente);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(20, 380, 480, 100);
+        jScrollPane1.setBounds(20, 400, 480, 100);
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cLIENTES副本.png"))); // NOI18N
@@ -226,12 +226,12 @@ private DefaultTableModel modeloClientes;
             }
         });
         getContentPane().add(cbDatos);
-        cbDatos.setBounds(40, 330, 80, 20);
+        cbDatos.setBounds(30, 350, 80, 20);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pink_1.jpg"))); // NOI18N
         jLabel8.setText("jLabel8");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(12, 0, 530, 510);
+        jLabel8.setBounds(0, 0, 530, 510);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -420,7 +420,7 @@ private DefaultTableModel modeloClientes;
             columnas.add("ID:");
             columnas.add("DNI");
             columnas.add("NOMBRE.");
-            columnas.add("ACTIVO");
+            
             
             for(Object vp:columnas)
             {   
@@ -504,7 +504,7 @@ public void cargaDatosTablaClientexDni(int Dato) //ESTEEE LISTA POR NUMEROOOOOOO
             //Llenar filas
             for(Cliente m:listaClientes)
             {
-                modeloClientes.addRow(new Object[]{m.getIdCliente(),m.getNombre(),m.getDni(),m.getActivo()});
+                modeloClientes.addRow(new Object[]{m.getIdCliente(),m.getDni(),m.getNombre(),m.getActivo()});
                  
             }     
         }
@@ -530,7 +530,7 @@ public void cargaDatosTablaClientexDni(int Dato) //ESTEEE LISTA POR NUMEROOOOOOO
             //Llenar filas
             for(Cliente m:listaClientes)
             {
-                modeloClientes.addRow(new Object[]{m.getIdCliente(),m.getNombre(),m.getDni(),m.getActivo()});
+                modeloClientes.addRow(new Object[]{m.getIdCliente(),m.getDni(),m.getNombre(),m.getActivo()});
                  
             }     
         }
@@ -541,7 +541,7 @@ public void cargaDatosTablaClientexDni(int Dato) //ESTEEE LISTA POR NUMEROOOOOOO
             //Llenar filas
             for(Cliente m:listaClientes)
             {
-                modeloClientes.addRow(new Object[]{m.getIdCliente(),m.getNombre(),m.getDni(),m.getActivo()});
+                modeloClientes.addRow(new Object[]{m.getIdCliente(),m.getDni(),m.getNombre(),m.getActivo()});
                  
             }
              
@@ -562,8 +562,11 @@ public void cargaDatosTablaClientexDni(int Dato) //ESTEEE LISTA POR NUMEROOOOOOO
             //Titulos de Columnas
             ArrayList<Object> columnas=new ArrayList<Object>();
             columnas.add("ID:");
+
+           
             columnas.add("NOMBRE.");
             columnas.add("DNI");
+
             columnas.add("ACTIVO");
 
             for(Object vp:columnas)
