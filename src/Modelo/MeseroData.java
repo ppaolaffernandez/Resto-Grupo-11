@@ -352,5 +352,91 @@ public class MeseroData
 
 
     }
+    
+    /*Para  HACER EL LOGO NECESITO HACER ESTOY_________________________________________________________________________________
+    ___________________________________________________________________________________________________________________________
+    ___________________________________________Para  HACER EL LOGO NECESITO HACER ESTO_________________________________________
+    -___________________________________________________________________________________________________________________________}
+    -_____________________________________________________________________________________________________________________*/
 
+    
+    public Mesero buscarUsuario(String usuario, String contraseña)
+    {
+        Mesero mesero=null;
+         try 
+         {
+            
+            String sql = "SELECT * FROM mesero WHERE nombre =? and dni =?;";
+            
+
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, usuario  );
+            statement.setString(2, contraseña  );
+
+                  
+            ResultSet resultSet=statement.executeQuery();
+            
+            while(resultSet.next())
+            {
+                mesero = new Mesero();
+                
+                mesero.setIdMesero(resultSet.getInt("idMesero"));
+                mesero.setNombre(resultSet.getString("nombre"));
+                mesero.setDni(resultSet.getInt("dni"));                
+                mesero.setActivo(resultSet.getBoolean("activo"));
+    
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex)
+        {
+            System.out.println("Error al buscar un mesero: " + ex.getMessage());
+        }   
+        return mesero;
+    } 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

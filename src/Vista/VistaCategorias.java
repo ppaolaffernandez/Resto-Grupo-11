@@ -219,7 +219,7 @@ private DefaultTableModel modeloCategorias;
             }
         });
         getContentPane().add(cbDatos);
-        cbDatos.setBounds(50, 340, 56, 20);
+        cbDatos.setBounds(30, 340, 70, 20);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");

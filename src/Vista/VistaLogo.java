@@ -5,19 +5,37 @@
  */
 package Vista;
 
+import Modelo.Conexion;
+import Modelo.Mesero;
+import Modelo.MeseroData;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author PC-Claudia
- */
-public class VistaLogo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VistaLogo
-     */
+public class VistaLogo extends javax.swing.JFrame
+{
+    private MeseroData meseroData;
+    private Conexion conexion;
+    private ArrayList<Mesero> listaMeseros;
     public VistaLogo() {
         initComponents();
+    try 
+        {
+            
+            conexion = new Conexion("jdbc:mysql://localhost/resto", "root", "");
+            meseroData = new MeseroData(conexion);  
+            
+            
+        }
+        catch (ClassNotFoundException ex)
+        {
+            Logger.getLogger(VistaClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }      
+
+
     }
 
     /**
@@ -38,6 +56,9 @@ public class VistaLogo extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(450, 250));
+        setMinimumSize(new java.awt.Dimension(450, 250));
+        setPreferredSize(new java.awt.Dimension(450, 250));
         getContentPane().setLayout(null);
 
         jLabel1.setText("Usuario ");
@@ -82,7 +103,7 @@ public class VistaLogo extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 420, 220);
+        jLabel3.setBounds(0, 0, 440, 220);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -92,16 +113,17 @@ public class VistaLogo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
- String user,pwd;
-user=tbUsuario.getText();
-pwd =tbContraseña.getText();
-       if(user.equals("Mesero")&& pwd.equals("12345"))
-       {
+        String user,pwd;
+        user=tbUsuario.getText();
+        pwd =tbContraseña.getText();
+        Mesero mesero = meseroData.buscarUsuario(user,pwd);
+        if(mesero != null)
+        {
            Principal acceso=new Principal();
            acceso.setVisible(true);
            this.setVisible(false);
     
-       }
+        }
        else
        {
        
