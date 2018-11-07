@@ -355,7 +355,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         pnlMesas.setBackground(new java.awt.Color(255, 204, 255));
         pnlMesas.setLayout(new java.awt.GridLayout(1, 0));
         getContentPane().add(pnlMesas);
-        pnlMesas.setBounds(20, 430, 650, 160);
+        pnlMesas.setBounds(10, 440, 650, 160);
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel23.setText("--MENÚ--");
@@ -538,11 +538,11 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         try
         {
 
-            if(filaSeleccionada == -1)
+           if(filaSeleccionada == -1)// esta vacio no puse nada en la caja(tb) blanca de agregar
             {
                 JOptionPane.showMessageDialog(null, "Seleccione un Producto", "Error", JOptionPane.WARNING_MESSAGE);
             }
-            else if(Integer.parseInt(sCantidad.getValue().toString())== 0)
+            else if(Integer.parseInt(sCantidad.getValue().toString())== 0)// Como no selecciono ninguna fila me dice q lo haga obviamente
             {
                 JOptionPane.showMessageDialog(null, "Ingrese cantidad", "Error", JOptionPane.WARNING_MESSAGE);
             }
@@ -564,6 +564,9 @@ public class VistaPedidos extends javax.swing.JInternalFrame
                     Detalle detalle = new Detalle(producto,pedido,cantidad,total,activo);
                     detalleData.guardarDetalle(detalle);
                     cargaDatosTablaDetalle(detalle.getPedido().getIdPedido());
+                    
+                    producto.setCantidad(producto.getCantidad()-cantidad);
+                    productoData.actualizarProducto(producto);
                 }
             }
         }
@@ -708,13 +711,29 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     }//GEN-LAST:event_rbAtendidoActionPerformed
 
     private void btnSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacarActionPerformed
+
 //     sacar productos de la tabla
+       int filaSeleccionada = this.tDetalle.getSelectedRow();  // nuevo    
+        if(filaSeleccionada == -1)// esta vacio no puse nada en la caja(tb) blanca de agregar
+        {
+            JOptionPane.showMessageDialog(null, "Seleccione un Producto", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        {
+           Detalle detalle = detalleData.buscarDetalle(Integer.parseInt(tDetalle.getValueAt(filaSeleccionada, 0).toString()));//busca id detalle
+
+           Producto producto=productoData.buscarProducto(detalle.getProducto().getIdProducto());
+
+           int idPedido = detalle.getPedido().getIdPedido();
+
+           detalle.setActivo(false);
+           detalleData.actualizarDetalle(detalle);//actializa detalle
+
+           producto.setCantidad(producto.getCantidad()+detalle.getCantidad());
+           productoData.actualizarProducto(producto);
+           cargaDatosTablaDetalle(idPedido);
+        }
         
-     model=(DefaultTableModel)this.tDetalle.getModel(); 
-     model.removeRow(this.tDetalle.getSelectedRow());  
-      filas--;  
-        
-   
     }//GEN-LAST:event_btnSacarActionPerformed
 
     private void jspCantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jspCantidadStateChanged

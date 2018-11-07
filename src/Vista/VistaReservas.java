@@ -345,7 +345,7 @@ public void cargaDatosTablaMesa(String Dato)
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("--LISTADO DE MESA DISPONIBLE--");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(30, 220, 250, 40);
+        jLabel10.setBounds(40, 270, 250, 40);
 
         tMesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -366,7 +366,7 @@ public void cargaDatosTablaMesa(String Dato)
         jScrollPane1.setViewportView(tMesa);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 330, 310, 100);
+        jScrollPane1.setBounds(10, 330, 310, 110);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         jLabel9.setText("jLabel9");
@@ -412,7 +412,7 @@ public void cargaDatosTablaMesa(String Dato)
             }
         });
         getContentPane().add(tbBuscar);
-        tbBuscar.setBounds(460, 280, 220, 30);
+        tbBuscar.setBounds(460, 280, 220, 20);
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
         btnBuscar.setText("Buscar");
@@ -428,7 +428,7 @@ public void cargaDatosTablaMesa(String Dato)
             }
         });
         getContentPane().add(btnBuscar);
-        btnBuscar.setBounds(700, 260, 100, 60);
+        btnBuscar.setBounds(720, 260, 100, 60);
 
         tReserva.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -449,11 +449,11 @@ public void cargaDatosTablaMesa(String Dato)
         jScrollPane3.setViewportView(tReserva);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(340, 330, 480, 100);
+        jScrollPane3.setBounds(390, 330, 430, 100);
 
         cbDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fecha", "Dia" }));
         getContentPane().add(cbDatos);
-        cbDatos.setBounds(350, 280, 80, 20);
+        cbDatos.setBounds(370, 280, 80, 20);
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar rosa_1.png"))); // NOI18N
         btnBorrar.setText("Borrar");

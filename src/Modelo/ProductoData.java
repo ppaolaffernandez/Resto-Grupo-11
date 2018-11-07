@@ -274,8 +274,10 @@ public class ProductoData
             
         try 
         {
-//  busca la categoria ,          
-            String sql = "SELECT * FROM producto p ,categoria c WHERE p.idCategoria=c.idCategoria and c.nombre=?;";
+//  busca la categoria , si idCategoria de la tabla producto es igual al idCategoria de la tabla categoria          
+            String sql = "SELECT * "
+                        + "FROM producto p ,categoria c "
+                        + "WHERE p.idCategoria=c.idCategoria and c.nombre=?;";
             
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, categoria);

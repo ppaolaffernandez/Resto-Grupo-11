@@ -27,7 +27,8 @@ public class VistaProductos extends javax.swing.JInternalFrame
     private ArrayList<Categoria> listaCategorias;
     private ArrayList<Producto> listaProductos;
 
-    public VistaProductos() {
+    public VistaProductos()
+    {
         initComponents();
         
         validarSoloNumeros(tbCodigo);
