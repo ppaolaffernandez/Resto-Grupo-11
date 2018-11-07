@@ -274,13 +274,42 @@ public class MesaData
         } 
         catch (SQLException ex) 
         {
-            System.out.println("Error al obtener los mesero: " + ex.getMessage());
+            System.out.println("Error al obtener las mesas: " + ex.getMessage());
         }
               
         return mesas;
     }       
-    
-    
+//    el botonn spinner  se usa asi
+    public List<Mesa> obtenerCantidad()
+    {
+        List<Mesa> mesas = new ArrayList<Mesa>();
+            
+        try 
+        {
+           String sql = "SELECT distinct cantidad FROM mesa ;";// 0 desactivadas.....1 activadas
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+            ResultSet resultSet = statement.executeQuery();
+            Mesa mesa;
+            
+            while(resultSet.next())
+            {
+                mesa = new Mesa();
+
+                mesa.setCantidad(resultSet.getInt("cantidad"));
+  
+                mesas.add(mesa);
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex) 
+        {
+            System.out.println("Error al obtener las mesa: " + ex.getMessage());
+        }
+              
+        return mesas;
+    }       
     
     
     

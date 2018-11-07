@@ -106,7 +106,8 @@ public class DetalleData
     }
     
     
-    public Detalle buscarDetalle(int id){
+    public Detalle buscarDetalle(int id)
+    {
     Detalle detalle=null;
     try {
             System.out.println(id);
@@ -148,15 +149,8 @@ public class DetalleData
     {
         ProductoData md=new ProductoData(conexion);
         return md.buscarProducto(id);
-    }
-    
-    
-    
-    //De profe trapixprog
-    
-    
-    
-   
+    }       
+           
     
     public List<Detalle> obtenerDetalle(int  idPedido){
         List<Detalle> detalles = new ArrayList<Detalle>();
