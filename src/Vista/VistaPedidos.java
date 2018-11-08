@@ -27,12 +27,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
 
 public class VistaPedidos extends javax.swing.JInternalFrame
 {
@@ -49,10 +47,8 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private CategoriaData categoriaData;
     private DetalleData detalleData;
 
-    private ArrayList<Cliente> listaClientes;
     private ArrayList<Categoria> listaCategorias;
     private ArrayList<Producto> listaProductos;
-    private ArrayList<Pedido> listaPedidos;
     private ArrayList<Mesero> listaMeseros;
     private ArrayList<Mesa> listaMesas;
     private ArrayList<Detalle> listaDetalles;
@@ -66,13 +62,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         String Menu="";
         initComponents();
         
-//        espinner preguntar a juan
-
-        SpinnerNumberModel nm=new SpinnerNumberModel();
-        nm.setMaximum(10);//valor maximo
-        nm.setMinimum(0);//valor minimo
-        nm.setStepSize(2);//incrementa de a 2
-        jspCantidad.setModel(nm);
         
         validarSoloNumeros(tbDni);
         limitarCaracteres(tbDni,8);
@@ -103,11 +92,13 @@ public class VistaPedidos extends javax.swing.JInternalFrame
 
             armaCabeceraTablaMesero();// sin combo box lo cargo a la tabla directo
             cargaDatosTablaMesero();
-            CargarMesas();
+            
             
             cargarCategoriaProductoComboBox();// con combo box lo cargo en el cb(cargarProducto)
             armaCabeceraTablaProducto();
-            
+//cbMesa Cantidad
+            cargarCantidadMesaComboBox();
+            CargarMesas(Integer.parseInt(cbCantidad.getSelectedItem().toString()));
 //         Tabla Detalle
            armaCabeceraTablaDetalle();
            
@@ -163,8 +154,8 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel19 = new javax.swing.JLabel();
         btnPedido = new javax.swing.JButton();
         btnVerMesa = new javax.swing.JButton();
-        jspCantidad = new javax.swing.JSpinner();
         jLabel17 = new javax.swing.JLabel();
+        cbCantidad = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -435,18 +426,17 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         getContentPane().add(btnVerMesa);
         btnVerMesa.setBounds(500, 330, 120, 40);
 
-        jspCantidad.setModel(new javax.swing.SpinnerNumberModel(2, 2, 8, 2));
-        jspCantidad.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jspCantidadStateChanged(evt);
+        jLabel17.setText("Cantidad");
+        getContentPane().add(jLabel17);
+        jLabel17.setBounds(80, 340, 110, 30);
+
+        cbCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCantidadActionPerformed(evt);
             }
         });
-        getContentPane().add(jspCantidad);
-        jspCantidad.setBounds(160, 350, 70, 30);
-
-        jLabel17.setText("Capacidad");
-        getContentPane().add(jLabel17);
-        jLabel17.setBounds(60, 340, 110, 50);
+        getContentPane().add(cbCantidad);
+        cbCantidad.setBounds(176, 350, 80, 20);
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         jLabel20.setText("jLabel20");
@@ -548,7 +538,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             }
             else
             {
-                Pedido pedido = pedidoData.buscarPedido(NuevoPedido);
+                Pedido pedido = pedidoData.buscarPedidoMesa(idMesa);
 
                 int idProductoSeleccionado = Integer.parseInt(tProducto.getValueAt(filaSeleccionada, 0).toString());
 
@@ -693,7 +683,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
                 NuevoPedido=pedido.getIdPedido();
 
                 pnlMesas.removeAll();
-                CargarMesas();
+                CargarMesas(Integer.parseInt(cbCantidad.getSelectedItem().toString()));
             }
 
         }catch(Exception e)
@@ -736,18 +726,15 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         
     }//GEN-LAST:event_btnSacarActionPerformed
 
-    private void jspCantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jspCantidadStateChanged
-        // preguntar a juan si el spinner es asi
-//        get trae los valores
-//         setText para mostrar el texto       
-        jspCantidad.setToolTipText("El valor es: " +jspCantidad.getValue().toString());
-    }//GEN-LAST:event_jspCantidadStateChanged
+    private void cbCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCantidadActionPerformed
+            CargarMesas(Integer.parseInt(cbCantidad.getSelectedItem().toString()));
+    }//GEN-LAST:event_cbCantidadActionPerformed
 
         
     int idMesa=0;
-    public void CargarMesas()
-    {       
-        listaMesas=(ArrayList)mesaData.obtenerMesas();
+    public void CargarMesas(int cantidad)
+    {    pnlMesas.removeAll();   
+        listaMesas=(ArrayList)mesaData.obtenerMesasPorCantidad(cantidad);
          for (Mesa item : listaMesas)
          {
             JButton boton = new JButton(item.getNombre());
@@ -900,6 +887,15 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             cbCategorias.addItem(item.getNombre());
         }
     }
+    public void cargarCantidadMesaComboBox()
+    {
+        listaMesas =(ArrayList)mesaData.obtenerCantidad();
+        for(Mesa item:listaMesas)
+        {
+            cbCantidad.addItem(item.getCantidad()+"");
+        }
+        
+    }
     public void ActualizarPedido()//Puse actualizar para q recarge otras vez el pedido
     {
         
@@ -920,6 +916,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private javax.swing.JButton btnSacar;
     private javax.swing.JButton btnVerMesa;
     private javax.swing.ButtonGroup btrpConjunto;
+    private javax.swing.JComboBox<String> cbCantidad;
     private javax.swing.JComboBox<String> cbCategorias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -947,7 +944,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JSpinner jspCantidad;
     private javax.swing.JLabel lblIdMesa;
     private javax.swing.JPanel pnlMesas;
     private javax.swing.JRadioButton rbAtendido;
