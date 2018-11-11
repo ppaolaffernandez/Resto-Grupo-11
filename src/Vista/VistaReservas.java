@@ -419,7 +419,6 @@ import javax.swing.table.DefaultTableModel;
         {
             borraFilasTablaReserva();
             cargaDatosTablaReserva(tbBuscar.getText());
-
         }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -503,13 +502,13 @@ import javax.swing.table.DefaultTableModel;
     private void btnBuscarDniClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDniClienteActionPerformed
     
      
-    int dni=Integer.parseInt(tbDni.getText());
-    Cliente cliente=clienteData.buscarClienteXDni(dni);
+        int dni=Integer.parseInt(tbDni.getText());
+        Cliente cliente=clienteData.buscarClienteXDni(dni);
 
-    if(cliente!=null)
-    {
-        tbNombre.setText(cliente.getNombre());
-    }
+        if(cliente!=null)
+        {
+            tbNombre.setText(cliente.getNombre());
+        }
                                             
 
     
