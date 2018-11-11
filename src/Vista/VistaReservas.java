@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
  public class VistaReservas extends javax.swing.JInternalFrame
 {
   private Conexion conexion;   
+  
   private ReservaData reservaData;
   private ClienteData clienteData;
   private MesaData mesaData;

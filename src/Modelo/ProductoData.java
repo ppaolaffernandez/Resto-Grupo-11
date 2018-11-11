@@ -137,7 +137,8 @@ public class ProductoData
             statement.executeUpdate();
             statement.close();
     
-        } catch (SQLException ex)
+        } 
+        catch (SQLException ex)
         {
             System.out.println("Error al insertar un producto: " + ex.getMessage());
         }
