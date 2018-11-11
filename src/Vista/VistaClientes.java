@@ -81,7 +81,7 @@ private DefaultTableModel modeloClientes;
             }
         });
         getContentPane().add(tbBuscar);
-        tbBuscar.setBounds(150, 340, 220, 30);
+        tbBuscar.setBounds(160, 100, 220, 30);
 
         btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
         btnBuscar1.setText("Buscar");
@@ -97,7 +97,7 @@ private DefaultTableModel modeloClientes;
             }
         });
         getContentPane().add(btnBuscar1);
-        btnBuscar1.setBounds(400, 320, 100, 60);
+        btnBuscar1.setBounds(410, 90, 100, 60);
 
         tCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,7 +121,7 @@ private DefaultTableModel modeloClientes;
         jScrollPane1.setViewportView(tCliente);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(20, 400, 480, 100);
+        jScrollPane1.setBounds(20, 160, 480, 100);
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cLIENTES副本.png"))); // NOI18N
@@ -131,7 +131,7 @@ private DefaultTableModel modeloClientes;
 
         jLabel3.setText("DNI");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 110, 60, 30);
+        jLabel3.setBounds(50, 300, 60, 30);
 
         tbDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,11 +139,11 @@ private DefaultTableModel modeloClientes;
             }
         });
         getContentPane().add(tbDni);
-        tbDni.setBounds(130, 110, 260, 30);
+        tbDni.setBounds(170, 300, 260, 30);
 
         jLabel4.setText("NOMBRE");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 160, 60, 30);
+        jLabel4.setBounds(50, 350, 60, 30);
 
         tbNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +151,7 @@ private DefaultTableModel modeloClientes;
             }
         });
         getContentPane().add(tbNombre);
-        tbNombre.setBounds(130, 160, 260, 30);
+        tbNombre.setBounds(170, 350, 270, 30);
 
         btnGuardar.setBackground(new java.awt.Color(255, 204, 255));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
@@ -166,7 +166,7 @@ private DefaultTableModel modeloClientes;
             }
         });
         getContentPane().add(btnGuardar);
-        btnGuardar.setBounds(20, 260, 110, 40);
+        btnGuardar.setBounds(10, 420, 110, 40);
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar rosa_1.png"))); // NOI18N
         btnBorrar.setText("Borrar");
@@ -180,7 +180,7 @@ private DefaultTableModel modeloClientes;
             }
         });
         getContentPane().add(btnBorrar);
-        btnBorrar.setBounds(270, 250, 120, 60);
+        btnBorrar.setBounds(260, 410, 120, 60);
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar rosa_副本_1.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -194,7 +194,7 @@ private DefaultTableModel modeloClientes;
             }
         });
         getContentPane().add(btnActualizar);
-        btnActualizar.setBounds(160, 260, 100, 40);
+        btnActualizar.setBounds(150, 420, 100, 40);
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiarrosa_副本.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -208,7 +208,7 @@ private DefaultTableModel modeloClientes;
             }
         });
         getContentPane().add(btnLimpiar);
-        btnLimpiar.setBounds(400, 260, 90, 40);
+        btnLimpiar.setBounds(390, 420, 90, 40);
 
         tbId.setAutoscrolls(false);
         tbId.addActionListener(new java.awt.event.ActionListener() {
@@ -226,7 +226,7 @@ private DefaultTableModel modeloClientes;
             }
         });
         getContentPane().add(cbDatos);
-        cbDatos.setBounds(30, 350, 80, 20);
+        cbDatos.setBounds(50, 100, 80, 30);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pink_1.jpg"))); // NOI18N
         jLabel8.setText("jLabel8");

@@ -76,7 +76,7 @@ private DefaultTableModel modeloCategorias;
 
         jLabel7.setText("NOMBRE");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(40, 60, 80, 30);
+        jLabel7.setBounds(30, 240, 80, 30);
 
         tbNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,18 +84,18 @@ private DefaultTableModel modeloCategorias;
             }
         });
         getContentPane().add(tbNombre);
-        tbNombre.setBounds(140, 60, 220, 30);
+        tbNombre.setBounds(130, 240, 220, 30);
 
         jLabel8.setText("DESCRIPCIÓN");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(40, 100, 80, 30);
+        jLabel8.setBounds(30, 280, 90, 30);
 
         tbDescripcion.setColumns(20);
         tbDescripcion.setRows(5);
         jScrollPane2.setViewportView(tbDescripcion);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(140, 110, 220, 90);
+        jScrollPane2.setBounds(130, 290, 310, 90);
 
         tbId.setAutoscrolls(false);
         tbId.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +120,7 @@ private DefaultTableModel modeloCategorias;
             }
         });
         getContentPane().add(btnBuscar);
-        btnBuscar.setBounds(360, 330, 100, 60);
+        btnBuscar.setBounds(360, 40, 100, 60);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("-CATEGORÍAS-");
@@ -139,7 +139,7 @@ private DefaultTableModel modeloCategorias;
             }
         });
         getContentPane().add(btnGuardar1);
-        btnGuardar1.setBounds(30, 250, 90, 40);
+        btnGuardar1.setBounds(10, 420, 90, 40);
 
         btnBorrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar rosa_1.png"))); // NOI18N
         btnBorrar1.setText("Borrar");
@@ -153,7 +153,7 @@ private DefaultTableModel modeloCategorias;
             }
         });
         getContentPane().add(btnBorrar1);
-        btnBorrar1.setBounds(270, 240, 120, 60);
+        btnBorrar1.setBounds(250, 410, 120, 60);
 
         btnActualizar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar rosa_副本_1.png"))); // NOI18N
         btnActualizar1.setText("Actualizar");
@@ -167,7 +167,7 @@ private DefaultTableModel modeloCategorias;
             }
         });
         getContentPane().add(btnActualizar1);
-        btnActualizar1.setBounds(140, 240, 110, 60);
+        btnActualizar1.setBounds(120, 410, 110, 60);
 
         btnLimpiar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiarrosa_副本.png"))); // NOI18N
         btnLimpiar1.setText("Limpiar");
@@ -181,7 +181,7 @@ private DefaultTableModel modeloCategorias;
             }
         });
         getContentPane().add(btnLimpiar1);
-        btnLimpiar1.setBounds(390, 240, 100, 60);
+        btnLimpiar1.setBounds(380, 410, 100, 60);
 
         tCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -202,7 +202,7 @@ private DefaultTableModel modeloCategorias;
         jScrollPane1.setViewportView(tCategoria);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 390, 480, 100);
+        jScrollPane1.setBounds(10, 100, 480, 100);
 
         tbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,7 +210,7 @@ private DefaultTableModel modeloCategorias;
             }
         });
         getContentPane().add(tbBuscar);
-        tbBuscar.setBounds(120, 340, 220, 30);
+        tbBuscar.setBounds(120, 50, 220, 30);
 
         cbDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Desactivado" }));
         cbDatos.addActionListener(new java.awt.event.ActionListener() {
@@ -219,12 +219,12 @@ private DefaultTableModel modeloCategorias;
             }
         });
         getContentPane().add(cbDatos);
-        cbDatos.setBounds(30, 340, 70, 20);
+        cbDatos.setBounds(20, 50, 90, 20);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 500, 430);
+        jLabel1.setBounds(0, 0, 500, 500);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

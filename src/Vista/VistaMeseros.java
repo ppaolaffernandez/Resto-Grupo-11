@@ -58,7 +58,6 @@ private DefaultTableModel modeloMeseros;
         jLabel4 = new javax.swing.JLabel();
         tbNombre = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         tbBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -79,7 +78,7 @@ private DefaultTableModel modeloMeseros;
         jLabel6.setText("MESEROS");
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(190, 0, 110, 70);
+        jLabel6.setBounds(190, -10, 110, 80);
 
         tbId.setAutoscrolls(false);
         tbId.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +91,7 @@ private DefaultTableModel modeloMeseros;
 
         jLabel3.setText("DNI");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(70, 100, 50, 30);
+        jLabel3.setBounds(60, 270, 60, 30);
 
         tbDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,11 +99,11 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(tbDni);
-        tbDni.setBounds(150, 90, 150, 30);
+        tbDni.setBounds(150, 270, 260, 30);
 
         jLabel4.setText("NOMBRE");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(60, 140, 60, 30);
+        jLabel4.setBounds(60, 320, 60, 30);
 
         tbNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +111,7 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(tbNombre);
-        tbNombre.setBounds(150, 150, 150, 30);
+        tbNombre.setBounds(150, 320, 260, 30);
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiarrosa_副本.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -125,11 +124,7 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(btnLimpiar);
-        btnLimpiar.setBounds(410, 220, 100, 50);
-
-        jLabel7.setText("Nombre");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(0, 360, 60, 30);
+        btnLimpiar.setBounds(420, 400, 100, 50);
 
         tbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +132,7 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(tbBuscar);
-        tbBuscar.setBounds(120, 300, 220, 30);
+        tbBuscar.setBounds(150, 70, 220, 30);
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
         btnBuscar.setText("Buscar");
@@ -153,7 +148,7 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(btnBuscar);
-        btnBuscar.setBounds(370, 290, 100, 60);
+        btnBuscar.setBounds(410, 60, 100, 60);
 
         tMesero.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -171,7 +166,7 @@ private DefaultTableModel modeloMeseros;
         jScrollPane1.setViewportView(tMesero);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 390, 480, 110);
+        jScrollPane1.setBounds(20, 130, 480, 110);
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar rosa.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -185,7 +180,7 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(btnGuardar);
-        btnGuardar.setBounds(10, 220, 90, 40);
+        btnGuardar.setBounds(20, 400, 90, 40);
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar rosa_副本_1.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -199,7 +194,7 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(btnActualizar);
-        btnActualizar.setBounds(140, 210, 110, 60);
+        btnActualizar.setBounds(150, 390, 110, 60);
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar rosa_1.png"))); // NOI18N
         btnBorrar.setText("Borrar");
@@ -213,7 +208,7 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(btnBorrar);
-        btnBorrar.setBounds(270, 210, 120, 60);
+        btnBorrar.setBounds(280, 390, 120, 60);
 
         cbDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dni", "Nombre", "Desactivado", " " }));
         cbDatos.addActionListener(new java.awt.event.ActionListener() {
@@ -222,7 +217,7 @@ private DefaultTableModel modeloMeseros;
             }
         });
         getContentPane().add(cbDatos);
-        cbDatos.setBounds(40, 300, 56, 20);
+        cbDatos.setBounds(60, 70, 70, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pinkmas claro_副本.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -465,7 +460,6 @@ private DefaultTableModel modeloMeseros;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tMesero;
     private javax.swing.JTextField tbBuscar;

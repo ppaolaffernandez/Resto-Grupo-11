@@ -116,42 +116,42 @@ public class VistaProductos extends javax.swing.JInternalFrame
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jLabel4.setText("INFORME DEL PRODUCTO");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 200, 50));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 200, 50));
 
         jLabel5.setText("Categoria");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 70, 40));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 70, 40));
 
         cbCategoria.setBackground(new java.awt.Color(255, 204, 255));
         cbCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-        getContentPane().add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 250, 30));
+        getContentPane().add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, 250, 30));
 
         jLabel6.setText("Codigo");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 60, 40));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 60, 40));
 
         tbCodigo.setBackground(new java.awt.Color(255, 204, 204));
         tbCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-        getContentPane().add(tbCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 250, 30));
+        getContentPane().add(tbCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, 250, 30));
 
         jLabel9.setText("Nombre");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 60, 40));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 60, 40));
 
         tbNombre.setBackground(new java.awt.Color(255, 204, 204));
         tbNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-        getContentPane().add(tbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 250, 30));
+        getContentPane().add(tbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 250, 30));
 
         jLabel10.setText("Cantidad");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 70, 50));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, 70, 50));
 
         tbCantidad.setBackground(new java.awt.Color(255, 204, 204));
         tbCantidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-        getContentPane().add(tbCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 250, 30));
+        getContentPane().add(tbCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 480, 250, 30));
 
         jLabel11.setText("Precio");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 70, 50));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, 70, 50));
 
         tbPrecio.setBackground(new java.awt.Color(255, 204, 204));
         tbPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
-        getContentPane().add(tbPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 250, 30));
+        getContentPane().add(tbPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 520, 250, 30));
 
         btnGuardar.setBackground(new java.awt.Color(255, 153, 153));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar rosa.png"))); // NOI18N
@@ -165,7 +165,7 @@ public class VistaProductos extends javax.swing.JInternalFrame
                 btnGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 100, 50));
+        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 100, 50));
 
         btnBorrar.setBackground(new java.awt.Color(255, 153, 153));
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
@@ -179,7 +179,7 @@ public class VistaProductos extends javax.swing.JInternalFrame
                 btnBorrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 120, 50));
+        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 590, 120, 50));
 
         btnActualizar.setBackground(new java.awt.Color(255, 153, 153));
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar rosa_副本_1.png"))); // NOI18N
@@ -193,7 +193,7 @@ public class VistaProductos extends javax.swing.JInternalFrame
                 btnActualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 120, 50));
+        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 590, 120, 50));
 
         btnLimpiar.setBackground(new java.awt.Color(255, 153, 153));
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiarrosa_副本.png"))); // NOI18N
@@ -210,14 +210,14 @@ public class VistaProductos extends javax.swing.JInternalFrame
                 btnLimpiarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, 100, 50));
+        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 590, 100, 50));
 
         tbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(tbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 490, 190, 40));
+        getContentPane().add(tbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 190, 40));
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
         btnBuscar.setText("Buscar");
@@ -232,7 +232,7 @@ public class VistaProductos extends javax.swing.JInternalFrame
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, -1, 50));
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, -1, 50));
 
         tProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -252,7 +252,7 @@ public class VistaProductos extends javax.swing.JInternalFrame
         });
         jScrollPane1.setViewportView(tProducto);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 560, -1, 110));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, 110));
 
         cbDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categoria", "Nombre", "Cantidad", "Desactivado", "" }));
         cbDatos.addActionListener(new java.awt.event.ActionListener() {
@@ -260,12 +260,12 @@ public class VistaProductos extends javax.swing.JInternalFrame
                 cbDatosActionPerformed(evt);
             }
         });
-        getContentPane().add(cbDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 500, -1, -1));
+        getContentPane().add(cbDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pinkmas claro_副本.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102)));
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -50, 650, 760));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 680));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -278,19 +278,19 @@ public class VistaProductos extends javax.swing.JInternalFrame
 
         if(tbCodigo.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(null, "Ingrese el codigo de la producto : ");
+            JOptionPane.showMessageDialog(null, "Ingrese el codigo del producto : ");
         }
         else if(tbNombre.getText().isEmpty())
         {
-             JOptionPane.showMessageDialog(null, "Ingrese el nombre de la producto : ");
+             JOptionPane.showMessageDialog(null, "Ingrese el nombre del producto : ");
         }
         else if(tbCantidad.getText().isEmpty())
         {
-             JOptionPane.showMessageDialog(null, "Ingrese el cantidad de la producto : ");
+             JOptionPane.showMessageDialog(null, "Ingrese el cantidad del producto : ");
         }
         else if(tbPrecio.getText().isEmpty())
         {
-             JOptionPane.showMessageDialog(null, "Ingrese el precio de la producto : ");
+             JOptionPane.showMessageDialog(null, "Ingrese el precio del producto : ");
         }
         else
         {
@@ -317,7 +317,7 @@ public class VistaProductos extends javax.swing.JInternalFrame
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
          if(tbNombre.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la Producto : ");
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre del Producto : ");
         }
         else
         {
@@ -334,7 +334,7 @@ public class VistaProductos extends javax.swing.JInternalFrame
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
          if (tbNombre.getText().isEmpty())//si la caja esta vacia va a salir un mensaje que falta el nombre
         {
-            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la Producto : ");
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre del Producto : ");
         }
         else{
 

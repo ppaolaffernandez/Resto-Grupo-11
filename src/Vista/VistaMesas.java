@@ -83,11 +83,11 @@ private DefaultTableModel modeloMesas;
 
         jLabel3.setText("Cantidad");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 110, 120, 50);
+        jLabel3.setBounds(130, 320, 70, 40);
 
         jsCantidad.setModel(new javax.swing.SpinnerNumberModel(2, 2, 10, 2));
         getContentPane().add(jsCantidad);
-        jsCantidad.setBounds(180, 120, 80, 30);
+        jsCantidad.setBounds(270, 330, 80, 30);
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar rosa.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -101,7 +101,7 @@ private DefaultTableModel modeloMesas;
             }
         });
         getContentPane().add(btnGuardar);
-        btnGuardar.setBounds(30, 220, 90, 50);
+        btnGuardar.setBounds(30, 400, 90, 50);
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar rosa_1.png"))); // NOI18N
         btnBorrar.setText("Borrar");
@@ -115,7 +115,7 @@ private DefaultTableModel modeloMesas;
             }
         });
         getContentPane().add(btnBorrar);
-        btnBorrar.setBounds(320, 220, 90, 50);
+        btnBorrar.setBounds(320, 400, 90, 50);
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar rosa_副本_1.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -129,7 +129,7 @@ private DefaultTableModel modeloMesas;
             }
         });
         getContentPane().add(btnActualizar);
-        btnActualizar.setBounds(170, 220, 100, 50);
+        btnActualizar.setBounds(170, 400, 100, 50);
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiarrosa_副本.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -143,13 +143,13 @@ private DefaultTableModel modeloMesas;
             }
         });
         getContentPane().add(btnLimpiar);
-        btnLimpiar.setBounds(470, 220, 90, 50);
+        btnLimpiar.setBounds(470, 400, 90, 50);
         getContentPane().add(tbNombre);
-        tbNombre.setBounds(180, 70, 210, 30);
+        tbNombre.setBounds(270, 280, 210, 30);
 
         jLabel6.setText("Nombre");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(40, 70, 80, 30);
+        jLabel6.setBounds(130, 280, 80, 30);
 
         tbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +157,7 @@ private DefaultTableModel modeloMesas;
             }
         });
         getContentPane().add(tbBuscar);
-        tbBuscar.setBounds(160, 330, 220, 30);
+        tbBuscar.setBounds(190, 90, 220, 30);
 
         tMesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -181,7 +181,7 @@ private DefaultTableModel modeloMesas;
         jScrollPane1.setViewportView(tMesa);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(50, 380, 480, 100);
+        jScrollPane1.setBounds(70, 160, 480, 100);
 
         cbDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Cantidad", "Desactivado", "" }));
         cbDatos.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +190,7 @@ private DefaultTableModel modeloMesas;
             }
         });
         getContentPane().add(cbDatos);
-        cbDatos.setBounds(80, 340, 56, 20);
+        cbDatos.setBounds(80, 90, 80, 30);
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
         btnBuscar.setText("Buscar");
@@ -206,7 +206,7 @@ private DefaultTableModel modeloMesas;
             }
         });
         getContentPane().add(btnBuscar);
-        btnBuscar.setBounds(410, 310, 100, 60);
+        btnBuscar.setBounds(450, 70, 100, 70);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/depositphotos_90571462-stock-photo-wooden-wall-texture-background-pinkmas claro_副本.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
