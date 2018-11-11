@@ -8,6 +8,9 @@ import Modelo.Mesa;
 import Modelo.MesaData;
 import Modelo.Reserva;
 import Modelo.ReservaData;
+import static Vista.Principal.escritorio;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
@@ -56,11 +59,14 @@ import javax.swing.table.DefaultTableModel;
    
 //__________RESERVA TABLA           
             armaCabeceraTablaReserva();
+            
             cargaDatosTablaReserva();
+            
 //__________MESA TABLA
         
             armaCabeceraTablaMesa();
             cargaDatosTablaMesa();
+            
             tbId.setVisible(false);//ocultamos la caja blanca(textfield)ID.
            
         }
@@ -104,6 +110,7 @@ import javax.swing.table.DefaultTableModel;
         jLabel12 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        tbIdMesa = new javax.swing.JTextField();
 
         jButton4.setText("jButton4");
 
@@ -194,7 +201,7 @@ import javax.swing.table.DefaultTableModel;
             }
         });
         getContentPane().add(btnBorrar);
-        btnBorrar.setBounds(580, 370, 90, 40);
+        btnBorrar.setBounds(650, 360, 90, 50);
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/sALIRROSA_副本.png"))); // NOI18N
         btnSalir.setText("Salir");
@@ -208,7 +215,7 @@ import javax.swing.table.DefaultTableModel;
             }
         });
         getContentPane().add(btnSalir);
-        btnSalir.setBounds(730, 370, 80, 40);
+        btnSalir.setBounds(750, 370, 80, 40);
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/dISPONIBLEROSA_副本.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -222,7 +229,7 @@ import javax.swing.table.DefaultTableModel;
             }
         });
         getContentPane().add(btnActualizar);
-        btnActualizar.setBounds(430, 370, 100, 40);
+        btnActualizar.setBounds(530, 360, 100, 50);
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/RESERVARICONO ROSA_副本.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -236,7 +243,7 @@ import javax.swing.table.DefaultTableModel;
             }
         });
         getContentPane().add(btnGuardar);
-        btnGuardar.setBounds(260, 470, 100, 50);
+        btnGuardar.setBounds(400, 360, 100, 50);
 
         lblReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         lblReserva.setText("jLabel1");
@@ -257,7 +264,7 @@ import javax.swing.table.DefaultTableModel;
             }
         });
         getContentPane().add(tbId);
-        tbId.setBounds(820, 10, 10, 20);
+        tbId.setBounds(800, 10, 30, 20);
 
         tbDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,11 +278,11 @@ import javax.swing.table.DefaultTableModel;
 
         jLabel1.setText("DNI");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 60, 18, 14);
+        jLabel1.setBounds(20, 60, 40, 14);
 
         jLabel20.setText("Nombre");
         getContentPane().add(jLabel20);
-        jLabel20.setBounds(20, 110, 37, 20);
+        jLabel20.setBounds(20, 110, 50, 20);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         getContentPane().add(jLabel7);
@@ -348,6 +355,8 @@ import javax.swing.table.DefaultTableModel;
         jLabel18.setText("Mesa");
         getContentPane().add(jLabel18);
         jLabel18.setBounds(10, 80, 60, 30);
+        getContentPane().add(tbIdMesa);
+        tbIdMesa.setBounds(740, 460, 6, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -356,7 +365,11 @@ import javax.swing.table.DefaultTableModel;
 //      corregir trapix
         
         int filaSeleccionada = this.tReserva.getSelectedRow(); 
-
+        if(tbNombre.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Ingrese un cliente : ");
+        }
+        else
         if(ftbHora.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Ingrese la hora de la reserva : ");
@@ -375,6 +388,8 @@ import javax.swing.table.DefaultTableModel;
             Cliente cliente = clienteData.buscarClienteXDni(Integer.parseInt(tbDni.getText()));
             int idCliente = cliente.getIdCliente();
             
+            int idReserva=Integer.parseInt(tbId.getText());
+            
             int idMesa=Integer.parseInt(tMesa.getValueAt(filaSeleccionada, 0).toString());
             Mesa mesa = mesaData.buscarMesa(idMesa);;
              
@@ -386,8 +401,8 @@ import javax.swing.table.DefaultTableModel;
             
             boolean activo=true;
 
-            Reserva reserva=new Reserva(cliente,mesa,hora,fecha,activo);//da id? o no preguntar
-            reservaData.guardarReserva(reserva);
+            Reserva reserva=new Reserva(idReserva,cliente,mesa,hora,fecha,activo);//da id? o no preguntar
+            reservaData.actualizarReserva(reserva);
             tbId.setText(reserva.getIdReserva()+"");
             limpiar();
             borraFilasTablaReserva();//limpia la tabla
@@ -430,8 +445,16 @@ import javax.swing.table.DefaultTableModel;
         {
             tbId.setText(tReserva.getValueAt(filaseleccionada, 0).toString());
             
-            ftbHora.setText(tReserva.getValueAt(filaseleccionada, 1).toString());
-//            chActivo.setSelected(Boolean.parseBoolean(tReserva.getValueAt(filaseleccionada, 5).toString()) );
+            ftbHora.setText(tReserva.getValueAt(filaseleccionada, 3).toString());
+            jdcFecha.setDate((Date)tReserva.getValueAt(filaseleccionada, 4));
+            
+            Cliente cliente = clienteData.buscarCliente(Integer.parseInt(tReserva.getValueAt(filaseleccionada, 5).toString()));
+            tbDni.setText(cliente.getDni()+"");
+            tbNombre.setText(cliente.getNombre());
+            Mesa mesa = mesaData.buscarMesa(Integer.parseInt(tReserva.getValueAt(filaseleccionada, 6).toString()));
+            tbIdMesa.setText(tReserva.getValueAt(filaseleccionada, 6).toString());
+            
+            
         }
         catch(Exception e)
         {
@@ -457,8 +480,13 @@ import javax.swing.table.DefaultTableModel;
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
     int filaSeleccionada = this.tMesa.getSelectedRow(); 
-
-    if(ftbHora.getText().isEmpty())
+    
+    
+    if(tbNombre.getText().isEmpty())
+    {
+        JOptionPane.showMessageDialog(null, "Ingrese un cliente : ");
+    }
+    else if(ftbHora.getText().isEmpty())
     {
         JOptionPane.showMessageDialog(null, "Ingrese la hora de la reserva : ");
     }
@@ -472,9 +500,9 @@ import javax.swing.table.DefaultTableModel;
     }
     else
     {
-
-        Cliente cliente = clienteData.buscarClienteXDni(Integer.parseInt(tbDni.getText()));
-        int idCliente = cliente.getIdCliente();
+        int dni=Integer.parseInt(tbDni.getText());
+        Cliente cliente=clienteData.buscarClienteXDni(dni);
+        
 
         int idMesa=Integer.parseInt(tMesa.getValueAt(filaSeleccionada, 0).toString());
         Mesa mesa = mesaData.buscarMesa(idMesa);
@@ -522,18 +550,26 @@ import javax.swing.table.DefaultTableModel;
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
 //       corregir trapix
-        
-        if(tbNombre.getText().isEmpty())
+        int filaseleccionada = tReserva.getSelectedRow();
+        if(filaseleccionada==-1)
         {
-            JOptionPane.showMessageDialog(null, "Ingrese el nombre de la Producto : ");
+            JOptionPane.showMessageDialog(null, "Seleccione una fila : ");
         }
         else
         {
+ 
+            Mesa mesa = mesaData.buscarMesa(Integer.parseInt(tbIdMesa.getText()));
+            mesa.setEstado("Libre");
+            mesaData.actualizarMesa(mesa);
             int id=Integer.parseInt(tbId.getText());
             reservaData.borrarReserva(id);
             limpiar();
             borraFilasTablaReserva();
             cargaDatosTablaReserva();
+            borraFilasTablaMesa();
+
+            cargaDatosTablaMesa();
+
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
         
@@ -541,7 +577,18 @@ import javax.swing.table.DefaultTableModel;
         // TODO add your handling code here:
     }//GEN-LAST:event_ftbHoraActionPerformed
        public void limpiar()
-       {}
+       {
+         
+              escritorio.removeAll();
+        escritorio.repaint();
+        VistaReservas vr=new VistaReservas();
+        vr.setVisible(true);
+        escritorio.add(vr);
+        escritorio.moveToFront(vr);
+                      
+
+
+       }
        
 //_________________________________________________________________________________________________________________________________________________    
 //_____________________________________________________________________TABLA RESERVA__________________________________________________________________
@@ -579,7 +626,7 @@ import javax.swing.table.DefaultTableModel;
             //Llenar filas
             for(Reserva r:listaReservas)
             {
-                modeloReserva.addRow(new Object[]{r.getIdReserva(),r.getCliente().getNombre(),r.getMesa().getCantidad(),r.getHora(),r.getFecha()});                          
+                modeloReserva.addRow(new Object[]{r.getIdReserva(),r.getCliente().getNombre(),r.getMesa().getCantidad(),r.getHora(),r.getFecha(),r.getCliente().getIdCliente()});                          
             }             
         }
         public void cargaDatosTablaReserva()
@@ -589,7 +636,7 @@ import javax.swing.table.DefaultTableModel;
             //Llenar filas
             for(Reserva r:listaReservas)
             {
-                modeloReserva.addRow(new Object[]{r.getIdReserva(),r.getCliente().getNombre(),r.getMesa().getCantidad(),r.getHora(),r.getFecha()});                          
+                modeloReserva.addRow(new Object[]{r.getIdReserva(),r.getCliente().getNombre(),r.getMesa().getNombre(),r.getHora(),r.getFecha(),r.getCliente().getIdCliente(),r.getMesa().getIdMesa()});                          
             }
              
         }
@@ -613,8 +660,8 @@ import javax.swing.table.DefaultTableModel;
             columnas.add("MESA");
             columnas.add("HORA");
             columnas.add("FECHA");
-            columnas.add("ACTIVO");
-        
+            columnas.add("IDCLIENTE");
+            columnas.add("IDMESA");
                 for(Object vp:columnas)
                 {   
                     modeloReserva.addColumn(vp);
@@ -707,6 +754,7 @@ public void cargaDatosTablaMesa(String Dato)
     private javax.swing.JTextField tbBuscar;
     private javax.swing.JTextField tbDni;
     private javax.swing.JTextField tbId;
+    private javax.swing.JTextField tbIdMesa;
     private javax.swing.JTextField tbNombre;
     // End of variables declaration//GEN-END:variables
 public void validarSoloLetras(JTextField campo)
