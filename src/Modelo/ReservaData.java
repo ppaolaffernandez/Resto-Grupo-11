@@ -112,7 +112,7 @@ public class ReservaData
         try
         { 
 //            String sql = "DELETE FROM reserva WHERE idReserva =?;";
-            String sql =  "UPDATE reservo SET activo = false WHERE idReserva = ?;";
+            String sql =  "UPDATE reserva SET activo = false WHERE idReserva = ?;";
             
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);
