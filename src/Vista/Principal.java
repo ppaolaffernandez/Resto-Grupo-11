@@ -33,8 +33,6 @@ public class Principal extends javax.swing.JFrame {
         jmiProductos = new javax.swing.JMenuItem();
         reservas = new javax.swing.JMenu();
         jmiReservas = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(972, 546));
@@ -145,18 +143,6 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar3.add(reservas);
 
-        jMenu1.setText("Logo");
-
-        jMenuItem2.setText("Logo");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2);
-
-        jMenuBar3.add(jMenu1);
-
         setJMenuBar(jMenuBar3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -254,15 +240,6 @@ public class Principal extends javax.swing.JFrame {
         escritorio.moveToFront(vp);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-   escritorio.removeAll();
-        escritorio.repaint();
-       VistaLogo vp=new VistaLogo();
-        vp.setVisible(true);
-        escritorio.add(vp);
-        escritorio.moveToFront(vp);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -300,10 +277,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu Categorias;
     private javax.swing.JMenu Clientes;
     public static javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jmiCategorias;
     private javax.swing.JMenuItem jmiClientes;
     private javax.swing.JMenuItem jmiMesas;

@@ -128,28 +128,24 @@ public class VistaProductos extends javax.swing.JInternalFrame
         jLabel6.setText("Codigo");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 60, 40));
 
-        tbCodigo.setBackground(new java.awt.Color(255, 204, 204));
         tbCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
         getContentPane().add(tbCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, 250, 30));
 
         jLabel9.setText("Nombre");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 60, 40));
 
-        tbNombre.setBackground(new java.awt.Color(255, 204, 204));
         tbNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
         getContentPane().add(tbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 250, 30));
 
         jLabel10.setText("Cantidad");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, 70, 50));
 
-        tbCantidad.setBackground(new java.awt.Color(255, 204, 204));
         tbCantidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
         getContentPane().add(tbCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 480, 250, 30));
 
         jLabel11.setText("Precio");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, 70, 50));
 
-        tbPrecio.setBackground(new java.awt.Color(255, 204, 204));
         tbPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 153)));
         getContentPane().add(tbPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 520, 250, 30));
 

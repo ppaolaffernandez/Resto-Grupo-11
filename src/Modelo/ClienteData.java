@@ -102,8 +102,8 @@ public class ClienteData
     try 
         {
             
-//            String sql = "DELETE FROM mesa WHERE idMesa =?;";
-             String sql =  "UPDATE cliente SET activo = false WHERE idCliente = ?;";
+          //     String sql = "DELETE FROM mesero WHERE idMesero =?;"; //  ELIMNA EL ACTIVO todo lo elimna completamente
+             String sql =  "UPDATE cliente SET activo = false WHERE idCliente = ?;";//  eSTE MODIFICA EL ACTIVO, no borra
              
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

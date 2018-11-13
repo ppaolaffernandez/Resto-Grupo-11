@@ -1,4 +1,4 @@
-
+//PARA AHCER TABLA HACER EL CONSTRCUTOR COPIAR LOS CODIGO Q ESTAN DELINEADOS Y EL MOUSEPRESSED
 package Vista;
 
 import Modelo.Cliente;
@@ -37,10 +37,10 @@ private DefaultTableModel modeloClientes;
             conexion = new Conexion("jdbc:mysql://localhost/resto", "root", "");
             clienteData = new ClienteData(conexion);
 
-            modeloClientes=new DefaultTableModel();
-            armaCabeceraTablaCliente();//pone los titulos de la tabla
-            cargaDatosTablaCliente();
-            tbId.setVisible(false);//ocultamos la caja blanca(textfield)ID.
+            modeloClientes=new DefaultTableModel();//PARA TABLA
+            armaCabeceraTablaCliente();//pone los titulos de la tabla, PARA HACER TABLA
+            cargaDatosTablaCliente();//PARA TABLA
+            tbId.setVisible(false);//ocultamos la caja blanca(textfield)ID.PARA HACER TABLA
         }
         catch (ClassNotFoundException ex)
         {
@@ -350,7 +350,9 @@ private DefaultTableModel modeloClientes;
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void tClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tClienteMousePressed
-            int filaseleccionada = tCliente.getSelectedRow();
+            
+        //PARA LA TABLA
+        int filaseleccionada = tCliente.getSelectedRow();
         try
         {
             tbId.setText(tCliente.getValueAt(filaseleccionada, 0).toString());
@@ -379,6 +381,15 @@ private DefaultTableModel modeloClientes;
         tbDni.setText("");
         
     }
+    
+    //_____________________________TABLA ClIENTE___________________________________________________________________________________________________
+//__________________________________________________________________________________________________
+//___________________________________________________________________________________________________________________________________________________
+//____________________________________________________________________________________________________________________________________________________________________________________________________
+//__________________________________________________________________________________________________
+                     
+    
+    
     public void cargaDatosTablaCliente(String Dato)
         {   
             borraFilasTablaCliente();
@@ -434,6 +445,14 @@ private DefaultTableModel modeloClientes;
             tCliente.getColumnModel().getColumn(2).setPreferredWidth(350);
             
         }
+        
+        
+//_____________________________TABLA FIN CATEGORIA___________________________________________________________________________________________________
+//__________________________________________________________________________________________________
+//___________________________________________________________________________________________________________________________________________________
+//____________________________________________________________________________________________________________________________________________________________________________________________________
+//__________________________________________________________________________________________________
+                     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBorrar;
@@ -496,6 +515,13 @@ public void limitarCaracteres(JTextField campo,int cantidad)
     });
 
 }
+   
+//_____________________________PARA QUE EL EL COMBOX BUSQUE POR DNI,DESACTIVADO ETC___________________________________________________________________________________________________
+//__________________________________________________________________________________________________
+//___________________________________________________________________________________________________________________________________________________
+//____________________________________________________________________________________________________________________________________________________________________________________________________
+//__________________________________________________________________________________________________
+                     
 
 public void cargaDatosTablaClientexDni(int Dato) //ESTEEE LISTA POR NUMEROOOOOOOO
         {   
@@ -562,11 +588,8 @@ public void cargaDatosTablaClientexDni(int Dato) //ESTEEE LISTA POR NUMEROOOOOOO
             //Titulos de Columnas
             ArrayList<Object> columnas=new ArrayList<Object>();
             columnas.add("ID:");
-
-           
             columnas.add("NOMBRE.");
             columnas.add("DNI");
-
             columnas.add("ACTIVO");
 
             for(Object vp:columnas)
@@ -575,10 +598,7 @@ public void cargaDatosTablaClientexDni(int Dato) //ESTEEE LISTA POR NUMEROOOOOOO
             }
             tCliente.setModel(modeloClientes);
         }
-     /*______________________________________________________________________________________________________
-    ___________________________________  PARA LISTAR POR SUS ATRIBUTOS(DATOS)______________________________________________________________
-    __________________________________________________________________________________________
-    _________________________________________________________________________________*/
+    
 
 
 

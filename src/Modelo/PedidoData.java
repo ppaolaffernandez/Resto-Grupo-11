@@ -109,7 +109,9 @@ public class PedidoData
     {
         try
         {  
-            String sql = "DELETE FROM pedido WHERE idPedido =?;";
+          //  String sql = "DELETE FROM pedido WHERE idPedido =?;"; ELIMNA EL ACTIVO todo lo elimna completamente
+                  String sql =  "UPDATE pedido SET activo = false WHERE idPedido = ?;"; //  eSTE MODIFICA EL ACTIVO, no borra
+
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);

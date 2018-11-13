@@ -443,6 +443,10 @@ private DefaultTableModel modeloMeseros;
                 modeloMeseros.addColumn(vp);
             }
             tMesero.setModel(modeloMeseros);
+            tMesero.getColumnModel().getColumn(0).setPreferredWidth(250);
+            tMesero.getColumnModel().getColumn(1).setPreferredWidth(3500);
+            tMesero.getColumnModel().getColumn(2).setPreferredWidth(1555);
+            tMesero.getColumnModel().getColumn(3).setPreferredWidth(1000);
         }
      /*______________________________________________________________________________________________________
     ___________________________________  PARA LISTAR POR SUS ATRIBUTOS(DATOS)______________________________________________________________

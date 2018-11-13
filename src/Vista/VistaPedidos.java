@@ -63,8 +63,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         initComponents();
         
         
-        validarSoloNumeros(tbDni);
-        limitarCaracteres(tbDni,8);
+        
         
          Date now = new Date(System.currentTimeMillis());
          SimpleDateFormat date =new SimpleDateFormat("yyyy-MM-dd");
@@ -118,12 +117,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private void initComponents() {
 
         btrpConjunto = new javax.swing.ButtonGroup();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        tbDni = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        tbNombre = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         tbHora = new javax.swing.JTextField();
@@ -158,7 +151,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         cbCantidad = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -169,67 +161,27 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel11 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(1300, 651));
-        setMinimumSize(new java.awt.Dimension(1300, 651));
-        setPreferredSize(new java.awt.Dimension(1300, 651));
+        setMaximumSize(new java.awt.Dimension(1133, 673));
+        setMinimumSize(new java.awt.Dimension(1133, 673));
+        setPreferredSize(new java.awt.Dimension(1133, 673));
         getContentPane().setLayout(null);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("-INFORME DE CLIENTE-");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(410, 0, 190, 30);
-
-        jLabel7.setText("Dni");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(340, 30, 40, 50);
-
-        tbDni.setBorder(null);
-        tbDni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbDniActionPerformed(evt);
-            }
-        });
-        getContentPane().add(tbDni);
-        tbDni.setBounds(400, 40, 140, 30);
-
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscarosa_副本.png"))); // NOI18N
-        btnBuscar.setText("Buscar");
-        btnBuscar.setBorder(null);
-        btnBuscar.setBorderPainted(false);
-        btnBuscar.setContentAreaFilled(false);
-        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBuscar);
-        btnBuscar.setBounds(570, 40, 90, 50);
-
-        jLabel9.setText("Cliente");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(340, 80, 50, 40);
-
-        tbNombre.setBorder(null);
-        getContentPane().add(tbNombre);
-        tbNombre.setBounds(400, 80, 140, 30);
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setText("-FECHA/HORA-");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(420, 130, 130, 40);
+        jLabel10.setBounds(430, 0, 150, 40);
 
         jLabel13.setText("Hora");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(360, 170, 60, 50);
+        jLabel13.setBounds(380, 60, 60, 50);
         getContentPane().add(tbHora);
-        tbHora.setBounds(430, 180, 130, 30);
+        tbHora.setBounds(440, 70, 170, 30);
 
         jLabel8.setText("Fecha");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(360, 210, 70, 50);
+        jLabel8.setBounds(380, 130, 70, 50);
         getContentPane().add(tbFecha);
-        tbFecha.setBounds(430, 220, 130, 30);
+        tbFecha.setBounds(440, 130, 170, 30);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("-INFORME DE PRODUCTO-");
@@ -344,7 +296,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel21.setBounds(260, 390, 210, 40);
 
         pnlMesas.setBackground(new java.awt.Color(255, 204, 255));
-        pnlMesas.setLayout(new java.awt.GridLayout(1, 0));
+        pnlMesas.setLayout(new java.awt.GridLayout(2, 0));
         getContentPane().add(pnlMesas);
         pnlMesas.setBounds(10, 440, 650, 160);
 
@@ -396,7 +348,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setText("--NÚMERO DE MESAS--");
         getContentPane().add(jLabel19);
-        jLabel19.setBounds(410, 270, 170, 50);
+        jLabel19.setBounds(420, 230, 170, 50);
 
         btnPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/aGREGARICONOROSA_副本.png"))); // NOI18N
         btnPedido.setText("Nuevo  Pedido");
@@ -410,7 +362,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             }
         });
         getContentPane().add(btnPedido);
-        btnPedido.setBounds(330, 330, 140, 40);
+        btnPedido.setBounds(340, 310, 140, 40);
 
         btnVerMesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ICONO VER_副本.png"))); // NOI18N
         btnVerMesa.setText("Ver Mesa");
@@ -424,7 +376,7 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             }
         });
         getContentPane().add(btnVerMesa);
-        btnVerMesa.setBounds(500, 330, 120, 40);
+        btnVerMesa.setBounds(540, 310, 120, 40);
 
         jLabel17.setText("Cantidad");
         getContentPane().add(jLabel17);
@@ -446,17 +398,12 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(330, 0, 350, 130);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(330, 140, 350, 120);
+        jLabel1.setBounds(330, 0, 350, 200);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(330, 270, 350, 120);
+        jLabel3.setBounds(330, 210, 350, 180);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -502,19 +449,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        int dni=Integer.parseInt(tbDni.getText());
-
-        Cliente cliente=clienteData.buscarClienteXDni(dni);
-        
-        if(cliente!=null)
-        {
-            tbNombre.setText(cliente.getNombre());
-        }
-                                            
- 
-    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void cbCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCategoriasActionPerformed
         borraFilasTablaProducto();
@@ -692,10 +626,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
         }
     }//GEN-LAST:event_btnPedidoActionPerformed
 
-    private void tbDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbDniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbDniActionPerformed
-
     private void rbAtendidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAtendidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbAtendidoActionPerformed
@@ -782,6 +712,11 @@ public class VistaPedidos extends javax.swing.JInternalFrame
              modeloMesero.addColumn(x);
         }
         tMesero.setModel(modeloMesero);
+        
+        tMesero.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tMesero.getColumnModel().getColumn(1).setPreferredWidth(350);
+            
+        
     }
     public void cargaDatosTablaMesero()
     {
@@ -817,6 +752,12 @@ public class VistaPedidos extends javax.swing.JInternalFrame
             modeloProducto.addColumn(vp);
         }
         tProducto.setModel(modeloProducto);
+        
+        
+        tProducto.getColumnModel().getColumn(0).setPreferredWidth(250);
+        tProducto.getColumnModel().getColumn(1).setPreferredWidth(3500);
+        tProducto.getColumnModel().getColumn(2).setPreferredWidth(2555);
+        tProducto.getColumnModel().getColumn(3).setPreferredWidth(1000);
 }
         public void cargaDatosTablaProductos()
         {
@@ -910,7 +851,6 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cantidad;
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnPedido;
     private javax.swing.JButton btnSacar;
@@ -929,18 +869,14 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
@@ -953,10 +889,8 @@ public class VistaPedidos extends javax.swing.JInternalFrame
     private javax.swing.JTable tDetalle;
     private javax.swing.JTable tMesero;
     private javax.swing.JTable tProducto;
-    private javax.swing.JTextField tbDni;
     private javax.swing.JTextField tbFecha;
     private javax.swing.JTextField tbHora;
-    private javax.swing.JTextField tbNombre;
     private javax.swing.JTextField tbTotal;
     // End of variables declaration//GEN-END:variables
 public void validarSoloLetras(JTextField campo)

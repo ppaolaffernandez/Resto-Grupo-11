@@ -126,9 +126,10 @@ public class CategoriaData
     {
          try
         {
+           //     String sql = "DELETE FROM mesero WHERE idMesero =?;"; //  ELIMNA EL ACTIVO todo lo elimna completamente
+
             String sql =  "UPDATE categoria SET activo = false WHERE idCategoria = ?;";//Actualizamos el activo,si borra el activo queda en false y si no borra el true 0=false, 1=true
            
-//            String sql = "DELETE FROM categoria WHERE idCategoria =?;";
             
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);

@@ -182,7 +182,7 @@ import javax.swing.table.DefaultTableModel;
         jScrollPane3.setViewportView(tReserva);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(400, 60, 430, 290);
+        jScrollPane3.setBounds(400, 60, 480, 290);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("--LISTADO DE RESERVA--");
@@ -201,7 +201,7 @@ import javax.swing.table.DefaultTableModel;
             }
         });
         getContentPane().add(btnBorrar);
-        btnBorrar.setBounds(650, 360, 90, 50);
+        btnBorrar.setBounds(640, 350, 90, 70);
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/sALIRROSA_副本.png"))); // NOI18N
         btnSalir.setText("Salir");
@@ -215,7 +215,7 @@ import javax.swing.table.DefaultTableModel;
             }
         });
         getContentPane().add(btnSalir);
-        btnSalir.setBounds(750, 370, 80, 40);
+        btnSalir.setBounds(750, 360, 80, 50);
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/dISPONIBLEROSA_副本.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -229,7 +229,7 @@ import javax.swing.table.DefaultTableModel;
             }
         });
         getContentPane().add(btnActualizar);
-        btnActualizar.setBounds(530, 360, 100, 50);
+        btnActualizar.setBounds(510, 360, 120, 50);
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/RESERVARICONO ROSA_副本.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -243,7 +243,7 @@ import javax.swing.table.DefaultTableModel;
             }
         });
         getContentPane().add(btnGuardar);
-        btnGuardar.setBounds(400, 360, 100, 50);
+        btnGuardar.setBounds(390, 360, 110, 50);
 
         lblReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
         lblReserva.setText("jLabel1");
@@ -251,7 +251,7 @@ import javax.swing.table.DefaultTableModel;
         lblReserva.setMinimumSize(new java.awt.Dimension(778, 639));
         lblReserva.setPreferredSize(new java.awt.Dimension(778, 639));
         getContentPane().add(lblReserva);
-        lblReserva.setBounds(390, 0, 450, 520);
+        lblReserva.setBounds(390, 0, 490, 520);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("--BUSCAR CLIENTE--");
@@ -350,7 +350,7 @@ import javax.swing.table.DefaultTableModel;
         jLabel15.setBackground(new java.awt.Color(255, 204, 255));
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/2.jpg"))); // NOI18N
         getContentPane().add(jLabel15);
-        jLabel15.setBounds(0, 0, 850, 620);
+        jLabel15.setBounds(0, 0, 870, 620);
 
         jLabel18.setText("Mesa");
         getContentPane().add(jLabel18);
@@ -667,6 +667,16 @@ import javax.swing.table.DefaultTableModel;
                     modeloReserva.addColumn(vp);
                 }
                     tReserva.setModel(modeloReserva);
+                    
+                    
+            tReserva.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tReserva.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tReserva.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tReserva.getColumnModel().getColumn(3).setPreferredWidth(95);
+            tReserva.getColumnModel().getColumn(3).setPreferredWidth(95);
+            tReserva.getColumnModel().getColumn(3).setPreferredWidth(90);
+            tReserva.getColumnModel().getColumn(3).setPreferredWidth(90);
+
         }
 //_____________________________________________________________________________________________________________________________________________
 // __________________________________________________________TABLA MESA________________________________________________________________________      

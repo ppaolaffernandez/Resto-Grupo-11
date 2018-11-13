@@ -35,9 +35,10 @@ private DefaultTableModel modeloCategorias;
             
             categoriaData = new CategoriaData(conexion);  
             modeloCategorias=new DefaultTableModel();
+            
             armaCabeceraTablaCategoria();
-           
             cargaDatosTablaCategoria();
+            
             tbId.setVisible(false);//ocultamos la caja blanca(textfield)ID.
         }
         catch (ClassNotFoundException ex)
@@ -238,7 +239,17 @@ private DefaultTableModel modeloCategorias;
     }//GEN-LAST:event_tbIdActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
+//          int id=Integer.parseInt(tbId.getText());/*EL BOTON NO SIRVE SOLO LA CAJA DE TEXTOOO,PONER LA CAJA DE TEXTO NO EL 
+//                BOTON BTNbUSCAR*/
+//        Cliente cliente;
+//    cliente = clienteData.buscarCliente(id);
+//        if(cliente!=null)
+//        {
+//            tbId.setText(cliente.getIdCliente()+"");
+//            tbDni.setText(cliente.getDni()+"");
+//            tbNombre.setText(cliente.getNombre());
+//            chActivo.setSelected(cliente.getActivo());//BUSCARRRRRRRRR EN EL CLIENTEEEEEEEEEEEE CMABIAR EL IS POR EL GET
+//        }
       if(tbBuscar.getText().isEmpty())//SI NO HAY DATOS NO AGREGA
       {
           JOptionPane.showMessageDialog(null, "Seleccione Fila : ");
@@ -255,6 +266,18 @@ private DefaultTableModel modeloCategorias;
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+//        //el guardar nunca tiene id porque es incrementa automaticamente
+//        int dni=Integer.parseInt(tbDni.getText());
+//
+//        String nombre=tbNombre.getText();
+//       
+//        boolean activo=chActivo.isSelected();
+//
+//        Cliente cliente=new Cliente(dni,nombre,activo);
+//        clienteData.guardarCliente(cliente);//VA SIN MAYUSCULAS(mesadata)
+//        //el guardar Vista tiene id al ultimo,porque toda la informacion lo guarda en el id
+        
+        
         if(tbNombre.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria : ");
@@ -279,7 +302,10 @@ private DefaultTableModel modeloCategorias;
     }//GEN-LAST:event_btnGuardar1ActionPerformed
 
     private void btnBorrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrar1ActionPerformed
-
+//  int id=Integer.parseInt(tbId.getText());
+//      clienteData.borrarCliente(id);
+      
+      
           if(tbNombre.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Ingrese el nombre de la categoria : ");
@@ -299,6 +325,19 @@ private DefaultTableModel modeloCategorias;
     }//GEN-LAST:event_btnBorrar1ActionPerformed
 
     private void btnActualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizar1ActionPerformed
+//if (tbId.getText()!=null)
+//        {
+//            int id=Integer.parseInt(tbId.getText());
+//            int dni=Integer.parseInt(tbDni.getText());
+//
+//            String nombre=tbNombre.getText();
+//
+//            boolean activo=chActivo.isSelected();
+//
+//            Cliente cliente=new Cliente(id,dni,nombre,activo);//en el actualizar siempre en el consructor va id
+//            clienteData.actualizarCliente(cliente);
+//    }
+
         if(tbNombre.getText().isEmpty())//si la caja esta vacia va a salir un mensaje que falta el nombre
             
         {
@@ -330,7 +369,7 @@ private DefaultTableModel modeloCategorias;
     }//GEN-LAST:event_tbBuscarActionPerformed
 
     private void tCategoriaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tCategoriaMousePressed
-       int filaseleccionada = tCategoria.getSelectedRow();
+       int filaseleccionada = tCategoria.getSelectedRow();//*para SEELCCIONAR LA FILA DELA TABLA QUEDA EN AZUL
        try
        {
            tbId.setText(tCategoria.getValueAt(filaseleccionada, 0).toString());
@@ -347,17 +386,25 @@ private DefaultTableModel modeloCategorias;
     private void cbDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDatosActionPerformed
         if(cbDatos.getSelectedItem()=="Desactivado")
         {
-            cargaDatosTablaCategoriaxDesactivado();
+            cargaDatosTablaCategoriaxDesactivado();//eSTE ES EK COMBOBON SOLO SALE DESACTIVO DEL COMBON DONDE (TIENE NOMBRE,DNI..ESTO SOLO VA EN EL GUARDAR.),
         }
     }//GEN-LAST:event_cbDatosActionPerformed
      public void limpiar()
     {
         tbNombre.setText("");
         tbDescripcion.setText("");
-        ;
-    }
+        //ESTE LO CREO SEPADO DEL BOTON LIMPIAR DSP LO PONGO EN TODOS LOS BOTONES 
+    }  
      
-//_____________________________TABLA CATEGORIA__________________________________________________
+//_____________________________TABLA CATEGORIA___________________________________________________________________________________________________
+//__________________________________________________________________________________________________
+//___________________________________________________________________________________________________________________________________________________
+//____________________________________________________________________________________________________________________________________________________________________________________________________
+//__________________________________________________________________________________________________
+                     
+                     
+                     
+                     
 public void cargaDatosTablaCategoriaxDesactivado() //ESTEEE LISTA POR DESACTIVADOS
         {   
             borraFilasTablaCategoria();
@@ -432,19 +479,15 @@ public void cargaDatosTablaCategoriaxDesactivado() //ESTEEE LISTA POR DESACTIVAD
             }
             tCategoria.setModel(modeloCategorias);
             
-            
-            
-            
-           
-            tCategoria.getColumnModel().getColumn(0).setPreferredWidth(10);
-            tCategoria.getColumnModel().getColumn(1).setPreferredWidth(100);
-            tCategoria.getColumnModel().getColumn(2).setPreferredWidth(250);
-
+            tCategoria.getColumnModel().getColumn(0).setPreferredWidth(250);
+            tCategoria.getColumnModel().getColumn(1).setPreferredWidth(3500);
+            tCategoria.getColumnModel().getColumn(2).setPreferredWidth(5555);
+            tCategoria.getColumnModel().getColumn(3).setPreferredWidth(1000);
 
             
             
             
-        }
+            }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -92,9 +92,10 @@ public class MeseroData
     {
         try 
           {
+              
 
-    //            String sql = "DELETE FROM mesa WHERE idMesa =?;";
-                 String sql =  "UPDATE mesero SET activo = false WHERE idMesero = ?;";
+          //     String sql = "DELETE FROM mesero WHERE idMesero =?;"; //  ELIMNA EL ACTIVO todo lo elimna completamente
+                  String sql =  "UPDATE mesero SET activo = false WHERE idMesero = ?;"; //  eSTE MODIFICA EL ACTIVO 
 
                 PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 statement.setInt(1, id);
