@@ -56,23 +56,26 @@ public class VistaLogo extends javax.swing.JFrame
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(450, 250));
-        setMinimumSize(new java.awt.Dimension(450, 250));
-        setPreferredSize(new java.awt.Dimension(450, 250));
+        setMaximumSize(new java.awt.Dimension(520, 300));
+        setMinimumSize(new java.awt.Dimension(520, 300));
+        setPreferredSize(new java.awt.Dimension(520, 300));
         getContentPane().setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Usuario ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(69, 20, 94, 32);
+        jLabel1.setBounds(90, 60, 110, 32);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Contraseña");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(69, 70, 56, 34);
+        jLabel2.setBounds(80, 110, 150, 34);
         getContentPane().add(tbUsuario);
-        tbUsuario.setBounds(181, 20, 96, 32);
+        tbUsuario.setBounds(240, 60, 170, 32);
         getContentPane().add(tbContraseña);
-        tbContraseña.setBounds(181, 70, 96, 34);
+        tbContraseña.setBounds(240, 110, 170, 34);
 
+        btnIniciar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/50659463-iniciar-sesión-icono-de-botón-redondo-de-color-rosa-brillante_副本.png"))); // NOI18N
         btnIniciar.setText("Iniciar");
         btnIniciar.setBorder(null);
@@ -85,8 +88,9 @@ public class VistaLogo extends javax.swing.JFrame
             }
         });
         getContentPane().add(btnIniciar);
-        btnIniciar.setBounds(140, 142, 130, 60);
+        btnIniciar.setBounds(100, 180, 130, 60);
 
+        btnSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/sALIRROSA_副本.png"))); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.setBorder(null);
@@ -99,11 +103,11 @@ public class VistaLogo extends javax.swing.JFrame
             }
         });
         getContentPane().add(btnSalir);
-        btnSalir.setBounds(280, 150, 120, 50);
+        btnSalir.setBounds(280, 180, 120, 60);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas pequeño副本.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/wcrm-final_副本.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 440, 220);
+        jLabel3.setBounds(0, 0, 520, 270);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

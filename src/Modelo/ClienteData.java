@@ -9,6 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
+
+/*int para  enteros (no van con comas)
+  String para letras 
+  Double para decimeales(Numeros con coma)
+  Date para fechas
+  time para horas(pero juan lo usa como String porque es mas dificil usarlo)
+*/
 public class ClienteData 
 {
     private Connection connection = null;

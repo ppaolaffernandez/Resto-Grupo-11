@@ -1,3 +1,10 @@
+/*int para  enteros (no van con comas)
+  String para letras 
+  Double para decimeales(Numeros con coma)
+  Date para fechas
+  time para horas(pero juan lo usa como String porque es mas dificil usarlo)
+*/
+
 package Vista;
 
 import Modelo.Categoria;

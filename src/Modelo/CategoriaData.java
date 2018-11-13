@@ -1,3 +1,11 @@
+
+/*int para  enteros (no van con comas)
+  String para letras 
+  Double para decimeales(Numeros con coma)
+  Date para fechas
+  time para horas(pero juan lo usa como String porque es mas dificil usarlo)
+*/
+
 package Modelo;
 
 import java.sql.Connection;
@@ -12,11 +20,15 @@ public class CategoriaData
 {
     private Connection connection = null;
     private Conexion conexion;
+    //poner this this.conexion=conexion; SIEMPREEEEEEEE AVECES SE SALE CUANDO PASAMOS¡¡¡¡¡¡¡¡¡¡.
+
     
     public CategoriaData(Conexion conexion)
     {
         try 
         {
+       //poner this this.conexion=conexion; SIEMPREEEEEEEE AVECES SE SALE CUANDO PASAMOS¡¡¡¡¡¡¡¡¡¡.
+   
          this.conexion=conexion;
             connection = conexion.getConexion();
         } 
@@ -25,11 +37,24 @@ public class CategoriaData
             System.out.println("Error al abrir al obtener la conexion");
         }
     }
+    
+    /*/GUARGARRRRRR____________GUARDAR______________________________GUARDAR___________________
+    ____________GUARDAR______________________________GUARDAR___________________
+    ______________________________GUARDAR___________________ ______________________________GUARDAR___________________ */
+    
+    
+    //    el id en guardar incrementea automaticamente
+
     public void guardarCategoria(Categoria categoria)
     {
         try 
         {           
+         //*EN EL GUARDAR NUNCA LLEVA EL ID DE LA CLAVE PRINCIPAL,IDPRODCTO EN ESTE CASO
+
             String sql = "INSERT INTO categoria (nombre, descripcion, activo) VALUES ( ? , ? , ? );";
+            
+            //*EN EL GUARDAR NUNCA LLEVA EL ID DE LA CLAVE PRINCIPAL,IDPRODCTO EN ESTE CASO
+
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
            
             statement.setString(1, categoria.getNombre());
@@ -56,7 +81,7 @@ public class CategoriaData
         }
     }
     
-    public List<Categoria> obtenerCategorias()
+    public List<Categoria> obtenerCategorias()//*cuadno vea rojo el metodo es porque me falta una llave arriba
     {
         List<Categoria> categorias = new ArrayList<Categoria>();
             
@@ -122,6 +147,13 @@ public class CategoriaData
               
         return categorias;
     }
+     
+  /*/BUorrrar____________BORRAR______________________________BORRAR___________________
+    ____________BORRAR______________________________BBUorrrar____________BORRAR______________________________BORRAR______________________________________
+    ______________________________BORRAR___________________ ______________________________BORRAR___________________ */
+        
+     
+     
     public void borrarCategoria(int id)
     {
          try
@@ -147,6 +179,16 @@ public class CategoriaData
     
     }
     
+    
+    
+     /*/ACTUALZAR____________ACTUALZAR______________________________ACTUALZARR___________________
+    ____________ACTUALZARR______________________________ACTUALZARR___________________
+    ______________________________ACTUALZARR___________________ ______________________________ACTUALZARR___________________ */
+    
+    
+    
+    
+    
     public void actualizarCategoria(Categoria categoria)
     {
     
@@ -170,6 +212,11 @@ public class CategoriaData
         }
     
     }
+    
+      /*/BUSCARRRRR____________BUSCARRRRR______________________________BUSCARRRRRARR___________________
+    ____________BUSCARRRRR______________________________BUSCARRRRRARR___________________
+    ______________________________BUSCARRRRR___________________ ______________________________BUSCARRRRRRR___________________ */
+    
     
     public Categoria buscarCategoria(int id)
     {
@@ -204,6 +251,13 @@ public class CategoriaData
     } 
     //....Nuevo..........
     
+    
+    /*/obtenerCategoriasDeProductos____________obtenerCategoriasDeProductos______________________________obtenerCategoriasDeProductos___________________
+    ____________obtenerCategoriasDeProductos______________________________obtenerCategoriasDeProductos___________________
+    ______________________________obtenerCategoriasDeProductos___________________ _____________________________obtenerCategoriasDeProductos___________________ */  
+   
+    
+    
      public List<Categoria> obtenerCategoriasDeProductos()
     {
         List<Categoria> categorias = new ArrayList<Categoria>();
@@ -234,7 +288,13 @@ public class CategoriaData
               
         return categorias;
     }
-     //-------nuevo
+     
+     
+      /*/BUSCAR´POR NOMBRE____________BUSCAR´POR NOMBRER______________________________BUSCAR´POR NOMBRE___________________
+    ____________BUSCAR´POR NOMBRE______________________________BUSCAR´POR NOMBRER___________________
+    ______________________________BUSCAR´POR NOMBRE___________________ _____________________________BUSCAR´POR NOMBRE___________________ */
+     
+     
       public Categoria buscarCategoriaNombre(String nombre)
       {
         Categoria categoria=null;

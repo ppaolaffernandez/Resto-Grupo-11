@@ -1,6 +1,14 @@
 
+/*
+ creo un  Formulario principal jframeform, 
+y para las demas vistas uso el formulario jinternalframeform
+en la libreria lib le pongo el servidor mariadb y los busco en algun proyecto  que tengo
+ */
 /*para crear la vista principal agregamosjmanubar , luego agregar menu ,se le agrega adentro del menu, un menu item
 despues se le agrega la pantalla negra que se llama desktoppane*/
+
+
+
 package Vista;
 
 import javax.swing.JFrame;
@@ -28,14 +36,12 @@ public class Principal extends javax.swing.JFrame {
         jmiMeseros = new javax.swing.JMenuItem();
         pedidos = new javax.swing.JMenu();
         jmiPedidos = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         productos = new javax.swing.JMenu();
         jmiProductos = new javax.swing.JMenuItem();
         reservas = new javax.swing.JMenu();
         jmiReservas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(972, 546));
         setMinimumSize(new java.awt.Dimension(972, 546));
 
         escritorio.setBackground(new java.awt.Color(255, 204, 255));
@@ -108,14 +114,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         pedidos.add(jmiPedidos);
-
-        jMenuItem1.setText("Pedido2");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        pedidos.add(jMenuItem1);
 
         jMenuBar3.add(pedidos);
 
@@ -231,15 +229,6 @@ public class Principal extends javax.swing.JFrame {
         escritorio.moveToFront(vr);
     }//GEN-LAST:event_jmiReservasActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-         escritorio.removeAll();
-        escritorio.repaint();
-       VistaPedidos vp=new VistaPedidos();
-        vp.setVisible(true);
-        escritorio.add(vp);
-        escritorio.moveToFront(vp);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -278,7 +267,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu Clientes;
     public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar3;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jmiCategorias;
     private javax.swing.JMenuItem jmiClientes;
     private javax.swing.JMenuItem jmiMesas;
